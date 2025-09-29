@@ -5,106 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Noé Chami · Portfolio BTS SIO</title>
   <meta name="description" content="Portfolio BTS SIO (SISR) – Projets, compétences, certifications, veille et contact – Noé Chami" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='58' font-size='58' fill='%23fff' text-anchor='middle' font-family='Arial, Helvetica, sans-serif'>N</text></svg>">
   <style>
     :root{
       --bg:#0b0d10; --card:#11151a; --muted:#8b98a5; --text:#e6eef6; --accent:#42b883; --accent2:#6aa6ff; --line:#1c2128;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial; color:var(--text); background:var(--bg);}
+    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial; color:var(--text); background:var(--bg);}
     a{color:var(--accent2); text-decoration:none}
     a:hover{text-decoration:underline}
     .layout{display:grid; grid-template-columns:320px 1fr; gap:28px; max-width:1200px; margin:0 auto; padding:28px}
-    @media (max-width: 980px){.layout{grid-template-columns:1fr} .sidebar{position:static; top:auto}}
-
-    /* Sidebar */
-    .sidebar{position:sticky; top:20px; height:calc(100dvh - 40px); background:linear-gradient(180deg,rgba(17,21,26,.9),rgba(17,21,26,.7)); border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:18px}
+    @media (max-width: 980px){.layout{grid-template-columns:1fr}}
+    .sidebar{position:sticky; top:20px; height:calc(100dvh - 40px); background:#11151a; border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:18px}
     .brand{display:flex; gap:14px; align-items:center}
-    .avatar{width:70px; height:70px; border-radius:14px; overflow:hidden; background:#0f1318; display:grid; place-items:center; border:1px solid var(--line)}
-    .avatar svg{width:44px; height:44px; opacity:.9}
+    .avatar{width:70px; height:70px; border-radius:14px; background:#0f1318; display:grid; place-items:center; border:1px solid var(--line)}
     .brand h1{margin:0; font-size:1.35rem}
     .brand small{display:block; color:var(--muted)}
     .nav{margin-top:10px; display:flex; flex-direction:column; gap:6px}
-    .nav a{padding:10px 12px; border-radius:10px; color:var(--text); border:1px solid transparent; display:flex; align-items:center; gap:10px}
-    .nav a:hover{background:#0e1318; border-color:var(--line)}
+    .nav a{padding:10px 12px; border-radius:10px; color:var(--text); display:flex; align-items:center; gap:10px}
     .chips{display:flex; flex-wrap:wrap; gap:8px}
     .chip{padding:6px 10px; border-radius:999px; background:#0f141a; border:1px solid var(--line); color:var(--muted); font-size:.85rem}
-    .sidebar .socials{margin-top:auto; display:flex; gap:10px}
     .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:#0f141a; color:var(--text)}
     .btn:hover{background:#111820}
     .primary{background:var(--accent); border-color:transparent; color:#08120d}
     .primary:hover{filter:brightness(1.05)}
-
-    /* Content */
     .content{display:flex; flex-direction:column; gap:28px}
-    section{background:linear-gradient(180deg,rgba(17,21,26,.9),rgba(17,21,26,.6)); border:1px solid var(--line); border-radius:16px; padding:24px}
+    section{background:#11151a; border:1px solid var(--line); border-radius:16px; padding:24px}
     h2{margin:0 0 12px; font-size:1.4rem}
     .muted{color:var(--muted)}
-    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
-    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:22px}
-    @media (max-width:980px){.hero{grid-template-columns:1fr}}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px}
-    .kpi{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-    .kpi .card{display:flex; flex-direction:column; gap:6px; align-items:flex-start}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-
-    /* Project cards */
     .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
     @media (max-width:980px){.projects{grid-template-columns:1fr}}
-    .project{position:relative; overflow:hidden}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px}
     .project h3{margin:.2rem 0 .4rem}
-    .project .tags{display:flex; flex-wrap:wrap; gap:6px}
+    .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
     .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:#0e141a; color:var(--muted); border:1px solid var(--line)}
-
-    /* Timeline */
     .timeline{position:relative; margin-left:10px}
     .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--line)}
     .entry{position:relative; padding-left:28px; margin:16px 0}
     .entry:before{content:""; position:absolute; left:4px; top:.45rem; width:12px; height:12px; border-radius:50%; background:var(--accent)}
-
-    /* Table */
-    table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid var(--line); border-radius:12px}
-    th,td{padding:10px 12px; text-align:left}
-    thead th{background:#0f141a}
-    tbody tr+tr td{border-top:1px solid var(--line)}
-
     .foot{opacity:.7; font-size:.9rem; text-align:center}
-
-    /* Topbar (mobile) */
-    .topbar{display:none}
-    @media (max-width:980px){
-      .topbar{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; position:sticky; top:0; background:rgba(11,13,16,.8); backdrop-filter: blur(8px); border-bottom:1px solid var(--line); z-index:10}
-    }
-    .menu-btn{display:none}
-    @media (max-width:980px){
-      .menu-btn{display:inline-flex}
-      .sidebar{display:none}
-      .sidebar.open{display:flex}
-    }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <strong>Noé Chami – Portfolio</strong>
-    <button class="btn menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰ Menu</button>
-  </div>
-
   <main class="layout">
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
+    <!-- Sidebar -->
+    <aside class="sidebar">
       <div class="brand">
-        <div class="avatar" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2Z" fill="#0b0d10"/><path d="M12 12.8c2.43 0 4.4-1.97 4.4-4.4S14.43 4 12 4 7.6 5.97 7.6 8.4s1.97 4.4 4.4 4.4Z" fill="#42b883"/><path d="M19.5 20c-1.7-3.3-4.3-5-7.5-5s-5.8 1.7-7.5 5" stroke="#42b883" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
+        <div class="avatar">📄</div>
         <div>
           <h1>Noé Chami</h1>
           <small>BTS SIO – SISR</small>
         </div>
       </div>
-
       <nav class="nav">
-        <a href="#hero">🏁 Accueil</a>
         <a href="#projets">🧩 Projets</a>
         <a href="#xp">🛠️ Expériences</a>
         <a href="#skills">⚙️ Compétences</a>
@@ -112,117 +64,93 @@
         <a href="#veille">🔍 Veille</a>
         <a href="#contact">✉️ Contact</a>
       </nav>
-
-      <div class="chips" aria-label="mots-clés">
-        <span class="chip">Cisco · VLAN</span>
-        <span class="chip">Windows Server</span>
-        <span class="chip">Linux</span>
-        <span class="chip">AD / DNS / DHCP</span>
+      <div class="chips">
+        <span class="chip">DHCP</span>
+        <span class="chip">Active Directory</span>
+        <span class="chip">Apache</span>
+        <span class="chip">Cisco</span>
       </div>
-
       <div class="socials">
-        <a class="btn primary" href="Documents/cv-noe-chami.pdf" target="_blank" rel="noopener">📄 CV</a>
-        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">in</a>
-        <a class="btn" href="https://kiiwiix.github.io/chami.noe/" target="_blank" rel="noopener">Site</a>
+        <a class="btn primary" href="Documents/cv-noe-chami.pdf" target="_blank">📄 CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank">LinkedIn</a>
       </div>
     </aside>
 
-    <!-- CONTENT -->
+    <!-- Content -->
     <div class="content">
-      <section id="hero" class="hero">
-        <div class="card">
-          <h2>Bonjour 👋</h2>
-          <p class="muted">Je suis <strong>Noé Chami</strong>, étudiant en <strong>BTS SIO (SISR)</strong>. Je m’intéresse à l’administration systèmes & réseaux, à la cybersécurité et au déploiement de services. Mon objectif : rejoindre l’ENSOA (Saint‑Maixent) pour intégrer l’arme des transmissions.</p>
-          <div class="kpi" style="margin-top:14px">
-            <div class="card"><span class="muted">Technos</span><strong>AD, DNS, DHCP, VLAN</strong></div>
-            <div class="card"><span class="muted">Systèmes</span><strong>Windows, Debian</strong></div>
-            <div class="card"><span class="muted">Outils</span><strong>Packet Tracer, Nutanix</strong></div>
-          </div>
-          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
-            <a class="btn primary" href="#projets">Voir mes projets</a>
-            <a class="btn" href="Documents/cv-noe-chami.pdf" target="_blank" rel="noopener">Télécharger le CV</a>
-          </div>
-        </div>
-        <div class="card">
-          <h2>Tableau de bord rapide</h2>
-          <table>
-            <thead><tr><th>Catégorie</th><th>Détails</th></tr></thead>
-            <tbody>
-              <tr><td>Réseau</td><td>VLAN & trunking, 802.1Q, segmentation</td></tr>
-              <tr><td>Systèmes</td><td>Active Directory 2019, GPO, partages CIFS</td></tr>
-              <tr><td>Services</td><td>DHCP relay, DNS, Intranet Apache</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
 
       <section id="projets">
         <h2>🧩 Projets</h2>
         <p class="muted">Sélection de travaux réalisés en cours et en stage.</p>
         <div class="projects">
+
+          <!-- Projet DHCP avec WAMP -->
           <article class="card project">
-            <span class="tag">Réseau</span>
-            <h3>Configuration VLAN & Trunking (Packet Tracer)</h3>
-            <p>Création des VLAN 10/99/… · Affectation ports d’accès · Trunk 802.1Q · VLAN natif · Vérifications <span class="mono">show vlan brief</span> / <span class="mono">show interfaces trunk</span>.</p>
-            <div class="tags"><span class="tag">Cisco</span><span class="tag">802.1Q</span><span class="tag">Sécurité L2</span></div>
+            <span class="tag">Infra</span>
+            <h3>Déploiement DHCP avec WAMP</h3>
+            <p>
+              Mise en place d’un serveur <strong>DHCP</strong> sous Windows Server 2019 avec un client Windows 10.<br>
+              Configuration d’une étendue (192.168.30.3 – 192.168.30.60), règles pare-feu ICMP, 
+              analyse réseau via <strong>Wireshark</strong> et mise en place d’une réservation d’adresse IP.
+            </p>
+            <div class="tags">
+              <span class="tag">Windows Server</span>
+              <span class="tag">DHCP</span>
+              <span class="tag">Wireshark</span>
+            </div>
+            <a href="Documents/DHCPavecWAMP.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
           </article>
+
+          <!-- Projet Active Directory -->
           <article class="card project">
             <span class="tag">Systèmes</span>
             <h3>Active Directory sous Windows Server 2019</h3>
-            <p>AD DS & DNS, OUs, comptes, groupes, GPO (restrictions horaires, scripts), partages et droits NTFS, base de tests.</p>
-            <div class="tags"><span class="tag">AD DS</span><span class="tag">GPO</span><span class="tag">CIFS</span></div>
+            <p>Installation AD DS & DNS, création d’OUs, gestion des comptes et groupes, stratégies GPO, partages NTFS.</p>
+            <div class="tags"><span class="tag">AD DS</span><span class="tag">GPO</span><span class="tag">NTFS</span></div>
+            <a href="Documents/ActiveDirectory.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
           </article>
+
+          <!-- Projet Intranet Apache -->
           <article class="card project">
             <span class="tag">Services</span>
             <h3>Intranet Apache (Debian)</h3>
-            <p>Serveur Apache2 accessible pour tous les VLANs (sauf visiteurs), vhosts <span class="mono">intralab.swiss-galaxy.com</span>, supervision basique.</p>
+            <p>Serveur Apache2 accessible à travers plusieurs VLANs, configuration de vhosts et supervision basique.</p>
             <div class="tags"><span class="tag">Linux</span><span class="tag">Apache2</span></div>
+            <a href="Documents/Apache.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
           </article>
+
+          <!-- Projet DHCP relais -->
           <article class="card project">
             <span class="tag">Infra</span>
             <h3>DHCP central + agent relais sur switch</h3>
-            <p>Étendues par VLAN, relais sur commutateur, test d’allocation et routage intra‑site.</p>
+            <p>Étendues par VLAN, configuration du relais DHCP sur le switch, tests d’allocation et routage intra-site.</p>
             <div class="tags"><span class="tag">ISC DHCP</span><span class="tag">Relay</span></div>
+            <a href="Documents/DHCPRelais.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
           </article>
+
         </div>
       </section>
 
+      <!-- Expériences -->
       <section id="xp">
         <h2>🛠️ Expériences</h2>
         <div class="timeline">
-          <div class="entry">
-            <strong>Stage — 807ᵉ Compagnie des transmissions</strong>
-            <div class="muted">6 semaines · Projet SIGMA avec MITRE ATT&CK · Cohésion & discipline</div>
-          </div>
-          <div class="entry">
-            <strong>Stage volontaire — Base aérienne 123 Orléans‑Bricy</strong>
-            <div class="muted">Visite des infrastructures, découverte A400M, échanges CPA10</div>
-          </div>
+          <div class="entry"><strong>Stage — 807ᵉ Compagnie des transmissions</strong><div class="muted">6 semaines · Projet SIGMA avec MITRE ATT&CK</div></div>
+          <div class="entry"><strong>Stage volontaire — Base aérienne 123 Orléans-Bricy</strong><div class="muted">Visite des infrastructures, découverte A400M, échanges CPA10</div></div>
         </div>
       </section>
 
+      <!-- Compétences -->
       <section id="skills">
         <h2>⚙️ Compétences</h2>
-        <div class="grid">
-          <div class="card" style="grid-column: span 6;">
-            <h3>Systèmes & Réseau</h3>
-            <ul>
-              <li>Active Directory, DNS, DHCP (Windows Server 2019)</li>
-              <li>Segmentation VLAN, trunking 802.1Q, bases ACL L2</li>
-              <li>Debian : Apache2, Postfix, services de base</li>
-            </ul>
-          </div>
-          <div class="card" style="grid-column: span 6;">
-            <h3>Outils</h3>
-            <ul>
-              <li>Packet Tracer, Nutanix, VirtualBox</li>
-              <li>Shell/PowerShell de base, Git/GitHub</li>
-              <li>Documentation, recette, présentation</li>
-            </ul>
-          </div>
-        </div>
+        <ul>
+          <li>Active Directory, DNS, DHCP (Windows Server 2019)</li>
+          <li>Segmentation VLAN, trunking 802.1Q, ACL basiques</li>
+          <li>Debian : Apache2, Postfix, services réseaux</li>
+        </ul>
       </section>
 
+      <!-- Certifications -->
       <section id="certs">
         <h2>🎓 Certifications</h2>
         <ul>
@@ -231,41 +159,20 @@
         </ul>
       </section>
 
+      <!-- Veille -->
       <section id="veille">
         <h2>🔍 Veille technologique</h2>
-        <p>Un article par mois. Exemple : <strong>Cloud hybride & virtualisation</strong>. Ajoutez vos supports dans <span class="mono">Documents/</span> et liez‑les ici.</p>
-        <ul>
-          <li><a href="#" onclick="alert('Ajoute ton PDF de veille dans Documents/ et lie le ici 🙂'); return false;">Veille — Octobre 2024 (PDF)</a></li>
-        </ul>
+        <p>Exemple : <strong>Cloud hybride & virtualisation</strong>. Ajoutez vos PDF de veille dans <code>Documents/</code> et liez-les ici.</p>
       </section>
 
+      <!-- Contact -->
       <section id="contact">
         <h2>✉️ Contact</h2>
-        <p>💼 Ouvert aux opportunités dans l’administration systèmes & réseaux et la cybersécurité.</p>
-        <p>📧 <a href="mailto:chaminoe0@gmail.com" target="_blank" rel="noopener">chaminoe0@gmail.com</a></p>
+        <p>📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a></p>
       </section>
 
-      <p class="foot">© 2024–2025 · Portfolio BTS SIO (SISR) — Noé Chami · <a href="https://kiiwiix.github.io/chami.noe/" target="_blank" rel="noopener">Version en ligne</a></p>
+      <p class="foot">© 2024–2025 · Portfolio BTS SIO (SISR) — Noé Chami</p>
     </div>
   </main>
-
-  <script>
-    // mobile sidebar toggle
-    const btn = document.getElementById('menuBtn');
-    const sb = document.getElementById('sidebar');
-    if(btn){ btn.addEventListener('click', ()=> sb.classList.toggle('open')); }
-
-    // smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        const id = a.getAttribute('href');
-        if(id.length>1){
-          e.preventDefault();
-          const el = document.querySelector(id);
-          if(el){ window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 10, behavior: 'smooth'}); }
-        }
-      });
-    });
-  </script>
 </body>
 </html>
