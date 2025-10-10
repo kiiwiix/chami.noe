@@ -18,7 +18,7 @@
       --glow:rgba(106,166,255,.35);
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth; scroll-padding-top:32px}
     body{
       margin:0;
       font:16px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
@@ -27,7 +27,21 @@
     }
     a{color:var(--accent2); text-decoration:none; transition:all .2s ease}
     a:hover{text-decoration:underline; color:#89c1ff}
+    a:focus-visible{outline:2px solid var(--accent2); outline-offset:4px}
     h1,h2,h3{font-weight:600; letter-spacing:.3px}
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:auto;
+      padding:10px 16px;
+      background:var(--accent2);
+      color:#021326;
+      border-radius:12px;
+      font-weight:600;
+      z-index:1000;
+      transition:transform .2s ease;
+    }
+    .skip-link:focus{left:24px; top:18px; transform:translateY(0)}
     .layout{display:grid; grid-template-columns:320px 1fr; gap:32px; max-width:1220px; margin:0 auto; padding:32px}
     @media (max-width:1080px){.layout{grid-template-columns:1fr; padding:24px}}
     .sidebar{
@@ -101,6 +115,7 @@
       border-radius:20px;
       padding:28px;
       box-shadow:0 20px 45px rgba(0,0,0,.28);
+      scroll-margin-top:96px;
     }
     h2{margin:0 0 16px; font-size:1.5rem}
     .muted{color:var(--muted)}
@@ -143,11 +158,13 @@
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important}
       a{transition:none}
+      .skip-link{transition:none}
     }
   </style>
 </head>
 <body>
-  <main class="layout">
+  <a class="skip-link" href="#contenu">Passer au contenu principal</a>
+  <main id="contenu" class="layout">
     <!-- Sidebar -->
     <aside class="sidebar" aria-label="Présentation rapide">
       <div class="brand">
@@ -164,7 +181,7 @@
         </div>
       </div>
       <nav class="nav" aria-label="Navigation principale">
-        <a href="#intro">✨ Profil</a>
+        <a href="#intro" aria-current="page">✨ Profil</a>
         <a href="#projets">🧩 Projets</a>
         <a href="#xp">🛠️ Expériences</a>
         <a href="#skills">⚙️ Compétences</a>
