@@ -46,4 +46,6 @@ Ce portfolio est hébergé en ligne pour être accessible lors de l’épreuve e
 ---
 
 ## 📬 Contact
+- 📍 Orléans · Lycée Benjamin Franklin
 - ✉️ Email : chaminoe0@gmail.com
+- 📱 Téléphone : 07 81 36 83 26
