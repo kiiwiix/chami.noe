@@ -7,6 +7,18 @@
   <meta name="description" content="Portfolio BTS SIO (SISR) – Projets, compétences, certifications, veille et contact – Noé Chami" />
   <style>
     :root{
+      --bg:#0b0d10;
+      --card:#11151a;
+      --muted:#8b98a5;
+      --text:#e6eef6;
+      --accent:#42b883;
+      --accent2:#6aa6ff;
+      --line:#1c2128;
+      --glow:#1a2330;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth; scroll-padding-top:2rem}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
       --bg:#05080d;
       --card:#0e131b;
       --muted:#8b98a5;
@@ -24,6 +36,23 @@
       color:var(--text);
       background:radial-gradient(circle at top,var(--glow) 0%,transparent 40%),var(--bg);
     }
+    a{color:var(--accent2); text-decoration:none; transition:color .2s ease, text-decoration-color .2s ease}
+    a:hover{text-decoration:underline; color:#89c1ff}
+    a:focus-visible{outline:2px solid var(--accent2); outline-offset:4px}
+    h1,h2,h3{font-weight:600; letter-spacing:.3px}
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:auto;
+      background:var(--accent2);
+      color:#021326;
+      padding:0.75rem 1rem;
+      border-radius:0.75rem;
+      font-weight:600;
+      z-index:999;
+      transition:transform .2s ease;
+    }
+    .skip-link:focus{left:1.5rem; top:1.5rem; transform:translateY(0)}
     a{color:var(--accent2); text-decoration:none; transition:all .2s ease}
     a:hover{text-decoration:underline; color:#89c1ff}
     h1,h2,h3{font-weight:600; letter-spacing:.3px}
@@ -49,6 +78,10 @@
       background:linear-gradient(140deg,#111924,#1d2837);
       display:grid; place-items:center;
       border:1px solid var(--line);
+      overflow:hidden;
+    }
+    .avatar picture{display:block; width:100%; height:100%}
+    .avatar img{width:100%; height:100%; object-fit:cover}
       font-size:2rem;
     }
     .brand h1{margin:0; font-size:1.6rem}
@@ -63,6 +96,32 @@
       align-items:center;
       gap:10px;
       border:1px solid transparent;
+      transition:background .2s ease,border-color .2s ease;
+    }
+    .nav a:hover{background:rgba(106,166,255,.12); border-color:rgba(106,166,255,.2); text-decoration:none}
+    .nav a:focus-visible{outline:2px solid var(--accent2); outline-offset:2px; text-decoration:none}
+    .chips{display:flex; flex-wrap:wrap; gap:8px}
+    .chip{padding:6px 10px; border-radius:999px; background:#0f141a; border:1px solid var(--line); color:var(--muted); font-size:.85rem}
+    .socials{display:flex; flex-direction:column; gap:10px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:#0f141a; color:var(--text); transition:background .2s ease, transform .2s ease}
+    .btn:hover{background:#111820; transform:translateY(-1px)}
+    .btn:focus-visible{outline:2px solid var(--accent2); outline-offset:2px}
+    .primary{background:var(--accent); border-color:transparent; color:#08120d}
+    .primary:hover{filter:brightness(1.05)}
+    .content{display:flex; flex-direction:column; gap:32px}
+    section{background:#11151a; border:1px solid var(--line); border-radius:20px; padding:28px; scroll-margin-top:2rem}
+    h2{margin:0 0 12px; font-size:1.4rem}
+    .muted{color:var(--muted)}
+    .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+    @media (max-width:980px){.projects{grid-template-columns:1fr}}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px}
+    .project h3{margin:.2rem 0 .4rem}
+    .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+    .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:#0e141a; color:var(--muted); border:1px solid var(--line)}
+    .timeline{position:relative; margin-left:10px}
+    .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--line)}
+    .entry{position:relative; padding-left:28px; margin:16px 0}
+    .entry:before{content:""; position:absolute; left:4px; top:.45rem; width:12px; height:12px; border-radius:50%; background:var(--accent)}
     }
     .nav a:hover{background:rgba(106,166,255,.12); border-color:rgba(106,166,255,.2); text-decoration:none}
     .chips{display:flex; flex-wrap:wrap; gap:8px}
@@ -139,10 +198,17 @@
   </style>
 </head>
 <body>
-  <main class="layout">
+  <a class="skip-link" href="#contenu">Passer au contenu principal</a>
+  <main id="contenu" class="layout">
     <!-- Sidebar -->
     <aside class="sidebar" aria-label="Présentation rapide">
       <div class="brand">
+        <div class="avatar">
+          <picture>
+            <source srcset="assets/noe-chami.jpg" type="image/jpeg" />
+            <img src="assets/avatar-placeholder.svg" alt="Portrait de Noé Chami" loading="lazy" width="70" height="70" />
+          </picture>
+        </div>
         <div class="avatar" aria-hidden="true">🛡️</div>
         <div>
           <h1>Noé Chami</h1>
@@ -175,6 +241,12 @@
       </div>
       <div class="socials">
         <a class="btn primary" href="Documents/cv-noe-chami.pdf" target="_blank" rel="noopener">📄 Télécharger mon CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
+      </div>
+      <div class="muted">
+        📍 Orléans · Lycée Benjamin Franklin<br />
+        📱 07 81 36 83 26
         <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">in Suivre sur LinkedIn</a>
         <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
       </div>
@@ -215,8 +287,8 @@
             <span class="tag">Infra</span>
             <h3>Déploiement DHCP avec WAMP</h3>
             <p>
-              Mise en place d’un serveur <strong>DHCP</strong> sous Windows Server 2019 avec un client Windows 10.<br>
-              Configuration d’une étendue (192.168.30.3 – 192.168.30.60), règles pare-feu ICMP, 
+              Mise en place d’un serveur <strong>DHCP</strong> sous Windows Server 2019 avec un client Windows 10.<br />
+              Configuration d’une étendue (192.168.30.3 – 192.168.30.60), règles pare-feu ICMP,
               analyse réseau via <strong>Wireshark</strong> et mise en place d’une réservation d’adresse IP.
             </p>
             <div class="tags">
@@ -270,6 +342,9 @@
       <section id="xp">
         <h2>🛠️ Expériences</h2>
         <div class="timeline">
+          <div class="entry"><strong>Stage — 807ᵉ Compagnie des transmissions</strong><div class="muted">6 semaines · Projet SIGMA avec MITRE ATT&CK</div></div>
+          <div class="entry"><strong>Stage volontaire — Base aérienne 123 Orléans-Bricy</strong><div class="muted">Visite des infrastructures, découverte A400M, échanges CPA10</div></div>
+          <div class="entry"><strong>Projets académiques — BTS SIO</strong><div class="muted">Gestion d’incidents, documentation et support utilisateurs</div></div>
           <div class="entry">
             <strong>Stage – 807ᵉ Compagnie des transmissions</strong>
             <span>Avril 2024 · 6 semaines</span>
@@ -291,6 +366,12 @@
       <!-- Compétences -->
       <section id="skills">
         <h2>⚙️ Compétences</h2>
+        <ul>
+          <li>Active Directory, DNS, DHCP (Windows Server 2019)</li>
+          <li>Segmentation VLAN, trunking 802.1Q, ACL basiques</li>
+          <li>Debian : Apache2, Postfix, services réseaux</li>
+          <li>Scripts PowerShell et Bash pour automatiser les tâches</li>
+        </ul>
         <div class="skills-grid">
           <article class="skill-card">
             <h3>Administration systèmes</h3>
@@ -330,6 +411,11 @@
       <!-- Certifications -->
       <section id="certs">
         <h2>🎓 Certifications</h2>
+        <ul>
+          <li>PIX – Compétences numériques (score au-dessus de la moyenne nationale)</li>
+          <li>OpenClassrooms : Linux, TCP/IP, HTML5/CSS3</li>
+          <li>ANSSI – MOOC SecNumacadémie</li>
+        </ul>
         <div class="certs">
           <div class="cert">
             <div>
@@ -358,6 +444,7 @@
       <!-- Veille -->
       <section id="veille">
         <h2>🔍 Veille technologique</h2>
+        <p class="muted">Exemples de sujets : <strong>cloud hybride & virtualisation</strong>, cybersécurité défense, automatisation réseau avec Ansible.</p>
         <div class="veille">
           <article>
             <h3>Cloud hybride &amp; virtualisation</h3>
@@ -380,6 +467,10 @@
       <!-- Contact -->
       <section id="contact">
         <h2>✉️ Contact</h2>
+        <p>
+          📍 Orléans · Lycée Benjamin Franklin<br />
+          📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a><br />
+          📱 07 81 36 83 26
         <p class="muted">Disponible pour un échange autour de vos besoins en administration système ou cybersécurité.</p>
         <p>📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a><br>
            📱 07 68 56 74 30</p>
