@@ -7,46 +7,98 @@
   <meta name="description" content="Portfolio BTS SIO (SISR) – Projets, compétences, certifications, veille et contact – Noé Chami" />
   <style>
     :root{
-      --bg:#0b0d10; --card:#11151a; --muted:#8b98a5; --text:#e6eef6; --accent:#42b883; --accent2:#6aa6ff; --line:#1c2128;
+      --bg:#0b0d10;
+      --card:#11151a;
+      --muted:#8b98a5;
+      --text:#e6eef6;
+      --accent:#42b883;
+      --accent2:#6aa6ff;
+      --line:#1c2128;
+      --glow:#1a2330;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth; scroll-padding-top:2rem}
-    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial; color:var(--text); background:var(--bg);}
-    a{color:var(--accent2); text-decoration:none}
-    a:hover{text-decoration:underline}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+    body{
+      margin:0;
+      font:16px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      color:var(--text);
+      background:radial-gradient(circle at top,var(--glow) 0%,transparent 40%),var(--bg);
+    }
+    a{color:var(--accent2); text-decoration:none; transition:color .2s ease, text-decoration-color .2s ease}
+    a:hover{text-decoration:underline; color:#89c1ff}
     a:focus-visible{outline:2px solid var(--accent2); outline-offset:4px}
+    h1,h2,h3{font-weight:600; letter-spacing:.3px}
     .skip-link{
-      position:absolute; left:-999px; top:auto; background:var(--accent2); color:#021326; padding:0.75rem 1rem; border-radius:0.75rem;
-      font-weight:600; z-index:999; transition:transform .2s ease;
+      position:absolute;
+      left:-999px;
+      top:auto;
+      background:var(--accent2);
+      color:#021326;
+      padding:0.75rem 1rem;
+      border-radius:0.75rem;
+      font-weight:600;
+      z-index:999;
+      transition:transform .2s ease;
     }
     .skip-link:focus{left:1.5rem; top:1.5rem; transform:translateY(0)}
-    .layout{display:grid; grid-template-columns:320px 1fr; gap:28px; max-width:1200px; margin:0 auto; padding:28px}
-    @media (max-width: 980px){.layout{grid-template-columns:1fr}}
-    .sidebar{position:sticky; top:20px; height:calc(100dvh - 40px); background:#11151a; border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:18px}
-    @media (max-width: 980px){.sidebar{position:static; height:auto}}
-    .brand{display:flex; gap:14px; align-items:center}
-    .avatar{width:70px; height:70px; border-radius:14px; background:#0f1318; display:grid; place-items:center; border:1px solid var(--line); overflow:hidden}
+    .layout{display:grid; grid-template-columns:320px 1fr; gap:32px; max-width:1220px; margin:0 auto; padding:32px}
+    @media (max-width:1080px){.layout{grid-template-columns:1fr; padding:24px}}
+    .sidebar{
+      position:sticky;
+      top:24px;
+      height:calc(100dvh - 48px);
+      background:linear-gradient(160deg,rgba(14,19,27,.94),rgba(8,12,18,.94));
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:26px;
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+      box-shadow:0 24px 60px rgba(0,0,0,.35);
+    }
+    @media (max-width:1080px){.sidebar{position:static; height:auto}}
+    .brand{display:flex; gap:16px; align-items:center}
+    .avatar{
+      width:76px; height:76px; border-radius:18px;
+      background:linear-gradient(140deg,#111924,#1d2837);
+      display:grid; place-items:center;
+      border:1px solid var(--line);
+      overflow:hidden;
+    }
     .avatar picture{display:block; width:100%; height:100%}
     .avatar img{width:100%; height:100%; object-fit:cover}
-    .brand h1{margin:0; font-size:1.35rem}
-    .brand small{display:block; color:var(--muted)}
-    .subtitle{margin:4px 0 0; color:var(--muted); font-size:0.95rem}
-    .nav{margin-top:10px; display:flex; flex-direction:column; gap:6px}
-    .nav a{padding:10px 12px; border-radius:10px; color:var(--text); display:flex; align-items:center; gap:10px}
+    .brand h1{margin:0; font-size:1.6rem}
+    .brand small{display:block; color:var(--muted); margin-top:4px}
+    .subtitle{color:var(--muted); font-size:.95rem; margin:0}
+    .nav{margin-top:12px; display:flex; flex-direction:column; gap:8px}
+    .nav a{
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid transparent;
+      transition:background .2s ease,border-color .2s ease;
+    }
+    .nav a:hover{background:rgba(106,166,255,.12); border-color:rgba(106,166,255,.2); text-decoration:none}
     .nav a:focus-visible{outline:2px solid var(--accent2); outline-offset:2px; text-decoration:none}
     .chips{display:flex; flex-wrap:wrap; gap:8px}
     .chip{padding:6px 10px; border-radius:999px; background:#0f141a; border:1px solid var(--line); color:var(--muted); font-size:.85rem}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:#0f141a; color:var(--text)}
-    .btn:hover{background:#111820}
+    .socials{display:flex; flex-direction:column; gap:10px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:#0f141a; color:var(--text); transition:background .2s ease, transform .2s ease}
+    .btn:hover{background:#111820; transform:translateY(-1px)}
+    .btn:focus-visible{outline:2px solid var(--accent2); outline-offset:2px}
     .primary{background:var(--accent); border-color:transparent; color:#08120d}
     .primary:hover{filter:brightness(1.05)}
-    .content{display:flex; flex-direction:column; gap:28px}
-    section{background:#11151a; border:1px solid var(--line); border-radius:16px; padding:24px}
+    .content{display:flex; flex-direction:column; gap:32px}
+    section{background:#11151a; border:1px solid var(--line); border-radius:20px; padding:28px; scroll-margin-top:2rem}
     h2{margin:0 0 12px; font-size:1.4rem}
     .muted{color:var(--muted)}
-    .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+    .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
     @media (max-width:980px){.projects{grid-template-columns:1fr}}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px}
     .project h3{margin:.2rem 0 .4rem}
     .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
     .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:#0e141a; color:var(--muted); border:1px solid var(--line)}
