@@ -9,8 +9,12 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 - **Nom :** Chami  
 - **Formation :** BTS SIO option SISR  
 - **Objectif professionnel :** Rejoindre Saint-Maixent afin d’intégrer l’école des transmissions  
-- 📄 [Mon CV (PDF)](./Documents/cv-noe-chami.pdf)  
-- 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)  
+- 📄 [Mon CV (PDF)](./Documents/cv-noe-chami.pdf)
+- 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)
+- ✨ Statistiques clés visibles sur la page d’accueil pour présenter mes infrastructures, projets et stages.
+
+> ℹ️ Ajoutez votre photo personnelle dans `assets/noe-chami.jpg` (non versionnée) pour remplacer l’avatar par défaut.
+> Vous pouvez aussi adapter les valeurs des tuiles « +12 infrastructures », « 6 projets », « 2 stages » directement dans `index.html` section `#intro`.
 
 ---
 
@@ -44,4 +48,6 @@ Ce portfolio est hébergé en ligne pour être accessible lors de l’épreuve e
 ---
 
 ## 📬 Contact
+- 📍 Orléans · Lycée Benjamin Franklin
 - ✉️ Email : chaminoe0@gmail.com
+- 📱 Téléphone : 07 81 36 83 26
