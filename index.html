@@ -12,6 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kiiwiix.github.io/chami.noe/" />
   <link rel="stylesheet" href="animations.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     :root{
       color-scheme:dark;
@@ -245,6 +246,36 @@
     <span class="akatsuki-cloud akatsuki-cloud--5"></span>
   </div>
   <a class="skip-link" href="#contenu">Passer au contenu principal</a>
+  <div class="sharingan-vision" aria-hidden="true">
+    <div class="sharingan-eye">
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="iris"></span>
+      <span class="pupil"></span>
+      <span class="ring"></span>
+    </div>
+    <div class="sharingan-eye">
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="iris"></span>
+      <span class="pupil"></span>
+      <span class="ring"></span>
+    </div>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+  </div>
   <main id="contenu" class="layout">
     <!-- Sidebar -->
     <aside class="sidebar" aria-label="Présentation rapide">
@@ -468,6 +499,79 @@
       </footer>
     </div>
   </main>
+  <script>
+    (function(){
+      const sharingan=document.querySelector('.sharingan-vision');
+      if(!sharingan)return;
+      const reduceMotionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
+      const crows=Array.from(sharingan.querySelectorAll('.sharingan-crow'));
+      const randomBetween=(min,max)=>Math.random()*(max-min)+min;
+      let timeoutId=null;
+      let cleanupId=null;
+      const readDuration=()=>{
+        const value=getComputedStyle(document.documentElement).getPropertyValue('--sharingan-duration');
+        const parsed=parseFloat(value);
+        return Number.isFinite(parsed)?parsed*1000:5500;
+      };
+      let activeDuration=readDuration();
+      const stop=()=>{
+        if(timeoutId){
+          clearTimeout(timeoutId);
+          timeoutId=null;
+        }
+        if(cleanupId){
+          clearTimeout(cleanupId);
+          cleanupId=null;
+        }
+        sharingan.classList.remove('is-active');
+      };
+      const scheduleNext=()=>{
+        clearTimeout(timeoutId);
+        const delay=randomBetween(55,70)*1000;
+        timeoutId=window.setTimeout(activateSharingan,delay);
+      };
+      const activateSharingan=()=>{
+        crows.forEach(crow=>{
+          crow.style.setProperty('--start-x',`${randomBetween(-12,-5)}vw`);
+          crow.style.setProperty('--start-y',`${randomBetween(18,72)}vh`);
+          crow.style.setProperty('--dx',`${randomBetween(95,130)}vw`);
+          crow.style.setProperty('--dy',`${randomBetween(-25,20)}vh`);
+          crow.style.setProperty('--crow-duration',`${randomBetween(4.5,7)}s`);
+          crow.style.setProperty('--crow-delay',`${randomBetween(0,1.1)}s`);
+        });
+        sharingan.classList.add('is-active');
+        cleanupId=window.setTimeout(()=>{
+          sharingan.classList.remove('is-active');
+          cleanupId=null;
+        },activeDuration);
+        scheduleNext();
+      };
+      const start=()=>{
+        if(reduceMotionQuery.matches)return;
+        if(timeoutId) return;
+        activeDuration=readDuration();
+        scheduleNext();
+      };
+      if(!reduceMotionQuery.matches){
+        scheduleNext();
+      }
+      document.addEventListener('visibilitychange',()=>{
+        if(document.hidden){
+          stop();
+        }else{
+          start();
+        }
+      });
+      reduceMotionQuery.addEventListener('change',event=>{
+        if(event.matches){
+          stop();
+        }else{
+          activeDuration=readDuration();
+          start();
+        }
+      });
+    })();
+  </script>
   <script>
     (function(){
       const root=document.documentElement;
