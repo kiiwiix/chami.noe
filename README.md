@@ -12,9 +12,11 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 - 📄 [Mon CV (PDF)](./Documents/cv-noe-chami.pdf)
 - 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)
 - ✨ Statistiques clés visibles sur la page d’accueil pour présenter mes infrastructures, projets et stages.
+- 🌓 Un bouton permet de passer du thème sombre au thème clair pour s’adapter à la lumière ambiante.
 
 > ℹ️ Ajoutez votre photo personnelle dans `assets/noe-chami.jpg` (non versionnée) pour remplacer l’avatar par défaut.
 > Vous pouvez aussi adapter les valeurs des tuiles « +12 infrastructures », « 6 projets », « 2 stages » directement dans `index.html` section `#intro`.
+> Le thème choisi est retenu automatiquement dans le navigateur (localStorage).
 
 ---
 
