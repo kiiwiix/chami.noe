@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Noé Chami · Portfolio BTS SIO</title>
   <meta name="description" content="Portfolio BTS SIO (SISR) – Projets, compétences, certifications, veille et contact – Noé Chami" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:title" content="Portfolio BTS SIO – Noé Chami" />
+  <meta property="og:description" content="Découvrir mes projets réseaux & systèmes, mon expérience et mes certifications pour l'épreuve finale du BTS SIO." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kiiwiix.github.io/chami.noe/" />
   <style>
     :root{
+      color-scheme:dark;
       --bg:#0b0d10;
+      --surface:#11151a;
+      --surface-active:rgba(16,22,30,.96);
       --card:#11151a;
       --muted:#8b98a5;
       --text:#e6eef6;
@@ -15,26 +24,20 @@
       --accent2:#6aa6ff;
       --line:#1c2128;
       --glow:#1a2330;
+      --shadow:0 24px 60px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
+    ::selection{background:rgba(106,166,255,.35)}
     html{scroll-behavior:smooth; scroll-padding-top:2rem}
     @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-      --bg:#05080d;
-      --card:#0e131b;
-      --muted:#8b98a5;
-      --text:#f2f6fb;
-      --accent:#42b883;
-      --accent-soft:rgba(66,184,131,.12);
-      --accent2:#6aa6ff;
-      --line:#19212d;
-      --glow:rgba(106,166,255,.35);
-    }
-    *{box-sizing:border-box}
     body{
       margin:0;
       font:16px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
       color:var(--text);
       background:radial-gradient(circle at top,var(--glow) 0%,transparent 40%),var(--bg);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
     }
     a{color:var(--accent2); text-decoration:none; transition:color .2s ease, text-decoration-color .2s ease}
     a:hover{text-decoration:underline; color:#89c1ff}
@@ -53,10 +56,7 @@
       transition:transform .2s ease;
     }
     .skip-link:focus{left:1.5rem; top:1.5rem; transform:translateY(0)}
-    a{color:var(--accent2); text-decoration:none; transition:all .2s ease}
-    a:hover{text-decoration:underline; color:#89c1ff}
-    h1,h2,h3{font-weight:600; letter-spacing:.3px}
-    .layout{display:grid; grid-template-columns:320px 1fr; gap:32px; max-width:1220px; margin:0 auto; padding:32px}
+    .layout{display:grid; grid-template-columns:320px 1fr; gap:32px; max-width:1220px; width:100%; margin:0 auto; padding:32px}
     @media (max-width:1080px){.layout{grid-template-columns:1fr; padding:24px}}
     .sidebar{
       position:sticky;
@@ -69,7 +69,7 @@
       display:flex;
       flex-direction:column;
       gap:22px;
-      box-shadow:0 24px 60px rgba(0,0,0,.35);
+      box-shadow:var(--shadow);
     }
     @media (max-width:1080px){.sidebar{position:static; height:auto}}
     .brand{display:flex; gap:16px; align-items:center}
@@ -82,8 +82,6 @@
     }
     .avatar picture{display:block; width:100%; height:100%}
     .avatar img{width:100%; height:100%; object-fit:cover}
-      font-size:2rem;
-    }
     .brand h1{margin:0; font-size:1.6rem}
     .brand small{display:block; color:var(--muted); margin-top:4px}
     .subtitle{color:var(--muted); font-size:.95rem; margin:0}
@@ -100,7 +98,7 @@
     }
     .nav a:hover{background:rgba(106,166,255,.12); border-color:rgba(106,166,255,.2); text-decoration:none}
     .nav a:focus-visible{outline:2px solid var(--accent2); outline-offset:2px; text-decoration:none}
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none}
     .chip{padding:6px 10px; border-radius:999px; background:#0f141a; border:1px solid var(--line); color:var(--muted); font-size:.85rem}
     .socials{display:flex; flex-direction:column; gap:10px}
     .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:#0f141a; color:var(--text); transition:background .2s ease, transform .2s ease}
@@ -109,91 +107,37 @@
     .primary{background:var(--accent); border-color:transparent; color:#08120d}
     .primary:hover{filter:brightness(1.05)}
     .content{display:flex; flex-direction:column; gap:32px}
-    section{background:#11151a; border:1px solid var(--line); border-radius:20px; padding:28px; scroll-margin-top:2rem}
+    section{background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:28px; scroll-margin-top:2rem; position:relative}
+    section:target{box-shadow:0 0 0 2px var(--accent2) inset; background:var(--surface-active)}
     h2{margin:0 0 12px; font-size:1.4rem}
+    .section-intro{margin:0 0 24px; color:var(--muted)}
     .muted{color:var(--muted)}
-    .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
-    @media (max-width:980px){.projects{grid-template-columns:1fr}}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px}
+    .projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; padding:0; margin:0; list-style:none}
+    .card{background:rgba(9,13,18,.75); border:1px solid var(--line); border-radius:16px; padding:20px; height:100%; display:flex; flex-direction:column; gap:14px}
     .project h3{margin:.2rem 0 .4rem}
-    .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+    .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
     .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:#0e141a; color:var(--muted); border:1px solid var(--line)}
-    .timeline{position:relative; margin-left:10px}
-    .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--line)}
-    .entry{position:relative; padding-left:28px; margin:16px 0}
-    .entry:before{content:""; position:absolute; left:4px; top:.45rem; width:12px; height:12px; border-radius:50%; background:var(--accent)}
-    }
-    .nav a:hover{background:rgba(106,166,255,.12); border-color:rgba(106,166,255,.2); text-decoration:none}
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(66,184,131,.15);
-      border:1px solid rgba(66,184,131,.35);
-      color:var(--accent);
-      font-size:.83rem;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:11px 16px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.06);
-      background:rgba(17,24,32,.8);
-      color:var(--text);
-      font-weight:500;
-      backdrop-filter:blur(12px);
-    }
-    .btn:hover{background:rgba(28,40,56,.9); text-decoration:none}
-    .primary{background:linear-gradient(120deg,#42b883,#8be2a0); border-color:transparent; color:#052615}
-    .primary:hover{filter:brightness(1.04)}
-    .badge-list{display:grid; gap:6px; margin-top:4px; font-size:.88rem; color:var(--muted)}
-    .content{display:flex; flex-direction:column; gap:28px}
-    section{
-      background:rgba(11,16,24,.92);
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:28px;
-      box-shadow:0 20px 45px rgba(0,0,0,.28);
-    }
-    h2{margin:0 0 16px; font-size:1.5rem}
-    .muted{color:var(--muted)}
-    .intro{display:grid; gap:18px}
-    .intro p{margin:0; font-size:1.02rem}
-    .grid{display:grid; gap:18px}
-    .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px}
-    .metric{padding:18px; border-radius:16px; background:var(--card); border:1px solid var(--line); display:grid; gap:6px}
-    .metric span{font-size:.85rem; color:var(--muted)}
-    .metric strong{font-size:1.8rem; font-weight:600}
-    .projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; display:grid; gap:10px}
-    .project h3{margin:0; font-size:1.1rem}
-    .project .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
-    .tag{font-size:.78rem; padding:5px 10px; border-radius:999px; background:#0e141a; color:var(--muted); border:1px solid var(--line)}
-    .timeline{position:relative; margin-left:4px; display:grid; gap:22px}
-    .timeline:before{content:""; position:absolute; left:14px; top:0; bottom:0; width:2px; background:linear-gradient(180deg,rgba(66,184,131,.5),transparent)}
-    .entry{position:relative; padding-left:48px}
-    .entry:before{content:""; position:absolute; left:7px; top:.55rem; width:14px; height:14px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(66,184,131,.18)}
-    .entry strong{display:block; font-size:1.05rem; margin-bottom:6px}
-    .entry span{color:var(--muted); font-size:.9rem}
-    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px}
-    .skill-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; display:grid; gap:10px}
-    .skill-card h3{margin:0; font-size:1.05rem}
-    .skill-card ul{margin:0; padding-left:18px; display:grid; gap:6px}
-    .skill-card li{color:var(--muted)}
-    .certs{display:grid; gap:12px}
-    .cert{display:flex; justify-content:space-between; align-items:center; padding:16px; background:var(--card); border-radius:14px; border:1px solid var(--line)}
-    .cert strong{font-size:1rem}
-    .cert span{color:var(--muted); font-size:.85rem}
-    .veille{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
-    .veille article{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; display:grid; gap:10px}
-    .foot{opacity:.7; font-size:.9rem; text-align:center}
-    footer{margin:24px 0 0}
-    @media (max-width:680px){
-      .layout{padding:18px}
-      section{padding:22px}
-      .sidebar{padding:22px}
+    .card footer{margin-top:auto}
+    .timeline{padding:0 0 0 28px; margin:0; list-style:none; position:relative; border-left:2px solid var(--line)}
+    .timeline li{padding-left:18px; margin:18px 0; position:relative}
+    .timeline li:before{content:""; position:absolute; left:-34px; top:.4rem; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(9,13,18,.9)}
+    .timeline time{display:block; color:var(--muted); font-size:.9rem}
+    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
+    .skill{background:rgba(9,13,18,.75); border:1px solid var(--line); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px}
+    .skill h3{margin:0; font-size:1.05rem}
+    .skill ul{margin:0; padding-left:18px; color:var(--muted)}
+    .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:0; padding:0; list-style:none}
+    .metric{background:#0f141a; border:1px solid var(--line); border-radius:14px; padding:14px; text-align:center}
+    .metric strong{display:block; font-size:1.4rem}
+    address{font-style:normal; line-height:1.7}
+    .foot{opacity:.7; font-size:.9rem; text-align:center; padding:24px 0; margin:0}
+    footer{margin-top:auto; padding:0 0 32px}
+    @media print{
+      body{background:#fff; color:#000}
+      .sidebar{position:static; box-shadow:none; background:#fff; color:#000}
+      .btn{background:#fff; color:#000; border-color:#000}
+      section{background:#fff; color:#000; box-shadow:none}
+      a{color:#004aad}
     }
   </style>
 </head>
@@ -209,7 +153,6 @@
             <img src="assets/avatar-placeholder.svg" alt="Portrait de Noé Chami" loading="lazy" width="70" height="70" />
           </picture>
         </div>
-        <div class="avatar" aria-hidden="true">🛡️</div>
         <div>
           <h1>Noé Chami</h1>
           <small>BTS SIO – option SISR</small>
@@ -217,7 +160,7 @@
         </div>
       </div>
       <nav class="nav" aria-label="Navigation principale">
-        <a href="#intro">✨ Profil</a>
+        <a href="#intro">✨ Aperçu</a>
         <a href="#projets">🧩 Projets</a>
         <a href="#xp">🛠️ Expériences</a>
         <a href="#skills">⚙️ Compétences</a>
@@ -225,65 +168,42 @@
         <a href="#veille">🔍 Veille</a>
         <a href="#contact">✉️ Contact</a>
       </nav>
-      <div>
-        <h2 class="subtitle" style="font-size:1rem; color:var(--text);">Expertises clés</h2>
-        <div class="chips">
-          <span class="chip">DHCP & DNS</span>
-          <span class="chip">Active Directory</span>
-          <span class="chip">Sécurité réseau</span>
-          <span class="chip">Virtualisation</span>
-        </div>
-      </div>
-      <div class="badge-list">
-        <span>📍 Blois · Centre-Val de Loire</span>
-        <span>🎓 2ᵉ année · BTS SIO SISR</span>
-        <span>🎯 Alternance ou CDI dès septembre 2025</span>
-      </div>
+      <ul class="chips" role="list">
+        <li class="chip">DHCP</li>
+        <li class="chip">Active Directory</li>
+        <li class="chip">Apache</li>
+        <li class="chip">Cisco</li>
+      </ul>
       <div class="socials">
         <a class="btn primary" href="Documents/cv-noe-chami.pdf" target="_blank" rel="noopener">📄 Télécharger mon CV</a>
-        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener" aria-label="Profil LinkedIn de Noé Chami">LinkedIn</a>
         <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
       </div>
       <div class="muted">
         📍 Orléans · Lycée Benjamin Franklin<br />
         📱 07 81 36 83 26
-        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">in Suivre sur LinkedIn</a>
-        <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
       </div>
     </aside>
 
     <!-- Content -->
     <div class="content">
 
-      <section id="intro" class="intro" aria-labelledby="intro-title">
-        <h2 id="intro-title">✨ Profil</h2>
-        <p>
-          Étudiant en <strong>BTS Services Informatiques aux Organisations</strong>, spécialité SISR, je conçois et sécurise des infrastructures réseau adaptées aux besoins métiers.
-          Mon objectif : intégrer une équipe d’exploitation ou de cybersécurité pour mettre à profit mes compétences en automatisation, virtualisation et sécurisation des systèmes.
-        </p>
-        <div class="metrics" role="list">
-          <div class="metric" role="listitem">
-            <strong>+12</strong>
-            <span>Projets et TP menés en autonomie ou en binôme</span>
-          </div>
-          <div class="metric" role="listitem">
-            <strong>6 sem.</strong>
-            <span>Stage immersif au sein de la 807ᵉ compagnie des transmissions</span>
-          </div>
-          <div class="metric" role="listitem">
-            <strong>4</strong>
-            <span>Certifications et validations techniques</span>
-          </div>
-        </div>
+      <section id="intro">
+        <h2>✨ Aperçu</h2>
+        <p class="section-intro">Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin d’Orléans. Ce portfolio rassemble mes projets systèmes &amp; réseaux, les compétences développées en formation et mon engagement dans la cybersécurité de défense.</p>
+        <ul class="metrics" role="list">
+          <li class="metric"><strong>+12</strong> infrastructures configurées<br />Windows &amp; Linux</li>
+          <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
+          <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
+        </ul>
       </section>
 
       <section id="projets">
         <h2>🧩 Projets</h2>
-        <p class="muted">Sélection de projets structurants réalisés en formation et en stage. Chaque fiche inclut un rapport détaillé.</p>
-        <div class="projects">
+        <p class="section-intro">Sélection de travaux réalisés en cours, en laboratoire et durant mes stages afin d’illustrer les compétences du référentiel E4.</p>
+        <ul class="projects" role="list">
 
-          <!-- Projet DHCP avec WAMP -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Infra</span>
             <h3>Déploiement DHCP avec WAMP</h3>
             <p>
@@ -296,113 +216,84 @@
               <span class="tag">DHCP</span>
               <span class="tag">Wireshark</span>
             </div>
-            <a href="Documents/DHCPavecWAMP.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <footer><a href="Documents/DHCPavecWAMP.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-          <!-- Projet Active Directory -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Systèmes</span>
             <h3>Active Directory sous Windows Server 2019</h3>
-            <p>Installation AD DS & DNS, création d’OUs, gestion des comptes et groupes, stratégies GPO, partages NTFS.</p>
+            <p>Installation AD DS &amp; DNS, création d’OUs, gestion des comptes et groupes, stratégies GPO et partages NTFS sécurisés.</p>
             <div class="tags"><span class="tag">AD DS</span><span class="tag">GPO</span><span class="tag">NTFS</span></div>
-            <a href="Documents/ActiveDirectory.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <footer><a href="Documents/ActiveDirectory.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-          <!-- Projet Intranet Apache -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Services</span>
             <h3>Intranet Apache (Debian)</h3>
-            <p>Serveur Apache2 accessible à travers plusieurs VLANs, configuration de vhosts et supervision basique.</p>
-            <div class="tags"><span class="tag">Linux</span><span class="tag">Apache2</span></div>
-            <a href="Documents/Apache.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <p>Serveur Apache2 accessible à travers plusieurs VLANs, configuration de vhosts, virtualhosts HTTPS et supervision basique via scripts Bash.</p>
+            <div class="tags"><span class="tag">Linux</span><span class="tag">Apache2</span><span class="tag">Bash</span></div>
+            <footer><a href="Documents/Apache.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-          <!-- Projet DHCP relais -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Infra</span>
             <h3>DHCP central + agent relais sur switch</h3>
-            <p>Étendues par VLAN, configuration du relais DHCP sur le switch, tests d’allocation et routage intra-site.</p>
-            <div class="tags"><span class="tag">ISC DHCP</span><span class="tag">Relay</span></div>
-            <a href="Documents/DHCPRelais.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <p>Étendues par VLAN, configuration du relais DHCP sur le switch Cisco, tests d’allocation, routage intra-site et documentation de procédures.</p>
+            <div class="tags"><span class="tag">ISC DHCP</span><span class="tag">Relay</span><span class="tag">Cisco</span></div>
+            <footer><a href="Documents/DHCPRelais.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-          <!-- Projet Supervision -->
-          <article class="card project">
-            <span class="tag">Supervision</span>
-            <h3>Plateforme de supervision Zabbix</h3>
-            <p>Installation d’un serveur Zabbix sur Debian, découverte d’hôtes via SNMP, alerting mail et tableaux de bord pour le suivi de disponibilité.</p>
-            <div class="tags"><span class="tag">Zabbix</span><span class="tag">SNMP</span><span class="tag">Debian</span></div>
-            <a href="#contact" class="btn">🤝 Présentation orale</a>
-          </article>
-
-        </div>
+        </ul>
       </section>
 
       <!-- Expériences -->
       <section id="xp">
         <h2>🛠️ Expériences</h2>
-        <div class="timeline">
-          <div class="entry"><strong>Stage — 807ᵉ Compagnie des transmissions</strong><div class="muted">6 semaines · Projet SIGMA avec MITRE ATT&CK</div></div>
-          <div class="entry"><strong>Stage volontaire — Base aérienne 123 Orléans-Bricy</strong><div class="muted">Visite des infrastructures, découverte A400M, échanges CPA10</div></div>
-          <div class="entry"><strong>Projets académiques — BTS SIO</strong><div class="muted">Gestion d’incidents, documentation et support utilisateurs</div></div>
-          <div class="entry">
-            <strong>Stage – 807ᵉ Compagnie des transmissions</strong>
-            <span>Avril 2024 · 6 semaines</span>
-            <p class="muted">Déploiement d’un laboratoire MITRE ATT&amp;CK pour l’analyse des menaces et rédaction de procédures opérationnelles. Contribution à la formalisation de la veille technique de l’unité.</p>
-          </div>
-          <div class="entry">
-            <strong>Stage volontaire – Base aérienne 123 Orléans-Bricy</strong>
-            <span>Décembre 2023 · 1 semaine</span>
-            <p class="muted">Observation des infrastructures critiques, découverte des systèmes avioniques de l’A400M et échanges avec les équipes du CPA10 sur la cybersécurité embarquée.</p>
-          </div>
-          <div class="entry">
-            <strong>Projets académiques – BTS SIO</strong>
-            <span>2023 → 2025</span>
-            <p class="muted">Mises en situation professionnelles : sécurisation de serveurs, documentation technique, procédures d’escalade, suivi de tickets et support aux utilisateurs.</p>
-          </div>
-        </div>
+        <ol class="timeline" role="list">
+          <li>
+            <strong>Stage — 807ᵉ Compagnie des transmissions</strong>
+            <time datetime="2024-05">6 semaines · 2024</time>
+            <div class="muted">Projet SIGMA basé sur MITRE ATT&amp;CK, industrialisation des procédures et sensibilisation cyberdéfense.</div>
+          </li>
+          <li>
+            <strong>Stage volontaire — Base aérienne 123 Orléans-Bricy</strong>
+            <time datetime="2023-11">Immersion 2023</time>
+            <div class="muted">Visite des infrastructures, découverte A400M, échanges avec le CPA10 sur les enjeux réseaux sécurisés.</div>
+          </li>
+          <li>
+            <strong>Projets académiques — BTS SIO</strong>
+            <time datetime="2023-09">Depuis 2023</time>
+            <div class="muted">Gestion d’incidents, documentation et support utilisateurs dans un contexte ITIL simplifié.</div>
+          </li>
+        </ol>
       </section>
 
       <!-- Compétences -->
       <section id="skills">
         <h2>⚙️ Compétences</h2>
-        <ul>
-          <li>Active Directory, DNS, DHCP (Windows Server 2019)</li>
-          <li>Segmentation VLAN, trunking 802.1Q, ACL basiques</li>
-          <li>Debian : Apache2, Postfix, services réseaux</li>
-          <li>Scripts PowerShell et Bash pour automatiser les tâches</li>
-        </ul>
         <div class="skills-grid">
-          <article class="skill-card">
-            <h3>Administration systèmes</h3>
+          <article class="skill">
+            <h3>Infrastructure &amp; réseaux</h3>
             <ul>
-              <li>Active Directory, DNS, DHCP sous Windows Server 2019</li>
-              <li>Scripts PowerShell pour automatiser comptes &amp; sauvegardes</li>
-              <li>Gestion des GPO, partages NTFS et supervision des journaux</li>
+              <li>Active Directory, DNS, DHCP (Windows Server 2019)</li>
+              <li>Segmentation VLAN, trunking 802.1Q, ACL basiques</li>
+              <li>Configuration de routeurs &amp; switches Cisco Packet Tracer</li>
             </ul>
           </article>
-          <article class="skill-card">
-            <h3>Réseaux &amp; sécurité</h3>
+          <article class="skill">
+            <h3>Services &amp; automatisation</h3>
             <ul>
-              <li>Segmentation VLAN, trunking 802.1Q, inter-VLAN routing</li>
-              <li>Configuration ACL Cisco, supervision via SNMP</li>
-              <li>Durcissement pare-feu, surveillance des flux avec Wireshark</li>
+              <li>Debian : Apache2, Postfix, services réseaux</li>
+              <li>Scripts PowerShell &amp; Bash pour automatiser les tâches</li>
+              <li>Supervision légère (journalisation, alertes mail)</li>
             </ul>
           </article>
-          <article class="skill-card">
-            <h3>Services Linux</h3>
+          <article class="skill">
+            <h3>Organisation &amp; documentation</h3>
             <ul>
-              <li>Debian : Apache2, Postfix, MariaDB, certificats SSL</li>
-              <li>Gestion des services (systemd), sauvegardes et scripts bash</li>
-              <li>Virtualisation Proxmox et conteneurisation Docker</li>
-            </ul>
-          </article>
-          <article class="skill-card">
-            <h3>Soft skills</h3>
-            <ul>
-              <li>Communication claire avec les utilisateurs finaux</li>
-              <li>Capacité d’analyse et résolution d’incidents en urgence</li>
-              <li>Culture cybersécurité et veille continue</li>
+              <li>Redaction de dossiers d’architecture et procédures E4</li>
+              <li>Utilisation de Git/GitHub pour suivre les versions</li>
+              <li>Communication technique auprès des utilisateurs</li>
             </ul>
           </article>
         </div>
@@ -444,43 +335,27 @@
       <!-- Veille -->
       <section id="veille">
         <h2>🔍 Veille technologique</h2>
-        <p class="muted">Exemples de sujets : <strong>cloud hybride & virtualisation</strong>, cybersécurité défense, automatisation réseau avec Ansible.</p>
-        <div class="veille">
-          <article>
-            <h3>Cloud hybride &amp; virtualisation</h3>
-            <p class="muted">Analyse des stratégies multi-cloud pour les PME, focus sur la continuité d’activité et l’optimisation des coûts.</p>
-            <a class="btn" href="#contact">📄 Synthèse disponible sur demande</a>
-          </article>
-          <article>
-            <h3>Cybersécurité défense</h3>
-            <p class="muted">Veille sur les frameworks MITRE ATT&amp;CK et leur adoption dans les organisations de défense françaises.</p>
-            <a class="btn" href="#contact">🛡️ Résumé complet sur demande</a>
-          </article>
-          <article>
-            <h3>Automatisation réseau</h3>
-            <p class="muted">Découverte d’Ansible pour la configuration réseau, bonnes pratiques de gestion de versions et d’industrialisation.</p>
-            <a class="btn" href="#contact">🤝 Démonstration</a>
-          </article>
-        </div>
+        <p class="section-intro">Veille mensuelle orientée cybersécurité et continuité de service. Je privilégie les sources institutionnelles (ANSSI, Cybermalveillance.gouv.fr) et les retours d’expérience d’équipes opérationnelles.</p>
+        <ul>
+          <li>Cloud hybride &amp; virtualisation : arbitrage coûts/souveraineté, solutions Nutanix &amp; VMware.</li>
+          <li>Cybersécurité de défense : cartographie MITRE ATT&amp;CK, retours du COMCYBER, dispositif CERT-FR.</li>
+          <li>Automatisation réseau : Ansible pour Cisco IOS, supervision par playbooks et templates Jinja.</li>
+        </ul>
       </section>
 
       <!-- Contact -->
       <section id="contact">
         <h2>✉️ Contact</h2>
-        <p>
+        <address>
           📍 Orléans · Lycée Benjamin Franklin<br />
           📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a><br />
-          📱 07 81 36 83 26
-        <p class="muted">Disponible pour un échange autour de vos besoins en administration système ou cybersécurité.</p>
-        <p>📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a><br>
-           📱 07 68 56 74 30</p>
-        <p>
-          <a class="btn" href="https://cal.com" target="_blank" rel="noopener">🗓️ Planifier un rendez-vous</a>
-        </p>
+          📱 07 81 36 83 26<br />
+          💬 Disponible pour un échange autour des métiers des transmissions militaires et réseaux sécurisés.
+        </address>
       </section>
 
       <footer>
-        <p class="foot">© 2024–2025 · Portfolio BTS SIO (SISR) — Noé Chami · Version mise à jour pour l’épreuve finale</p>
+        <p class="foot">© 2024–2025 · Portfolio BTS SIO (SISR) — Noé Chami</p>
       </footer>
     </div>
   </main>
