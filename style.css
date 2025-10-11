@@ -1,0 +1,221 @@
+/* Effets spéciaux Sharingan & corbeaux Akatsuki */
+:root{
+  --sharingan-duration: 5.5s;
+}
+
+.sharingan-vision{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8vw;
+  pointer-events:none;
+  opacity:0;
+  transform:scale(0.9);
+  transition:opacity .6s ease, transform .6s ease;
+  z-index:3;
+  background:radial-gradient(circle at center, rgba(0,0,0,.55) 0%, transparent 70%);
+}
+
+.sharingan-vision::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center, rgba(242,75,100,.28) 0%, transparent 55%);
+  opacity:0;
+  transition:opacity .6s ease;
+}
+
+.sharingan-vision.is-active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.sharingan-vision.is-active::after{
+  opacity:1;
+}
+
+.sharingan-eye{
+  --eye-size:min(22vw, 220px);
+  --tomoe-offset:calc(var(--eye-size) * .36);
+  --tomoe-size:calc(var(--eye-size) * .18);
+  position:relative;
+  width:var(--eye-size);
+  height:var(--eye-size);
+  border-radius:50%;
+  background:radial-gradient(circle at center, rgba(255,96,110,.95) 0%, rgba(214,17,45,.95) 45%, rgba(18,4,10,.96) 65%, rgba(0,0,0,.96) 78%, transparent 85%);
+  box-shadow:0 0 45px rgba(242,75,100,.45), inset 0 0 18px rgba(0,0,0,.75);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transform:scale(.5) rotate(-12deg);
+  transition:transform .6s ease, opacity .35s ease;
+  z-index:1;
+}
+
+.sharingan-eye:nth-of-type(2){
+  transform:scale(.5) rotate(12deg);
+}
+
+.sharingan-vision.is-active .sharingan-eye{
+  opacity:1;
+  transform:scale(1) rotate(0deg);
+}
+
+.sharingan-eye .iris{
+  position:absolute;
+  width:48%;
+  height:48%;
+  background:radial-gradient(circle at center, rgba(0,0,0,.95) 0%, rgba(35,2,9,.85) 55%, transparent 80%);
+  border-radius:50%;
+  box-shadow:0 0 16px rgba(0,0,0,.8);
+  z-index:2;
+}
+
+.sharingan-eye .pupil{
+  position:absolute;
+  width:22%;
+  height:22%;
+  border-radius:50%;
+  background:#000;
+  box-shadow:0 0 12px rgba(0,0,0,.9);
+  z-index:3;
+}
+
+.sharingan-eye .tomoe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:var(--tomoe-size);
+  height:var(--tomoe-size);
+  background:#060106;
+  border-radius:50% 50% 38% 38%;
+  transform-origin:50% 150%;
+  filter:drop-shadow(0 0 4px rgba(0,0,0,.65));
+  z-index:3;
+}
+
+.sharingan-eye .tomoe::after{
+  content:"";
+  position:absolute;
+  bottom:-48%;
+  left:16%;
+  width:68%;
+  height:68%;
+  background:#060106;
+  border-radius:50%;
+}
+
+.sharingan-eye .tomoe:nth-of-type(1){
+  transform:translate(-50%, -50%) rotate(0deg) translateY(calc(var(--tomoe-offset) * -1));
+}
+
+.sharingan-eye .tomoe:nth-of-type(2){
+  transform:translate(-50%, -50%) rotate(120deg) translateY(calc(var(--tomoe-offset) * -1));
+}
+
+.sharingan-eye .tomoe:nth-of-type(3){
+  transform:translate(-50%, -50%) rotate(240deg) translateY(calc(var(--tomoe-offset) * -1));
+}
+
+.sharingan-vision .ring{
+  position:absolute;
+  inset:12%;
+  border-radius:50%;
+  border:2px solid rgba(0,0,0,.8);
+  box-shadow:0 0 0 2px rgba(0,0,0,.65), inset 0 0 20px rgba(0,0,0,.45);
+  opacity:.9;
+  z-index:1;
+}
+
+.sharingan-vision .ring::after{
+  content:"";
+  position:absolute;
+  inset:-6%;
+  border-radius:50%;
+  border:1px dashed rgba(0,0,0,.65);
+}
+
+.sharingan-crow{
+  position:fixed;
+  left:var(--start-x, -10vw);
+  top:var(--start-y, 50vh);
+  width:46px;
+  height:28px;
+  color:#02030a;
+  opacity:0;
+  transform:scale(.6);
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.7));
+  animation:none;
+  z-index:2;
+}
+
+.sharingan-crow::before,
+.sharingan-crow::after{
+  content:"";
+  position:absolute;
+  background:currentColor;
+}
+
+.sharingan-crow::before{
+  inset:28% 18% 22% 18%;
+  border-radius:50% 50% 60% 60%;
+}
+
+.sharingan-crow::after{
+  inset:38% 0 36% 0;
+  border-radius:50% 50% 10% 10%;
+  transform:skewX(-16deg);
+}
+
+.sharingan-crow .wing{
+  position:absolute;
+  top:18%;
+  width:70%;
+  height:55%;
+  background:currentColor;
+  border-radius:60% 10% 70% 10%;
+  transform-origin:0% 50%;
+  animation:wing-flap .5s ease-in-out infinite alternate;
+}
+
+.sharingan-crow .wing:nth-child(1){
+  left:-6%;
+  transform:scaleX(-1);
+}
+
+.sharingan-crow .wing:nth-child(2){
+  right:-6%;
+}
+
+.sharingan-vision.is-active .sharingan-crow{
+  animation:crow-flight var(--crow-duration, 5.8s) ease-out forwards;
+  animation-delay:var(--crow-delay, 0s);
+}
+
+@keyframes crow-flight{
+  0%{opacity:0; transform:translate3d(0,0,0) scale(.6);}
+  12%{opacity:.9;}
+  85%{opacity:.85;}
+  100%{opacity:0; transform:translate3d(var(--dx, 110vw), var(--dy, -20vh), 0) scale(1);}
+}
+
+@keyframes wing-flap{
+  from{transform:rotate(-6deg);}
+  to{transform:rotate(12deg);}
+}
+
+@media (max-width:720px){
+  .sharingan-vision{
+    gap:4vw;
+  }
+  .sharingan-eye{
+    --eye-size:min(36vw, 180px);
+  }
+}
+
+@media print, (prefers-reduced-motion: reduce){
+  .sharingan-vision{display:none !important;}
+}
