@@ -226,6 +226,107 @@
   to{transform:rotate(12deg);}
 }
 
+/* Nuée de corbeaux Akatsuki en arrière-plan */
+.akatsuki-crows{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:-1;
+}
+
+.akatsuki-crow{
+  --start-x:-14vw;
+  --mid-x:42vw;
+  --end-x:114vw;
+  --drift:0vh;
+  --scale:.6;
+  --direction:1;
+  --duration:28s;
+  --delay:0s;
+  --wing-speed:.9s;
+  position:absolute;
+  top:var(--top, 50%);
+  left:0;
+  width:42px;
+  height:22px;
+  color:rgba(6,8,12,.78);
+  opacity:0;
+  transform-origin:center;
+  filter:drop-shadow(0 8px 12px rgba(0,0,0,.35));
+  animation:akatsuki-crow-loop var(--duration) linear infinite;
+  animation-delay:var(--delay);
+}
+
+html[data-theme="light"] .akatsuki-crow{
+  color:rgba(86,12,22,.55);
+}
+
+.akatsuki-crow::after{
+  content:"";
+  position:absolute;
+  inset:38% 26% 30% 26%;
+  border-radius:58% 42% 60% 40%;
+  background:currentColor;
+  opacity:.95;
+}
+
+.akatsuki-crow__wing{
+  position:absolute;
+  top:18%;
+  width:58%;
+  height:64%;
+  background:currentColor;
+  border-radius:70% 12% 80% 18%;
+  transform-origin:12% 58%;
+  animation:akatsuki-wing var(--wing-speed) ease-in-out infinite alternate;
+}
+
+.akatsuki-crow__wing:nth-child(2){
+  right:0;
+  left:auto;
+  transform-origin:88% 58%;
+  border-radius:12% 70% 18% 80%;
+  transform:scaleX(-1);
+}
+
+.akatsuki-crow::before{
+  content:"";
+  position:absolute;
+  top:46%;
+  left:30%;
+  right:30%;
+  height:2px;
+  background:rgba(0,0,0,.25);
+  filter:blur(1px);
+}
+
+@keyframes akatsuki-crow-loop{
+  0%{
+    opacity:0;
+    transform:translate3d(var(--start-x), 0, 0) scale(var(--scale)) scaleX(var(--direction));
+  }
+  12%{
+    opacity:.78;
+  }
+  48%{
+    opacity:.86;
+    transform:translate3d(var(--mid-x), var(--drift), 0) scale(var(--scale)) scaleX(var(--direction));
+  }
+  88%{
+    opacity:.74;
+  }
+  100%{
+    opacity:0;
+    transform:translate3d(var(--end-x), 0, 0) scale(var(--scale)) scaleX(var(--direction));
+  }
+}
+
+@keyframes akatsuki-wing{
+  from{transform:rotate(-12deg);}
+  to{transform:rotate(14deg);}
+}
+
 @media (max-width:720px){
   .sharingan-eye{
     --eye-size:min(42vw, 160px);
@@ -236,3 +337,111 @@
 @media print, (prefers-reduced-motion: reduce){
   .sharingan-vision{display:none !important;}
 }
+
+@media (prefers-reduced-motion: reduce){
+  .akatsuki-crows{display:none !important;}
+}
+
+@media print{
+  .akatsuki-crows{display:none !important;}
+}
+
+/* Mini terminal kali animé */
+.terminal{
+  margin-top:24px;
+  background:rgba(5,7,10,.92);
+  border:1px solid rgba(0,0,0,.55);
+  border-radius:16px;
+  padding:18px 20px 20px;
+  font-family:"Fira Code", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:.92rem;
+  line-height:1.5;
+  color:#6cfac7;
+  min-height:160px;
+  max-height:260px;
+  box-shadow:0 16px 38px rgba(0,0,0,.45);
+  overflow:auto;
+  position:relative;
+}
+
+.terminal::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:34px;
+  background:linear-gradient(135deg, rgba(12,14,20,.9), rgba(18,21,28,.85));
+  border-bottom:1px solid rgba(0,0,0,.55);
+  box-shadow:0 6px 16px rgba(0,0,0,.35);
+}
+
+.terminal::after{
+  content:"";
+  position:absolute;
+  top:11px;
+  left:18px;
+  width:46px;
+  height:12px;
+  border-radius:999px;
+  background:radial-gradient(circle at 10% 50%, #ff5f56 0 30%, transparent 32%),
+             radial-gradient(circle at 40% 50%, #ffbd2e 0 30%, transparent 32%),
+             radial-gradient(circle at 70% 50%, #27c93f 0 30%, transparent 32%);
+  opacity:.75;
+}
+
+.terminal-line,
+.terminal-output{
+  position:relative;
+  z-index:1;
+  white-space:pre-wrap;
+  word-break:break-word;
+  margin-top:6px;
+}
+
+.terminal-line:first-of-type,
+.terminal-output:first-of-type{
+  margin-top:40px;
+}
+
+.terminal-prompt{
+  color:#7dfede;
+  font-weight:600;
+}
+
+.terminal-command{
+  color:#d9fff2;
+}
+
+.terminal-output{
+  color:#7dfede;
+  opacity:.8;
+  padding-left:18px;
+}
+
+.terminal-cursor{
+  display:inline-block;
+  width:.6ch;
+  height:1.1em;
+  margin-left:4px;
+  background:#6cfac7;
+  animation:terminal-blink 1.05s steps(2, start) infinite;
+}
+
+@keyframes terminal-blink{
+  0%,49%{opacity:1;}
+  50%,100%{opacity:0;}
+}
+
+@media (max-width:720px){
+  .terminal{font-size:.86rem; padding:16px 16px 18px;}
+  .terminal::after{left:14px;}
+}
+
+html[data-theme="light"] .terminal{
+  background:rgba(12,12,16,.92);
+  border-color:rgba(26,26,36,.65);
+  box-shadow:0 16px 36px rgba(110,20,28,.22);
+}
+
+html[data-theme="light"] .terminal-output{color:#8df9e2;}

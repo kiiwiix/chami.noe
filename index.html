@@ -245,6 +245,7 @@
     <span class="akatsuki-cloud akatsuki-cloud--4"></span>
     <span class="akatsuki-cloud akatsuki-cloud--5"></span>
   </div>
+  <div class="akatsuki-crows" aria-hidden="true"></div>
   <a class="skip-link" href="#contenu">Passer au contenu principal</a>
   <div class="sharingan-vision" aria-hidden="true">
     <div class="sharingan-eye">
@@ -348,6 +349,7 @@
           <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
           <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
         </ul>
+        <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
       </section>
 
       <section id="projets">
@@ -511,6 +513,8 @@
       </footer>
     </div>
   </main>
+  <script src="akatsuki.js" defer></script>
+  <script src="terminal.js" defer></script>
   <script>
     (function(){
       const sharingan=document.querySelector('.sharingan-vision');
