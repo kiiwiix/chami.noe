@@ -11,6 +11,7 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kiiwiix.github.io/chami.noe/" />
+  <link rel="stylesheet" href="animations.css" />
   <style>
     :root{
       color-scheme:dark;
@@ -64,10 +65,12 @@
       margin:0;
       font:16px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
       color:var(--text);
-      background:radial-gradient(circle at top,var(--glow) 0%,transparent 40%),var(--bg);
+      background:var(--bg);
       min-height:100vh;
       display:flex;
       flex-direction:column;
+      position:relative;
+      isolation:isolate;
     }
     a{color:var(--accent2); text-decoration:none; transition:color .2s ease, text-decoration-color .2s ease}
     a:hover{text-decoration:underline; color:#89c1ff}
@@ -86,7 +89,17 @@
       transition:transform .2s ease;
     }
     .skip-link:focus{left:1.5rem; top:1.5rem; transform:translateY(0)}
-    .layout{display:grid; grid-template-columns:320px 1fr; gap:32px; max-width:1220px; width:100%; margin:0 auto; padding:32px}
+    .layout{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:32px;
+      max-width:1220px;
+      width:100%;
+      margin:0 auto;
+      padding:32px;
+      position:relative;
+      z-index:1;
+    }
     @media (max-width:1080px){.layout{grid-template-columns:1fr; padding:24px}}
     .sidebar{
       position:sticky;
@@ -197,6 +210,7 @@
     html[data-theme="light"] .metric{background:#ffffff; border-color:#d5ddeb}
     @media print{
       body{background:#fff; color:#000}
+      .akatsuki-sky{display:none}
       .sidebar{position:static; box-shadow:none; background:#fff; color:#000}
       .btn{background:#fff; color:#000; border-color:#000}
       section{background:#fff; color:#000; box-shadow:none}
@@ -205,6 +219,13 @@
   </style>
 </head>
 <body>
+  <div class="akatsuki-sky" aria-hidden="true">
+    <span class="akatsuki-cloud akatsuki-cloud--1"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--2"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--3"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--4"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--5"></span>
+  </div>
   <a class="skip-link" href="#contenu">Passer au contenu principal</a>
   <main id="contenu" class="layout">
     <!-- Sidebar -->
