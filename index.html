@@ -275,6 +275,18 @@
       <span class="wing"></span>
       <span class="wing"></span>
     </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
   </div>
   <main id="contenu" class="layout">
     <!-- Sidebar -->
@@ -505,6 +517,7 @@
       if(!sharingan)return;
       const reduceMotionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
       const crows=Array.from(sharingan.querySelectorAll('.sharingan-crow'));
+      const eyes=Array.from(sharingan.querySelectorAll('.sharingan-eye'));
       const randomBetween=(min,max)=>Math.random()*(max-min)+min;
       let timeoutId=null;
       let cleanupId=null;
@@ -530,15 +543,37 @@
         const delay=randomBetween(55,70)*1000;
         timeoutId=window.setTimeout(activateSharingan,delay);
       };
+      const positionEyes=()=>{
+        if(!eyes.length)return;
+        const configs=[
+          {top:[18,28], left:[16,28], tilt:[-18,-6], scale:[0.42,0.55]},
+          {top:[24,36], left:[68,82], tilt:[4,14], scale:[0.42,0.55]},
+          {top:[62,78], left:[26,40], tilt:[-8,4], scale:[0.36,0.48]}
+        ];
+        eyes.forEach((eye,index)=>{
+          const cfg=configs[index]||configs[configs.length-1];
+          const top=randomBetween(cfg.top[0],cfg.top[1]);
+          const left=randomBetween(cfg.left[0],cfg.left[1]);
+          const tilt=randomBetween(cfg.tilt[0],cfg.tilt[1]);
+          const scale=randomBetween(cfg.scale[0],cfg.scale[1]);
+          eye.style.setProperty('--eye-top',`${top}%`);
+          eye.style.setProperty('--eye-left',`${left}%`);
+          eye.style.setProperty('--eye-tilt',`${tilt}deg`);
+          eye.style.setProperty('--eye-scale',scale.toFixed(2));
+        });
+      };
+
       const activateSharingan=()=>{
         crows.forEach(crow=>{
-          crow.style.setProperty('--start-x',`${randomBetween(-12,-5)}vw`);
-          crow.style.setProperty('--start-y',`${randomBetween(18,72)}vh`);
-          crow.style.setProperty('--dx',`${randomBetween(95,130)}vw`);
-          crow.style.setProperty('--dy',`${randomBetween(-25,20)}vh`);
-          crow.style.setProperty('--crow-duration',`${randomBetween(4.5,7)}s`);
-          crow.style.setProperty('--crow-delay',`${randomBetween(0,1.1)}s`);
+          crow.style.setProperty('--start-x',`${randomBetween(-14,-6)}vw`);
+          crow.style.setProperty('--start-y',`${randomBetween(12,78)}vh`);
+          crow.style.setProperty('--dx',`${randomBetween(95,135)}vw`);
+          crow.style.setProperty('--dy',`${randomBetween(-32,24)}vh`);
+          crow.style.setProperty('--crow-duration',`${randomBetween(4.6,7.4)}s`);
+          crow.style.setProperty('--crow-delay',`${randomBetween(0,1.6)}s`);
+          crow.style.setProperty('--crow-scale',randomBetween(0.75,1.35).toFixed(2));
         });
+        positionEyes();
         sharingan.classList.add('is-active');
         cleanupId=window.setTimeout(()=>{
           sharingan.classList.remove('is-active');
