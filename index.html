@@ -5,58 +5,315 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Noé Chami · Portfolio BTS SIO</title>
   <meta name="description" content="Portfolio BTS SIO (SISR) – Projets, compétences, certifications, veille et contact – Noé Chami" />
+  <meta name="color-scheme" content="dark light" />
+  <meta property="og:title" content="Portfolio BTS SIO – Noé Chami" />
+  <meta property="og:description" content="Découvrir mes projets réseaux & systèmes, mon expérience et mes certifications pour l'épreuve finale du BTS SIO." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kiiwiix.github.io/chami.noe/" />
+  <link rel="stylesheet" href="animations.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     :root{
-      --bg:#0b0d10; --card:#11151a; --muted:#8b98a5; --text:#e6eef6; --accent:#42b883; --accent2:#6aa6ff; --line:#1c2128;
+      color-scheme:dark;
+      --bg:rgba(6,9,13,.82);
+      --surface:rgba(17,19,27,.86);
+      --surface-active:rgba(34,20,28,.92);
+      --card:rgba(18,21,28,.85);
+      --muted:#9fa7ba;
+      --text:#f5f7ff;
+      --accent:#f24b64;
+      --accent2:#ff728a;
+      --line:rgba(255,114,138,.22);
+      --line-strong:rgba(255,114,138,.4);
+      --glow:rgba(242,75,100,.35);
+      --shadow:0 28px 80px rgba(0,0,0,.55);
+      --glass-border:1px solid rgba(255,255,255,.08);
+      --glass-backdrop:blur(18px) saturate(130%);
+      --section-gradient:linear-gradient(135deg,rgba(242,75,100,.16),rgba(14,15,23,.6));
+    }
+    html[data-theme="light"]{
+      color-scheme:light;
+      --bg:rgba(255,255,255,.72);
+      --surface:rgba(255,255,255,.8);
+      --surface-active:rgba(255,235,240,.95);
+      --card:rgba(255,255,255,.88);
+      --muted:#5b6070;
+      --text:#1a1d2b;
+      --accent:#d6304c;
+      --accent2:#ff506e;
+      --line:rgba(214,75,98,.25);
+      --line-strong:rgba(214,75,98,.42);
+      --glow:rgba(214,75,98,.3);
+      --shadow:0 20px 50px rgba(210,70,100,.18);
+      --glass-border:1px solid rgba(214,75,98,.25);
+      --glass-backdrop:blur(12px) saturate(140%);
+      --section-gradient:linear-gradient(135deg,rgba(214,75,98,.2),rgba(255,255,255,.85));
+    }
+    @media (prefers-color-scheme: light){
+      :root:not([data-theme]){
+        color-scheme:light;
+        --bg:rgba(255,255,255,.72);
+        --surface:rgba(255,255,255,.8);
+        --surface-active:rgba(255,235,240,.95);
+        --card:rgba(255,255,255,.88);
+        --muted:#5b6070;
+        --text:#1a1d2b;
+        --accent:#d6304c;
+        --accent2:#ff506e;
+        --line:rgba(214,75,98,.25);
+        --line-strong:rgba(214,75,98,.42);
+        --glow:rgba(214,75,98,.3);
+        --shadow:0 20px 50px rgba(210,70,100,.18);
+        --glass-border:1px solid rgba(214,75,98,.25);
+        --glass-backdrop:blur(12px) saturate(140%);
+        --section-gradient:linear-gradient(135deg,rgba(214,75,98,.2),rgba(255,255,255,.85));
+      }
     }
     *{box-sizing:border-box}
-    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial; color:var(--text); background:var(--bg);}
-    a{color:var(--accent2); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .layout{display:grid; grid-template-columns:320px 1fr; gap:28px; max-width:1200px; margin:0 auto; padding:28px}
-    @media (max-width: 980px){.layout{grid-template-columns:1fr}}
-    .sidebar{position:sticky; top:20px; height:calc(100dvh - 40px); background:#11151a; border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:18px}
-    .brand{display:flex; gap:14px; align-items:center}
-    .avatar{width:70px; height:70px; border-radius:14px; background:#0f1318; display:grid; place-items:center; border:1px solid var(--line)}
-    .brand h1{margin:0; font-size:1.35rem}
-    .brand small{display:block; color:var(--muted)}
-    .nav{margin-top:10px; display:flex; flex-direction:column; gap:6px}
-    .nav a{padding:10px 12px; border-radius:10px; color:var(--text); display:flex; align-items:center; gap:10px}
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{padding:6px 10px; border-radius:999px; background:#0f141a; border:1px solid var(--line); color:var(--muted); font-size:.85rem}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:#0f141a; color:var(--text)}
-    .btn:hover{background:#111820}
-    .primary{background:var(--accent); border-color:transparent; color:#08120d}
-    .primary:hover{filter:brightness(1.05)}
-    .content{display:flex; flex-direction:column; gap:28px}
-    section{background:#11151a; border:1px solid var(--line); border-radius:16px; padding:24px}
-    h2{margin:0 0 12px; font-size:1.4rem}
+    ::selection{background:rgba(242,75,100,.35)}
+    html{scroll-behavior:smooth; scroll-padding-top:2rem}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+    body{
+      margin:0;
+      font:16px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      color:var(--text);
+      background:var(--bg);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      isolation:isolate;
+    }
+    a{color:var(--accent2); text-decoration:none; transition:color .2s ease, text-decoration-color .2s ease}
+    a:hover{text-decoration:underline; color:#ffd0da}
+    a:focus-visible{outline:2px solid var(--accent2); outline-offset:4px}
+    h1,h2,h3{font-weight:600; letter-spacing:.3px; color:var(--text)}
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:auto;
+      background:var(--accent2);
+      color:#021326;
+      padding:0.75rem 1rem;
+      border-radius:0.75rem;
+      font-weight:600;
+      z-index:999;
+      transition:transform .2s ease;
+    }
+    .skip-link:focus{left:1.5rem; top:1.5rem; transform:translateY(0)}
+    .layout{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:32px;
+      max-width:1220px;
+      width:100%;
+      margin:0 auto;
+      padding:32px;
+      position:relative;
+      z-index:1;
+    }
+    @media (max-width:1080px){.layout{grid-template-columns:1fr; padding:24px}}
+    .sidebar{
+      position:sticky;
+      top:24px;
+      height:calc(100dvh - 48px);
+      background:linear-gradient(160deg,rgba(10,11,18,.92),rgba(29,12,21,.9));
+      border:var(--glass-border);
+      border-radius:20px;
+      padding:26px;
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+      box-shadow:var(--shadow);
+      backdrop-filter:var(--glass-backdrop);
+      border-image:linear-gradient(140deg,rgba(255,114,138,.6),rgba(255,255,255,.1)) 1;
+    }
+    @media (max-width:1080px){.sidebar{position:static; height:auto}}
+    .brand{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .avatar{
+      width:76px; height:76px; border-radius:18px;
+      background:linear-gradient(140deg,rgba(242,75,100,.4),rgba(16,18,28,.9));
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.18);
+      overflow:hidden;
+    }
+    .avatar picture{display:block; width:100%; height:100%}
+    .avatar img{width:100%; height:100%; object-fit:cover}
+    .brand h1{margin:0; font-size:1.6rem}
+    .brand small{display:block; color:var(--muted); margin-top:4px}
+    .subtitle{color:var(--muted); font-size:.95rem; margin:0}
+    .theme-toggle{
+      margin-left:auto;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.24);
+      background:rgba(17,19,27,.65);
+      color:var(--text);
+      font:inherit;
+      cursor:pointer;
+      transition:background .2s ease, transform .2s ease;
+    }
+    .theme-toggle svg{width:18px; height:18px}
+    .theme-toggle:hover{transform:translateY(-1px)}
+    .theme-toggle:focus-visible{outline:2px solid var(--accent2); outline-offset:2px}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+    .nav{margin-top:12px; display:flex; flex-direction:column; gap:8px}
+    .nav a{
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(16,18,28,.6);
+      transition:border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+    .nav a:hover{background:rgba(242,75,100,.16); border-color:var(--line-strong); text-decoration:none; transform:translateX(2px)}
+    .nav a:focus-visible{outline:2px solid var(--accent2); outline-offset:2px; text-decoration:none}
+    .nav a[aria-current="true"]{
+      background:linear-gradient(135deg,rgba(242,75,100,.26),rgba(16,18,28,.8));
+      border-color:var(--line-strong);
+      font-weight:600;
+      box-shadow:0 0 20px rgba(242,75,100,.25);
+    }
+    html[data-theme="light"] .nav a:hover{background:rgba(214,75,98,.18)}
+    html[data-theme="light"] .nav a[aria-current="true"]{background:linear-gradient(135deg,rgba(214,75,98,.28),rgba(255,255,255,.85));}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none}
+    .chip{padding:6px 10px; border-radius:999px; background:rgba(16,18,28,.7); border:1px solid rgba(255,255,255,.12); color:var(--muted); font-size:.85rem; box-shadow:inset 0 0 10px rgba(242,75,100,.2)}
+    .socials{display:flex; flex-direction:column; gap:10px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(160deg,rgba(16,18,28,.9),rgba(40,15,26,.85)); color:var(--text); transition:background .2s ease, transform .2s ease, box-shadow .2s ease}
+    .btn:hover{background:linear-gradient(160deg,rgba(40,15,26,.92),rgba(16,18,28,.95)); transform:translateY(-1px); box-shadow:0 12px 24px rgba(242,75,100,.25)}
+    .btn:focus-visible{outline:2px solid var(--accent2); outline-offset:2px}
+    .primary{background:linear-gradient(135deg,var(--accent),var(--accent2)); border-color:transparent; color:#18060b; font-weight:600; letter-spacing:.2px}
+    .primary:hover{filter:brightness(1.08)}
+    .content{display:flex; flex-direction:column; gap:32px}
+    section{background:var(--section-gradient); border:var(--glass-border); border-radius:20px; padding:28px; scroll-margin-top:2rem; position:relative; backdrop-filter:var(--glass-backdrop); box-shadow:0 22px 45px rgba(0,0,0,.32)}
+    section:before{content:""; position:absolute; inset:0; border-radius:inherit; border:1px solid rgba(255,255,255,.08); pointer-events:none; mix-blend-mode:screen; opacity:.6}
+    section:target{box-shadow:0 0 0 2px var(--accent2) inset,0 0 24px rgba(255,114,138,.4);}
+    h2{margin:0 0 12px; font-size:1.4rem; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:var(--text); position:relative}
+    h2::after{content:""; position:absolute; left:0; bottom:-6px; width:54px; height:2px; background:linear-gradient(90deg,var(--accent2),transparent); border-radius:999px}
+    .section-intro{margin:0 0 24px; color:var(--muted)}
     .muted{color:var(--muted)}
-    .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
-    @media (max-width:980px){.projects{grid-template-columns:1fr}}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px}
+    .projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; padding:0; margin:0; list-style:none}
+    .card{background:rgba(10,11,18,.65); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:20px; height:100%; display:flex; flex-direction:column; gap:14px; backdrop-filter:blur(12px)}
     .project h3{margin:.2rem 0 .4rem}
-    .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
-    .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:#0e141a; color:var(--muted); border:1px solid var(--line)}
-    .timeline{position:relative; margin-left:10px}
-    .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--line)}
-    .entry{position:relative; padding-left:28px; margin:16px 0}
-    .entry:before{content:""; position:absolute; left:4px; top:.45rem; width:12px; height:12px; border-radius:50%; background:var(--accent)}
-    .foot{opacity:.7; font-size:.9rem; text-align:center}
+    .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
+    .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:rgba(242,75,100,.18); color:var(--text); border:1px solid rgba(255,255,255,.12); text-transform:uppercase; letter-spacing:.6px}
+    .card footer{margin-top:auto}
+    .timeline{padding:0 0 0 28px; margin:0; list-style:none; position:relative; border-left:2px solid rgba(255,114,138,.25)}
+    .timeline li{padding-left:18px; margin:18px 0; position:relative}
+    .timeline li:before{content:""; position:absolute; left:-34px; top:.4rem; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(10,11,18,.85)}
+    .timeline time{display:block; color:var(--muted); font-size:.9rem}
+    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
+    .skill{background:rgba(10,11,18,.65); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px; backdrop-filter:blur(10px)}
+    .skill h3{margin:0; font-size:1.05rem}
+    .skill ul{margin:0; padding-left:18px; color:var(--muted)}
+    .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:0; padding:0; list-style:none}
+    .metric{background:rgba(10,11,18,.6); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:14px; text-align:center; box-shadow:0 10px 24px rgba(242,75,100,.18)}
+    .metric strong{display:block; font-size:1.4rem; color:var(--accent2)}
+    address{font-style:normal; line-height:1.7}
+    .foot{opacity:.7; font-size:.9rem; text-align:center; padding:24px 0; margin:0}
+    footer{margin-top:auto; padding:0 0 32px}
+    html[data-theme="light"] .sidebar{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(255,228,233,.92)); box-shadow:var(--shadow)}
+    html[data-theme="light"] .avatar{background:linear-gradient(140deg,rgba(255,95,122,.35),rgba(255,255,255,.85))}
+    html[data-theme="light"] .chip{background:rgba(255,255,255,.7); border-color:rgba(214,75,98,.35); color:#4a4f5b}
+    html[data-theme="light"] .btn{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(255,235,240,.92)); color:var(--text)}
+    html[data-theme="light"] .btn:hover{background:linear-gradient(160deg,rgba(255,235,240,.95),rgba(255,255,255,.95))}
+    html[data-theme="light"] .card,
+    html[data-theme="light"] .skill{background:rgba(255,255,255,.85); border-color:rgba(214,75,98,.22)}
+    html[data-theme="light"] .metric{background:rgba(255,255,255,.86); border-color:rgba(214,75,98,.25)}
+    @media print{
+      body{background:#fff; color:#000}
+      .akatsuki-sky{display:none}
+      .sidebar{position:static; box-shadow:none; background:#fff; color:#000}
+      .btn{background:#fff; color:#000; border-color:#000}
+      section{background:#fff; color:#000; box-shadow:none}
+      a{color:#004aad}
+    }
   </style>
 </head>
 <body>
-  <main class="layout">
+  <div class="akatsuki-sky" aria-hidden="true">
+    <span class="akatsuki-cloud akatsuki-cloud--1"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--2"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--3"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--4"></span>
+    <span class="akatsuki-cloud akatsuki-cloud--5"></span>
+  </div>
+  <div class="akatsuki-crows" aria-hidden="true"></div>
+  <a class="skip-link" href="#contenu">Passer au contenu principal</a>
+  <div class="sharingan-vision" aria-hidden="true">
+    <div class="sharingan-eye">
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="iris"></span>
+      <span class="pupil"></span>
+      <span class="ring"></span>
+    </div>
+    <div class="sharingan-eye">
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="tomoe"></span>
+      <span class="iris"></span>
+      <span class="pupil"></span>
+      <span class="ring"></span>
+    </div>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+    <span class="sharingan-crow">
+      <span class="wing"></span>
+      <span class="wing"></span>
+    </span>
+  </div>
+  <main id="contenu" class="layout">
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Présentation rapide">
       <div class="brand">
-        <div class="avatar">📄</div>
+        <div class="avatar">
+          <picture>
+            <source srcset="assets/noe-chami.jpg" type="image/jpeg" />
+            <img src="assets/avatar-placeholder.svg" alt="Portrait de Noé Chami" loading="lazy" width="70" height="70" />
+          </picture>
+        </div>
         <div>
           <h1>Noé Chami</h1>
-          <small>BTS SIO – SISR</small>
+          <small>BTS SIO – option SISR</small>
+          <p class="subtitle">Administrateur systèmes & réseaux junior</p>
         </div>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3v2.5M12 18.5V21M4.22 4.22l1.77 1.77M17.99 17.99l1.79 1.79M3 12h2.5M18.5 12H21M6 18l-1.8 1.8M18 6l1.8-1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="4.5" />
+          </svg>
+          <span>Mode sombre</span>
+        </button>
       </div>
-      <nav class="nav">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#intro" aria-current="true">✨ Aperçu</a>
         <a href="#projets">🧩 Projets</a>
         <a href="#xp">🛠️ Expériences</a>
         <a href="#skills">⚙️ Compétences</a>
@@ -64,33 +321,48 @@
         <a href="#veille">🔍 Veille</a>
         <a href="#contact">✉️ Contact</a>
       </nav>
-      <div class="chips">
-        <span class="chip">DHCP</span>
-        <span class="chip">Active Directory</span>
-        <span class="chip">Apache</span>
-        <span class="chip">Cisco</span>
-      </div>
+      <ul class="chips" role="list">
+        <li class="chip">DHCP</li>
+        <li class="chip">Active Directory</li>
+        <li class="chip">Apache</li>
+        <li class="chip">Cisco</li>
+      </ul>
       <div class="socials">
-        <a class="btn primary" href="Documents/cv-noe-chami.pdf" target="_blank">📄 CV</a>
-        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank">LinkedIn</a>
+        <a class="btn primary" href="Documents/cv-noe-chami.pdf" target="_blank" rel="noopener">📄 Télécharger mon CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener" aria-label="Profil LinkedIn de Noé Chami">LinkedIn</a>
+        <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
+      </div>
+      <div class="muted">
+        📍 Orléans · Lycée Benjamin Franklin<br />
+        📱 07 81 36 83 26
       </div>
     </aside>
 
     <!-- Content -->
     <div class="content">
 
+      <section id="intro">
+        <h2>✨ Aperçu</h2>
+        <p class="section-intro">Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin d’Orléans. Ce portfolio rassemble mes projets systèmes &amp; réseaux, les compétences développées en formation et mon engagement dans la cybersécurité de défense.</p>
+        <ul class="metrics" role="list">
+          <li class="metric"><strong>+12</strong> infrastructures configurées<br />Windows &amp; Linux</li>
+          <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
+          <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
+        </ul>
+        <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
+      </section>
+
       <section id="projets">
         <h2>🧩 Projets</h2>
-        <p class="muted">Sélection de travaux réalisés en cours et en stage.</p>
-        <div class="projects">
+        <p class="section-intro">Sélection de travaux réalisés en cours, en laboratoire et durant mes stages afin d’illustrer les compétences du référentiel E4.</p>
+        <ul class="projects" role="list">
 
-          <!-- Projet DHCP avec WAMP -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Infra</span>
             <h3>Déploiement DHCP avec WAMP</h3>
             <p>
-              Mise en place d’un serveur <strong>DHCP</strong> sous Windows Server 2019 avec un client Windows 10.<br>
-              Configuration d’une étendue (192.168.30.3 – 192.168.30.60), règles pare-feu ICMP, 
+              Mise en place d’un serveur <strong>DHCP</strong> sous Windows Server 2019 avec un client Windows 10.<br />
+              Configuration d’une étendue (192.168.30.3 – 192.168.30.60), règles pare-feu ICMP,
               analyse réseau via <strong>Wireshark</strong> et mise en place d’une réservation d’adresse IP.
             </p>
             <div class="tags">
@@ -98,81 +370,287 @@
               <span class="tag">DHCP</span>
               <span class="tag">Wireshark</span>
             </div>
-            <a href="Documents/DHCPavecWAMP.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <footer><a href="Documents/DHCPavecWAMP.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-          <!-- Projet Active Directory -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Systèmes</span>
             <h3>Active Directory sous Windows Server 2019</h3>
-            <p>Installation AD DS & DNS, création d’OUs, gestion des comptes et groupes, stratégies GPO, partages NTFS.</p>
+            <p>Installation AD DS &amp; DNS, création d’OUs, gestion des comptes et groupes, stratégies GPO et partages NTFS sécurisés.</p>
             <div class="tags"><span class="tag">AD DS</span><span class="tag">GPO</span><span class="tag">NTFS</span></div>
-            <a href="Documents/ActiveDirectory.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <footer><a href="Documents/ActiveDirectory.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-          <!-- Projet Intranet Apache -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Services</span>
             <h3>Intranet Apache (Debian)</h3>
-            <p>Serveur Apache2 accessible à travers plusieurs VLANs, configuration de vhosts et supervision basique.</p>
-            <div class="tags"><span class="tag">Linux</span><span class="tag">Apache2</span></div>
-            <a href="Documents/Apache.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <p>Serveur Apache2 accessible à travers plusieurs VLANs, configuration de vhosts, virtualhosts HTTPS et supervision basique via scripts Bash.</p>
+            <div class="tags"><span class="tag">Linux</span><span class="tag">Apache2</span><span class="tag">Bash</span></div>
+            <footer><a href="Documents/Apache.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-          <!-- Projet DHCP relais -->
-          <article class="card project">
+          <li class="card project">
             <span class="tag">Infra</span>
             <h3>DHCP central + agent relais sur switch</h3>
-            <p>Étendues par VLAN, configuration du relais DHCP sur le switch, tests d’allocation et routage intra-site.</p>
-            <div class="tags"><span class="tag">ISC DHCP</span><span class="tag">Relay</span></div>
-            <a href="Documents/DHCPRelais.pdf" target="_blank" class="btn">📄 Voir le rapport</a>
-          </article>
+            <p>Étendues par VLAN, configuration du relais DHCP sur le switch Cisco, tests d’allocation, routage intra-site et documentation de procédures.</p>
+            <div class="tags"><span class="tag">ISC DHCP</span><span class="tag">Relay</span><span class="tag">Cisco</span></div>
+            <footer><a href="Documents/DHCPRelais.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
 
-        </div>
+        </ul>
       </section>
 
       <!-- Expériences -->
       <section id="xp">
         <h2>🛠️ Expériences</h2>
-        <div class="timeline">
-          <div class="entry"><strong>Stage — 807ᵉ Compagnie des transmissions</strong><div class="muted">6 semaines · Projet SIGMA avec MITRE ATT&CK</div></div>
-          <div class="entry"><strong>Stage volontaire — Base aérienne 123 Orléans-Bricy</strong><div class="muted">Visite des infrastructures, découverte A400M, échanges CPA10</div></div>
-        </div>
+        <ol class="timeline" role="list">
+          <li>
+            <strong>Stage — 807ᵉ Compagnie des transmissions</strong>
+            <time datetime="2024-05">6 semaines · 2024</time>
+            <div class="muted">Projet SIGMA basé sur MITRE ATT&amp;CK, industrialisation des procédures et sensibilisation cyberdéfense.</div>
+          </li>
+          <li>
+            <strong>Stage volontaire — Base aérienne 123 Orléans-Bricy</strong>
+            <time datetime="2023-11">Immersion 2023</time>
+            <div class="muted">Visite des infrastructures, découverte A400M, échanges avec le CPA10 sur les enjeux réseaux sécurisés.</div>
+          </li>
+          <li>
+            <strong>Projets académiques — BTS SIO</strong>
+            <time datetime="2023-09">Depuis 2023</time>
+            <div class="muted">Gestion d’incidents, documentation et support utilisateurs dans un contexte ITIL simplifié.</div>
+          </li>
+        </ol>
       </section>
 
       <!-- Compétences -->
       <section id="skills">
         <h2>⚙️ Compétences</h2>
-        <ul>
-          <li>Active Directory, DNS, DHCP (Windows Server 2019)</li>
-          <li>Segmentation VLAN, trunking 802.1Q, ACL basiques</li>
-          <li>Debian : Apache2, Postfix, services réseaux</li>
-        </ul>
+        <div class="skills-grid">
+          <article class="skill">
+            <h3>Infrastructure &amp; réseaux</h3>
+            <ul>
+              <li>Active Directory, DNS, DHCP (Windows Server 2019)</li>
+              <li>Segmentation VLAN, trunking 802.1Q, ACL basiques</li>
+              <li>Configuration de routeurs &amp; switches Cisco Packet Tracer</li>
+            </ul>
+          </article>
+          <article class="skill">
+            <h3>Services &amp; automatisation</h3>
+            <ul>
+              <li>Debian : Apache2, Postfix, services réseaux</li>
+              <li>Scripts PowerShell &amp; Bash pour automatiser les tâches</li>
+              <li>Supervision légère (journalisation, alertes mail)</li>
+            </ul>
+          </article>
+          <article class="skill">
+            <h3>Organisation &amp; documentation</h3>
+            <ul>
+              <li>Redaction de dossiers d’architecture et procédures E4</li>
+              <li>Utilisation de Git/GitHub pour suivre les versions</li>
+              <li>Communication technique auprès des utilisateurs</li>
+            </ul>
+          </article>
+        </div>
       </section>
 
       <!-- Certifications -->
       <section id="certs">
         <h2>🎓 Certifications</h2>
         <ul>
-          <li>PIX – Compétences numériques</li>
+          <li>PIX – Compétences numériques (score au-dessus de la moyenne nationale)</li>
           <li>OpenClassrooms : Linux, TCP/IP, HTML5/CSS3</li>
+          <li>ANSSI – MOOC SecNumacadémie</li>
         </ul>
       </section>
 
       <!-- Veille -->
       <section id="veille">
         <h2>🔍 Veille technologique</h2>
-        <p>Exemple : <strong>Cloud hybride & virtualisation</strong>. Ajoutez vos PDF de veille dans <code>Documents/</code> et liez-les ici.</p>
+        <p class="section-intro">Veille mensuelle orientée cybersécurité et continuité de service. Je privilégie les sources institutionnelles (ANSSI, Cybermalveillance.gouv.fr) et les retours d’expérience d’équipes opérationnelles.</p>
+        <ul>
+          <li>Cloud hybride &amp; virtualisation : arbitrage coûts/souveraineté, solutions Nutanix &amp; VMware.</li>
+          <li>Cybersécurité de défense : cartographie MITRE ATT&amp;CK, retours du COMCYBER, dispositif CERT-FR.</li>
+          <li>Automatisation réseau : Ansible pour Cisco IOS, supervision par playbooks et templates Jinja.</li>
+        </ul>
       </section>
 
       <!-- Contact -->
       <section id="contact">
         <h2>✉️ Contact</h2>
-        <p>📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a></p>
+        <address>
+          📍 Orléans · Lycée Benjamin Franklin<br />
+          📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a><br />
+          📱 07 81 36 83 26<br />
+          💬 Disponible pour un échange autour des métiers des transmissions militaires et réseaux sécurisés.
+        </address>
       </section>
 
-      <p class="foot">© 2024–2025 · Portfolio BTS SIO (SISR) — Noé Chami</p>
+      <footer>
+        <p class="foot">© 2024–2025 · Portfolio BTS SIO (SISR) — Noé Chami</p>
+      </footer>
     </div>
   </main>
+  <script src="akatsuki.js" defer></script>
+  <script src="terminal.js" defer></script>
+  <script>
+    (function(){
+      const sharingan=document.querySelector('.sharingan-vision');
+      if(!sharingan)return;
+      const reduceMotionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
+      const crows=Array.from(sharingan.querySelectorAll('.sharingan-crow'));
+      const eyes=Array.from(sharingan.querySelectorAll('.sharingan-eye'));
+      const randomBetween=(min,max)=>Math.random()*(max-min)+min;
+      let timeoutId=null;
+      let cleanupId=null;
+      const readDuration=()=>{
+        const value=getComputedStyle(document.documentElement).getPropertyValue('--sharingan-duration');
+        const parsed=parseFloat(value);
+        return Number.isFinite(parsed)?parsed*1000:5500;
+      };
+      let activeDuration=readDuration();
+      const stop=()=>{
+        if(timeoutId){
+          clearTimeout(timeoutId);
+          timeoutId=null;
+        }
+        if(cleanupId){
+          clearTimeout(cleanupId);
+          cleanupId=null;
+        }
+        sharingan.classList.remove('is-active');
+      };
+      const scheduleNext=()=>{
+        clearTimeout(timeoutId);
+        const delay=randomBetween(55,70)*1000;
+        timeoutId=window.setTimeout(activateSharingan,delay);
+      };
+      const positionEyes=()=>{
+        if(!eyes.length)return;
+        const configs=[
+          {top:[18,28], left:[16,28], tilt:[-18,-6], scale:[0.42,0.55]},
+          {top:[24,36], left:[68,82], tilt:[4,14], scale:[0.42,0.55]},
+          {top:[62,78], left:[26,40], tilt:[-8,4], scale:[0.36,0.48]}
+        ];
+        eyes.forEach((eye,index)=>{
+          const cfg=configs[index]||configs[configs.length-1];
+          const top=randomBetween(cfg.top[0],cfg.top[1]);
+          const left=randomBetween(cfg.left[0],cfg.left[1]);
+          const tilt=randomBetween(cfg.tilt[0],cfg.tilt[1]);
+          const scale=randomBetween(cfg.scale[0],cfg.scale[1]);
+          eye.style.setProperty('--eye-top',`${top}%`);
+          eye.style.setProperty('--eye-left',`${left}%`);
+          eye.style.setProperty('--eye-tilt',`${tilt}deg`);
+          eye.style.setProperty('--eye-scale',scale.toFixed(2));
+        });
+      };
+
+      const activateSharingan=()=>{
+        crows.forEach(crow=>{
+          crow.style.setProperty('--start-x',`${randomBetween(-14,-6)}vw`);
+          crow.style.setProperty('--start-y',`${randomBetween(12,78)}vh`);
+          crow.style.setProperty('--dx',`${randomBetween(95,135)}vw`);
+          crow.style.setProperty('--dy',`${randomBetween(-32,24)}vh`);
+          crow.style.setProperty('--crow-duration',`${randomBetween(4.6,7.4)}s`);
+          crow.style.setProperty('--crow-delay',`${randomBetween(0,1.6)}s`);
+          crow.style.setProperty('--crow-scale',randomBetween(0.75,1.35).toFixed(2));
+        });
+        positionEyes();
+        sharingan.classList.add('is-active');
+        cleanupId=window.setTimeout(()=>{
+          sharingan.classList.remove('is-active');
+          cleanupId=null;
+        },activeDuration);
+        scheduleNext();
+      };
+      const start=()=>{
+        if(reduceMotionQuery.matches)return;
+        if(timeoutId) return;
+        activeDuration=readDuration();
+        scheduleNext();
+      };
+      if(!reduceMotionQuery.matches){
+        scheduleNext();
+      }
+      document.addEventListener('visibilitychange',()=>{
+        if(document.hidden){
+          stop();
+        }else{
+          start();
+        }
+      });
+      reduceMotionQuery.addEventListener('change',event=>{
+        if(event.matches){
+          stop();
+        }else{
+          activeDuration=readDuration();
+          start();
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function(){
+      const root=document.documentElement;
+      const toggle=document.querySelector('[data-theme-toggle]');
+      if(!toggle)return;
+      const storageKey='preferred-theme';
+      const systemQuery=window.matchMedia('(prefers-color-scheme: light)');
+      const label=state=>state==='light'?'Mode clair':'Mode sombre';
+      const applyTheme=theme=>{
+        if(theme==='light'){
+          root.setAttribute('data-theme','light');
+          toggle.setAttribute('aria-pressed','true');
+        }else{
+          root.removeAttribute('data-theme');
+          toggle.setAttribute('aria-pressed','false');
+          theme='dark';
+        }
+        toggle.querySelector('span').textContent=label(theme);
+      };
+      let stored=null;
+      try{stored=localStorage.getItem(storageKey);}catch(e){stored=null;}
+      const initial=stored||(systemQuery.matches?'light':'dark');
+      applyTheme(initial);
+      toggle.addEventListener('click',()=>{
+        const next=root.getAttribute('data-theme')==='light'?'dark':'light';
+        applyTheme(next);
+        try{
+          if(next==='dark'){
+            localStorage.removeItem(storageKey);
+          }else{
+            localStorage.setItem(storageKey,next);
+          }
+        }catch(e){}
+      });
+      systemQuery.addEventListener('change',event=>{
+        let pref=null;
+        try{pref=localStorage.getItem(storageKey);}catch(e){pref=null;}
+        if(!pref){
+          applyTheme(event.matches?'light':'dark');
+        }
+      });
+      const navLinks=Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+      const sections=navLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const setActive=id=>{
+        navLinks.forEach(link=>{
+          if(link.getAttribute('href')===`#${id}`){
+            link.setAttribute('aria-current','true');
+          }else{
+            link.removeAttribute('aria-current');
+          }
+        });
+      };
+      if('IntersectionObserver'in window && sections.length){
+        const observer=new IntersectionObserver(entries=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              setActive(entry.target.id);
+            }
+          });
+        },{rootMargin:'-40% 0px -50% 0px',threshold:0.1});
+        sections.forEach(section=>observer.observe(section));
+      }
+    })();
+  </script>
 </body>
 </html>
