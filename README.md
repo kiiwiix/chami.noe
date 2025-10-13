@@ -17,7 +17,7 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 > ℹ️ Ajoutez votre photo personnelle dans `assets/noe-chami.jpg` (non versionnée) pour remplacer l’avatar par défaut.
 > Vous pouvez aussi adapter les valeurs des tuiles « +12 infrastructures », « 6 projets », « 2 stages » directement dans `index.html` section `#intro`.
 > Le thème choisi est retenu automatiquement dans le navigateur (localStorage).
-> 🎨 L’atmosphère animée inspirée de l’Akatsuki est gérée dans `animations.css` : ajustez les couleurs ou désactivez les nuages si vous préférez un rendu plus sobre.
+> 🎨 Le fond cybersécurité combine brume rouge et pluie de code : ajustez les variables dans `background.css` ou adaptez la vitesse dans `matrix.js` pour personnaliser l’intensité.
 
 ---
 

@@ -11,7 +11,7 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kiiwiix.github.io/chami.noe/" />
-  <link rel="stylesheet" href="animations.css" />
+  <link rel="stylesheet" href="background.css" />
   <link rel="stylesheet" href="style.css" />
   <style>
     :root{
@@ -229,7 +229,7 @@
     html[data-theme="light"] .metric{background:rgba(255,255,255,.86); border-color:rgba(214,75,98,.25)}
     @media print{
       body{background:#fff; color:#000}
-      .akatsuki-sky{display:none}
+      .cyber-background{display:none}
       .sidebar{position:static; box-shadow:none; background:#fff; color:#000}
       .btn{background:#fff; color:#000; border-color:#000}
       section{background:#fff; color:#000; box-shadow:none}
@@ -238,57 +238,13 @@
   </style>
 </head>
 <body>
-  <div class="akatsuki-sky" aria-hidden="true">
-    <span class="akatsuki-cloud akatsuki-cloud--1"></span>
-    <span class="akatsuki-cloud akatsuki-cloud--2"></span>
-    <span class="akatsuki-cloud akatsuki-cloud--3"></span>
-    <span class="akatsuki-cloud akatsuki-cloud--4"></span>
-    <span class="akatsuki-cloud akatsuki-cloud--5"></span>
+  <div class="cyber-background" aria-hidden="true">
+    <div class="mist-layer"></div>
+    <div class="mist-layer mist-layer--slow"></div>
+    <div class="mist-layer mist-layer--pulse"></div>
+    <canvas id="code-rain" class="code-rain" role="presentation"></canvas>
   </div>
-  <div class="akatsuki-crows" aria-hidden="true"></div>
   <a class="skip-link" href="#contenu">Passer au contenu principal</a>
-  <div class="sharingan-vision" aria-hidden="true">
-    <div class="sharingan-eye">
-      <span class="tomoe"></span>
-      <span class="tomoe"></span>
-      <span class="tomoe"></span>
-      <span class="iris"></span>
-      <span class="pupil"></span>
-      <span class="ring"></span>
-    </div>
-    <div class="sharingan-eye">
-      <span class="tomoe"></span>
-      <span class="tomoe"></span>
-      <span class="tomoe"></span>
-      <span class="iris"></span>
-      <span class="pupil"></span>
-      <span class="ring"></span>
-    </div>
-    <span class="sharingan-crow">
-      <span class="wing"></span>
-      <span class="wing"></span>
-    </span>
-    <span class="sharingan-crow">
-      <span class="wing"></span>
-      <span class="wing"></span>
-    </span>
-    <span class="sharingan-crow">
-      <span class="wing"></span>
-      <span class="wing"></span>
-    </span>
-    <span class="sharingan-crow">
-      <span class="wing"></span>
-      <span class="wing"></span>
-    </span>
-    <span class="sharingan-crow">
-      <span class="wing"></span>
-      <span class="wing"></span>
-    </span>
-    <span class="sharingan-crow">
-      <span class="wing"></span>
-      <span class="wing"></span>
-    </span>
-  </div>
   <main id="contenu" class="layout">
     <!-- Sidebar -->
     <aside class="sidebar" aria-label="Présentation rapide">
@@ -513,104 +469,8 @@
       </footer>
     </div>
   </main>
-  <script src="akatsuki.js" defer></script>
+  <script src="matrix.js" defer></script>
   <script src="terminal.js" defer></script>
-  <script>
-    (function(){
-      const sharingan=document.querySelector('.sharingan-vision');
-      if(!sharingan)return;
-      const reduceMotionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
-      const crows=Array.from(sharingan.querySelectorAll('.sharingan-crow'));
-      const eyes=Array.from(sharingan.querySelectorAll('.sharingan-eye'));
-      const randomBetween=(min,max)=>Math.random()*(max-min)+min;
-      let timeoutId=null;
-      let cleanupId=null;
-      const readDuration=()=>{
-        const value=getComputedStyle(document.documentElement).getPropertyValue('--sharingan-duration');
-        const parsed=parseFloat(value);
-        return Number.isFinite(parsed)?parsed*1000:5500;
-      };
-      let activeDuration=readDuration();
-      const stop=()=>{
-        if(timeoutId){
-          clearTimeout(timeoutId);
-          timeoutId=null;
-        }
-        if(cleanupId){
-          clearTimeout(cleanupId);
-          cleanupId=null;
-        }
-        sharingan.classList.remove('is-active');
-      };
-      const scheduleNext=()=>{
-        clearTimeout(timeoutId);
-        const delay=randomBetween(55,70)*1000;
-        timeoutId=window.setTimeout(activateSharingan,delay);
-      };
-      const positionEyes=()=>{
-        if(!eyes.length)return;
-        const configs=[
-          {top:[18,28], left:[16,28], tilt:[-18,-6], scale:[0.42,0.55]},
-          {top:[24,36], left:[68,82], tilt:[4,14], scale:[0.42,0.55]},
-          {top:[62,78], left:[26,40], tilt:[-8,4], scale:[0.36,0.48]}
-        ];
-        eyes.forEach((eye,index)=>{
-          const cfg=configs[index]||configs[configs.length-1];
-          const top=randomBetween(cfg.top[0],cfg.top[1]);
-          const left=randomBetween(cfg.left[0],cfg.left[1]);
-          const tilt=randomBetween(cfg.tilt[0],cfg.tilt[1]);
-          const scale=randomBetween(cfg.scale[0],cfg.scale[1]);
-          eye.style.setProperty('--eye-top',`${top}%`);
-          eye.style.setProperty('--eye-left',`${left}%`);
-          eye.style.setProperty('--eye-tilt',`${tilt}deg`);
-          eye.style.setProperty('--eye-scale',scale.toFixed(2));
-        });
-      };
-
-      const activateSharingan=()=>{
-        crows.forEach(crow=>{
-          crow.style.setProperty('--start-x',`${randomBetween(-14,-6)}vw`);
-          crow.style.setProperty('--start-y',`${randomBetween(12,78)}vh`);
-          crow.style.setProperty('--dx',`${randomBetween(95,135)}vw`);
-          crow.style.setProperty('--dy',`${randomBetween(-32,24)}vh`);
-          crow.style.setProperty('--crow-duration',`${randomBetween(4.6,7.4)}s`);
-          crow.style.setProperty('--crow-delay',`${randomBetween(0,1.6)}s`);
-          crow.style.setProperty('--crow-scale',randomBetween(0.75,1.35).toFixed(2));
-        });
-        positionEyes();
-        sharingan.classList.add('is-active');
-        cleanupId=window.setTimeout(()=>{
-          sharingan.classList.remove('is-active');
-          cleanupId=null;
-        },activeDuration);
-        scheduleNext();
-      };
-      const start=()=>{
-        if(reduceMotionQuery.matches)return;
-        if(timeoutId) return;
-        activeDuration=readDuration();
-        scheduleNext();
-      };
-      if(!reduceMotionQuery.matches){
-        scheduleNext();
-      }
-      document.addEventListener('visibilitychange',()=>{
-        if(document.hidden){
-          stop();
-        }else{
-          start();
-        }
-      });
-      reduceMotionQuery.addEventListener('change',event=>{
-        if(event.matches){
-          stop();
-        }else{
-          activeDuration=readDuration();
-          start();
-        }
-      });
-    })();
-  </script>
   <script>
     (function(){
       const root=document.documentElement;
