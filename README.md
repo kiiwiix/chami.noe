@@ -9,15 +9,38 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 - **Nom :** Chami  
 - **Formation :** BTS SIO option SISR  
 - **Objectif professionnel :** Rejoindre Saint-Maixent afin d’intégrer l’école des transmissions  
-- 📄 [Mon CV (PDF)](./Documents/cv-noe-chami.pdf)  
-- 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)  
+- 📄 [Mon CV interactif](./cv.html) — prêt à être exporté en PDF (A4)
+- 📎 [Attestation ANSSI](./Documents/attestation-anssi.pdf) — à remplacer par l’originale placée dans le dossier `Documents/`
+- 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)
+- ✨ Statistiques clés visibles sur la page d’accueil pour présenter mes infrastructures, projets et stages.
+- 🌓 Le site s’ouvre en mode clair par défaut et un bouton permet de passer au thème sombre si besoin.
+
+> ℹ️ Ajoutez ou remplacez votre photo personnelle dans `assets/7a99c842-cb92-4b22-83bc-245656196c60.jpg` (non versionnée) pour remplacer l’avatar par défaut — une icône fallback reste affichée si le fichier est absent.
+> Pour générer un PDF, ouvrez `cv.html` dans le navigateur puis imprimez la page au format **A4** avec les marges par défaut.
+> Vous pouvez aussi adapter les valeurs des tuiles « +12 infrastructures », « 6 projets », « 2 stages » directement dans `index.html` section `#intro`.
+> Le thème choisi est retenu automatiquement dans le navigateur (localStorage).
+> 🎨 Le fond cybersécurité combine brume rouge et pluie de code : ajustez les variables dans `background.css` ou adaptez la vitesse dans `matrix.js` pour personnaliser l’intensité.
+
+---
+
+## 🧭 Structure du site
+- `index.html` — Accueil / aperçu général avec statistiques et liens rapides
+- `projets.html` — Dossiers techniques et rapports prêts pour l’épreuve E4
+- `experiences.html` — Chronologie détaillée des stages et immersions
+- `competences.html` — Compétences réseaux, systèmes et documentation
+- `certifications.html` — Attestations officielles (PIX, OpenClassrooms, ANSSI)
+- `veille.html` — Veille cybersécurité, cloud et automatisation réseau
+- `contact.html` — Coordonnées professionnelles et documents à télécharger
+- `cv.html` — CV interactif A4 exportable en PDF
+
+Chaque page réutilise la barre latérale (photo, boutons, attestation ANSSI) et le sélecteur de thème.
 
 ---
 
 ## 💼 Réalisations professionnelles
-Ce portfolio présente mes projets et activités réalisés en cours de formation et en stage, illustrant les compétences du référentiel E4 :  
+Ce portfolio présente mes projets et activités réalisés en cours de formation et en stage, illustrant les compétences du référentiel E4 :
 
-- 🖧 Mise en place d’un **réseau avec VLAN et trunking** (Cisco Packet Tracer)  
+- 🖧 Mise en place d’un **réseau avec VLAN et trunking** (Cisco Packet Tracer)
 - 🖥️ Déploiement et gestion d’un **Active Directory sous Windows Server 2019**  
 - 📂 Gestion des utilisateurs et des partages de fichiers en environnement professionnel  
 - 🚀 Travail en mode projet (organisation, planification, documentation)  
@@ -44,4 +67,6 @@ Ce portfolio est hébergé en ligne pour être accessible lors de l’épreuve e
 ---
 
 ## 📬 Contact
+- 📍 Orléans · Lycée Benjamin Franklin
 - ✉️ Email : chaminoe0@gmail.com
+- 📱 Téléphone : 07 81 36 83 26
