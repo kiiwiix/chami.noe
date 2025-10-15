@@ -9,8 +9,16 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 - **Nom :** Chami  
 - **Formation :** BTS SIO option SISR  
 - **Objectif professionnel :** Rejoindre Saint-Maixent afin d’intégrer l’école des transmissions  
-- 📄 [Mon CV (PDF)](./Documents/cv-noe-chami.pdf)  
-- 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)  
+- 📄 [Mon CV interactif](./cv.html) — prêt à être exporté en PDF (A4)
+- 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)
+- ✨ Statistiques clés visibles sur la page d’accueil pour présenter mes infrastructures, projets et stages.
+- 🌓 Le site s’ouvre en mode clair par défaut et un bouton permet de passer au thème sombre si besoin.
+
+> ℹ️ Ajoutez ou remplacez votre photo personnelle dans `assets/7a99c842-cb92-4b22-83bc-245656196c60.jpg` (non versionnée) pour remplacer l’avatar par défaut — une icône fallback reste affichée si le fichier est absent.
+> Pour générer un PDF, ouvrez `cv.html` dans le navigateur puis imprimez la page au format **A4** avec les marges par défaut.
+> Vous pouvez aussi adapter les valeurs des tuiles « +12 infrastructures », « 6 projets », « 2 stages » directement dans `index.html` section `#intro`.
+> Le thème choisi est retenu automatiquement dans le navigateur (localStorage).
+> 🎨 Le fond cybersécurité combine brume rouge et pluie de code : ajustez les variables dans `background.css` ou adaptez la vitesse dans `matrix.js` pour personnaliser l’intensité.
 
 ---
 
@@ -44,4 +52,6 @@ Ce portfolio est hébergé en ligne pour être accessible lors de l’épreuve e
 ---
 
 ## 📬 Contact
+- 📍 Orléans · Lycée Benjamin Franklin
 - ✉️ Email : chaminoe0@gmail.com
+- 📱 Téléphone : 07 81 36 83 26
