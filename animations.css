@@ -1,0 +1,141 @@
+:root {
+  --akatsuki-sky-gradient: radial-gradient(circle at 20% 20%, rgba(184, 26, 52, 0.35), transparent 60%),
+    radial-gradient(circle at 80% 0%, rgba(237, 80, 105, 0.25), transparent 55%),
+    radial-gradient(circle at 50% 100%, rgba(118, 21, 35, 0.45), rgba(12, 9, 16, 0.95));
+  --akatsuki-cloud: #c91b3c;
+  --akatsuki-cloud-border: rgba(255, 255, 255, 0.85);
+  --akatsuki-cloud-shadow: rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="light"] {
+  --akatsuki-sky-gradient: radial-gradient(circle at 20% 20%, rgba(245, 101, 118, 0.35), transparent 60%),
+    radial-gradient(circle at 80% 0%, rgba(250, 128, 114, 0.25), transparent 55%),
+    linear-gradient(180deg, rgba(244, 215, 218, 0.85), rgba(255, 255, 255, 0.6));
+  --akatsuki-cloud: #e0314e;
+  --akatsuki-cloud-border: rgba(255, 255, 255, 0.9);
+  --akatsuki-cloud-shadow: rgba(141, 26, 42, 0.35);
+}
+
+.akatsuki-sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--akatsuki-sky-gradient);
+  transition: background 0.5s ease;
+}
+
+.akatsuki-cloud {
+  position: absolute;
+  width: 240px;
+  height: 130px;
+  border-radius: 50% 45% 50% 45% / 50% 55% 45% 50%;
+  background: var(--akatsuki-cloud);
+  border: 3px solid var(--akatsuki-cloud-border);
+  box-shadow: 0 10px 30px var(--akatsuki-cloud-shadow);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+  animation: akatsuki-float var(--akatsuki-duration, 18s) ease-in-out infinite;
+}
+
+.akatsuki-cloud::before,
+.akatsuki-cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border: inherit;
+  border-radius: inherit;
+}
+
+.akatsuki-cloud::before {
+  width: 180px;
+  height: 110px;
+  top: -40px;
+  left: 30px;
+}
+
+.akatsuki-cloud::after {
+  width: 150px;
+  height: 90px;
+  bottom: -30px;
+  right: 40px;
+}
+
+.akatsuki-cloud--1 {
+  top: 12%;
+  left: -6%;
+  --akatsuki-duration: 22s;
+  animation-delay: -3s;
+}
+
+.akatsuki-cloud--2 {
+  top: 32%;
+  left: 55%;
+  --akatsuki-duration: 24s;
+  animation-delay: -9s;
+}
+
+.akatsuki-cloud--3 {
+  top: 65%;
+  left: 15%;
+  --akatsuki-duration: 26s;
+  animation-delay: -15s;
+}
+
+.akatsuki-cloud--4 {
+  top: 78%;
+  left: 70%;
+  --akatsuki-duration: 28s;
+  animation-delay: -6s;
+}
+
+.akatsuki-cloud--5 {
+  top: -8%;
+  left: 35%;
+  --akatsuki-duration: 30s;
+  animation-delay: -12s;
+}
+
+@keyframes akatsuki-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  25% {
+    transform: translate3d(20px, -10px, 0) scale(1.02);
+  }
+  50% {
+    transform: translate3d(60px, 10px, 0) scale(0.98);
+  }
+  75% {
+    transform: translate3d(20px, 20px, 0) scale(1.03);
+  }
+}
+
+@media (max-width: 900px) {
+  .akatsuki-cloud {
+    width: 180px;
+    height: 100px;
+    border-width: 2px;
+  }
+
+  .akatsuki-cloud::before {
+    width: 140px;
+    height: 90px;
+    top: -34px;
+    left: 22px;
+  }
+
+  .akatsuki-cloud::after {
+    width: 120px;
+    height: 70px;
+    bottom: -24px;
+    right: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .akatsuki-cloud {
+    animation: none;
+  }
+}
