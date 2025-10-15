@@ -10,6 +10,7 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 - **Formation :** BTS SIO option SISR  
 - **Objectif professionnel :** Rejoindre Saint-Maixent afin d’intégrer l’école des transmissions  
 - 📄 [Mon CV interactif](./cv.html) — prêt à être exporté en PDF (A4)
+- 📎 [Attestation ANSSI](./Documents/attestation-anssi.pdf) — à remplacer par l’originale placée dans le dossier `Documents/`
 - 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)
 - ✨ Statistiques clés visibles sur la page d’accueil pour présenter mes infrastructures, projets et stages.
 - 🌓 Le site s’ouvre en mode clair par défaut et un bouton permet de passer au thème sombre si besoin.
