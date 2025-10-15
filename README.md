@@ -12,7 +12,7 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 - 📄 [Mon CV interactif](./cv.html) — prêt à être exporté en PDF (A4)
 - 🔗 [Mon LinkedIn](https://www.linkedin.com/in/no%C3%A9-chami/)
 - ✨ Statistiques clés visibles sur la page d’accueil pour présenter mes infrastructures, projets et stages.
-- 🌓 Un bouton permet de passer du thème sombre au thème clair pour s’adapter à la lumière ambiante.
+- 🌓 Le site s’ouvre en mode clair par défaut et un bouton permet de passer au thème sombre si besoin.
 
 > ℹ️ Ajoutez ou remplacez votre photo personnelle dans `assets/7a99c842-cb92-4b22-83bc-245656196c60.jpg` (non versionnée) pour remplacer l’avatar par défaut — une icône fallback reste affichée si le fichier est absent.
 > Pour générer un PDF, ouvrez `cv.html` dans le navigateur puis imprimez la page au format **A4** avec les marges par défaut.
