@@ -192,6 +192,8 @@
     }
     html[data-theme="light"] .nav a:hover{background:rgba(214,75,98,.18)}
     html[data-theme="light"] .nav a[aria-current="true"]{background:linear-gradient(135deg,rgba(214,75,98,.2),rgba(255,255,255,.82));}
+    .nav-cta{display:grid; margin-top:4px}
+    .nav-cta .btn{width:100%; justify-content:center; text-align:center}
     .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none}
     .chip{padding:6px 10px; border-radius:999px; background:rgba(16,18,28,.7); border:1px solid rgba(255,255,255,.12); color:var(--muted); font-size:.85rem; box-shadow:inset 0 0 10px rgba(242,75,100,.2)}
     .socials{display:grid; gap:12px; margin-top:8px}
@@ -291,16 +293,10 @@
         <a href="#veille">🔍 Veille</a>
         <a href="#contact">✉️ Contact</a>
       </nav>
-      <ul class="chips" role="list">
-        <li class="chip">DHCP</li>
-        <li class="chip">Active Directory</li>
-        <li class="chip">Apache</li>
-        <li class="chip">Cisco</li>
-        <li class="chip">Ansible</li>
-        <li class="chip">Synology</li>
-      </ul>
-      <div class="socials">
+      <div class="nav-cta">
         <a class="btn primary" href="cv.html" target="_blank" rel="noopener">📄 Voir mon CV</a>
+      </div>
+      <div class="socials">
         <a class="btn" href="Documents/attestation-anssi.pdf" target="_blank" rel="noopener" download>📎 Attestation ANSSI</a>
         <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener" aria-label="Profil LinkedIn de Noé Chami">LinkedIn</a>
         <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
