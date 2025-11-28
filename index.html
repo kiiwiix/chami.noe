@@ -219,6 +219,11 @@
     .timeline li{padding-left:18px; margin:18px 0; position:relative}
     .timeline li:before{content:""; position:absolute; left:-34px; top:.4rem; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(10,11,18,.85)}
     .timeline time{display:block; color:var(--muted); font-size:.9rem}
+    .impact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; padding:0; margin:0; list-style:none}
+    .impact{position:relative; overflow:hidden}
+    .impact .tag{position:absolute; top:12px; right:12px; background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.22); color:var(--text)}
+    .impact h3{margin:0 0 8px; font-size:1.1rem}
+    .impact ul{margin:0; padding-left:18px; color:var(--muted)}
     .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
     .skill{background:rgba(10,11,18,.55); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px; backdrop-filter:blur(10px)}
     .skill h3{margin:0; font-size:1.05rem}
@@ -226,6 +231,7 @@
     .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:0; padding:0; list-style:none}
     .metric{background:rgba(10,11,18,.5); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:14px; text-align:center; box-shadow:0 10px 24px rgba(242,75,100,.16)}
     .metric strong{display:block; font-size:1.4rem; color:var(--accent2)}
+    .contact-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px}
     address{font-style:normal; line-height:1.7}
     .foot{opacity:.7; font-size:.9rem; text-align:center; padding:24px 0; margin:0}
     footer{margin-top:auto; padding:0 0 32px}
@@ -277,6 +283,7 @@
       </div>
       <nav class="nav" aria-label="Navigation principale">
         <a href="#intro" aria-current="true">✨ Aperçu</a>
+        <a href="#impact">🚀 Résultats</a>
         <a href="#projets">🧩 Projets</a>
         <a href="#xp">🛠️ Expériences</a>
         <a href="#skills">⚙️ Compétences</a>
@@ -289,6 +296,8 @@
         <li class="chip">Active Directory</li>
         <li class="chip">Apache</li>
         <li class="chip">Cisco</li>
+        <li class="chip">Ansible</li>
+        <li class="chip">Synology</li>
       </ul>
       <div class="socials">
         <a class="btn primary" href="cv.html" target="_blank" rel="noopener">📄 Voir mon CV</a>
@@ -314,6 +323,43 @@
           <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
         </ul>
         <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
+      </section>
+
+      <section id="impact">
+        <h2>🚀 Résultats marquants</h2>
+        <p class="section-intro">Exemples concrets de livrables réalisés récemment : ils combinent sécurisation, documentation et transfert de compétences pour assurer la continuité de service.</p>
+        <ul class="impact-grid" role="list">
+          <li class="card impact">
+            <span class="tag">Infra</span>
+            <h3>Active Directory prêt pour l’E4</h3>
+            <p>Forêt AD DS avec DNS intégré, structuration des OU et politiques GPO alignées sur les besoins métiers.</p>
+            <ul>
+              <li>50 comptes utilisateurs et groupes gérés avec délégation</li>
+              <li>Stratégies de sécurité (mots de passe, verrouillage, scripts)</li>
+              <li>Procédures rédigées pour la soutenance</li>
+            </ul>
+          </li>
+          <li class="card impact">
+            <span class="tag">Sécurité</span>
+            <h3>Segmentation &amp; supervision réseau</h3>
+            <p>Plan d’adressage par VLAN, règles pare-feu ICMP/DNS, analyse Wireshark et suivi des flux sensibles.</p>
+            <ul>
+              <li>Tableaux de tests (ICMP, ARP, DHCP relay) pour chaque VLAN</li>
+              <li>Alertes mail basiques sur anomalies détectées</li>
+              <li>Diagrammes et captures intégrés aux rapports PDF</li>
+            </ul>
+          </li>
+          <li class="card impact">
+            <span class="tag">Automatisation</span>
+            <h3>Backups &amp; déploiements guidés</h3>
+            <p>Scripts Bash/PowerShell pour les sauvegardes NAS Synology et la configuration initiale des services.</p>
+            <ul>
+              <li>Playbooks prêts à adapter pour Ansible/Cisco IOS</li>
+              <li>Journalisation locale + résumé HTML exportable</li>
+              <li>Checklist d’exploitation fournie aux équipes</li>
+            </ul>
+          </li>
+        </ul>
       </section>
 
       <section id="projets">
@@ -475,6 +521,11 @@
           📱 07 81 36 83 26<br />
           💬 Disponible pour un échange autour des métiers des transmissions militaires et réseaux sécurisés.
         </address>
+        <div class="contact-actions">
+          <a class="btn primary" href="mailto:chaminoe0@gmail.com?subject=Prendre%20rendez-vous">Planifier un échange</a>
+          <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">Découvrir mon LinkedIn</a>
+          <a class="btn" href="Documents/attestation-anssi.pdf" target="_blank" rel="noopener" download>📎 Attestation ANSSI</a>
+        </div>
       </section>
 
       <footer>
