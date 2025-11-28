@@ -1,782 +1,92 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>🟥 TP Keepalived – Haute Disponibilité avec VRRP</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 10px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.collection-content td {
-	white-space: pre-wrap;
-	word-break: break-word;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.callout img.notion-static-icon {
-	width: 1em;
-	height: 1em;
-}
-
-.callout p {
-	margin: 0;
-}
-
-.callout h1,
-.callout h2,
-.callout h3 {
-	margin: 0 0 0.6rem;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-blockquote.quote-large {
-	font-size: 1.25em;
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.highlight-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.highlight-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.highlight-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.highlight-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.highlight-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.highlight-default_background {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray_background {
-	background: rgba(42, 28, 0, 0.07);
-}
-.highlight-brown_background {
-	background: rgba(139, 46, 0, 0.086);
-}
-.highlight-orange_background {
-	background: rgba(224, 101, 1, 0.129);
-}
-.highlight-yellow_background {
-	background: rgba(211, 168, 0, 0.137);
-}
-.highlight-teal_background {
-	background: rgba(0, 100, 45, 0.09);
-}
-.highlight-blue_background {
-	background: rgba(0, 124, 215, 0.094);
-}
-.highlight-purple_background {
-	background: rgba(102, 0, 178, 0.078);
-}
-.highlight-pink_background {
-	background: rgba(197, 0, 93, 0.086);
-}
-.highlight-red_background {
-	background: rgba(223, 22, 0, 0.094);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.block-color-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.block-color-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.block-color-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.block-color-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.block-color-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(240, 239, 237, 1);
-}
-.block-color-brown_background {
-	background: rgba(245, 237, 233, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 235, 222, 1);
-}
-.block-color-yellow_background {
-	background: rgba(249, 243, 220, 1);
-}
-.block-color-teal_background {
-	background: rgba(232, 241, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(229, 242, 252, 1);
-}
-.block-color-purple_background {
-	background: rgba(243, 235, 249, 1);
-}
-.block-color-pink_background {
-	background: rgba(250, 233, 241, 1);
-}
-.block-color-red_background {
-	background: rgba(252, 233, 231, 1);
-}
-.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
-.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
-.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
-.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
-.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
-.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
-.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
-.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
-.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
-.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="2b83c9e0-ab45-804d-9467-eb8d6b5d73b9" class="page sans"><header><h1 class="page-title">🟥 <strong>TP Keepalived – Haute Disponibilité avec VRRP</strong></h1><p class="page-description"></p></header><div class="page-body"><h2 id="2b93c9e0-ab45-8073-b69c-ff94535f9ee1" class="">1. Rôle de Keepalived</h2><ul id="2b93c9e0-ab45-808c-b21e-d4f6947cb051" class="bulleted-list"><li style="list-style-type:disc">Permet de mettre en place une <strong>adresse IP virtuelle (VIP)</strong> partagée entre plusieurs serveurs.</li></ul><ul id="2b93c9e0-ab45-8066-a7f1-faac6dc21af0" class="bulleted-list"><li style="list-style-type:disc">Assure la <strong>haute disponibilité (HA)</strong> : si le serveur maître tombe, le serveur backup prend automatiquement la VIP.</li></ul><ul id="2b93c9e0-ab45-8004-8a6e-f902e5b1c7fc" class="bulleted-list"><li style="list-style-type:disc">Fonctionne grâce au protocole <strong>VRRP (Virtual Router Redundancy Protocol)</strong>.</li></ul><ul id="2b93c9e0-ab45-803d-b195-f833c7b945e7" class="bulleted-list"><li style="list-style-type:disc">Utilisé pour protéger un service critique (ex : serveur web Apache, base de données, reverse proxy, etc.).</li></ul><p id="2b93c9e0-ab45-8074-a3a3-eaf5bddf9fa8" class="">👉 Objectif : <strong>continuité de service</strong> même en cas de panne du nœud principal.</p><hr id="2b93c9e0-ab45-8007-82e9-f1833cdb350e"/><h2 id="2b93c9e0-ab45-804a-b599-ce719cabd3d7" class="">2. Installation de Keepalived (Debian)</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-8043-96f0-d08bfad613ba" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo apt update
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TP Keepalived – Haute Disponibilité VRRP</title>
+  <style>
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;margin:0;padding:24px;background:#0d1117;color:#e6edf3}
+    h1,h2,h3{color:#fff;font-weight:700}
+    h1{margin-top:0}
+    code,pre{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:10px;display:block;color:#c9d1d9;font-size:0.95rem}
+    pre{overflow:auto;line-height:1.5}
+    ul{padding-left:20px}
+    .note{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:14px;margin:16px 0;color:#9ca3af}
+    .section{background:#0f1624;border:1px solid #1f2937;border-radius:16px;padding:18px;margin-bottom:18px;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+  </style>
+</head>
+<body>
+  <h1>TP Keepalived – Haute Disponibilité avec VRRP</h1>
+  <p>Objectif : assurer la continuité d’accès à l’adresse virtuelle d’un service en cas de panne d’un routeur principal.</p>
+
+  <div class="section">
+    <h2>1. Rôle de Keepalived</h2>
+    <ul>
+      <li>Publie une <strong>adresse IP virtuelle</strong> (VIP) partagée entre plusieurs routeurs.</li>
+      <li>S’appuie sur le protocole <strong>VRRP</strong> (Virtual Router Redundancy Protocol).</li>
+      <li>Assure une <strong>bascule automatique</strong> si le routeur principal n’est plus joignable.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>2. Installation de Keepalived (Debian)</h2>
+    <pre><code>sudo apt update && sudo apt upgrade -y
 sudo apt install keepalived -y
 
-</code></pre><p id="2b93c9e0-ab45-803f-abbd-dd4c3c4903c0" class="">Vérifier l’installation :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-8054-8e3f-ca62b43fc21d" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">systemctl status keepalived
+# Vérifier l’installation
+keepalived --version
+sudo systemctl status keepalived
+</code></pre>
+  </div>
 
-</code></pre><hr id="2b93c9e0-ab45-80a6-b85d-cbc786558c9b"/><h2 id="2b93c9e0-ab45-80db-837b-c4a26f9ffbc2" class="">3. Configuration réseau préalable</h2><p id="2b93c9e0-ab45-80cc-bd78-dee5ee4d3456" class="">Chaque serveur doit avoir :</p><ul id="2b93c9e0-ab45-80bf-835e-da4e3fc2036e" class="bulleted-list"><li style="list-style-type:disc">une <strong>IP fixe</strong></li></ul><ul id="2b93c9e0-ab45-8003-8b69-e348082ed8a9" class="bulleted-list"><li style="list-style-type:disc">une <strong>passerelle configurée</strong></li></ul><ul id="2b93c9e0-ab45-8027-aa8d-d0a7f11c2f5b" class="bulleted-list"><li style="list-style-type:disc">le <strong>routage IPv4 activé</strong></li></ul><h3 id="2b93c9e0-ab45-8000-ab18-cb9b996d74c8" class="">Activer le routage IP</h3><p id="2b93c9e0-ab45-80b0-b3c1-cd8501bee779" class="">Fichier : <code>/etc/sysctl.conf</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-8086-8049-ed60d64ba839" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">net.ipv4.ip_forward=1
+  <div class="section">
+    <h2>3. Configuration réseau préalable</h2>
+    <p>Exemple d’adressage sur deux routeurs :</p>
+    <ul>
+      <li><strong>routeur1</strong> : 192.168.20.10/24</li>
+      <li><strong>routeur2</strong> : 192.168.20.20/24</li>
+      <li><strong>VIP</strong> : 192.168.20.30/24</li>
+      <li>Passerelle pour les clients : 192.168.20.30</li>
+    </ul>
+    <p>Activer le routage IPv4 :</p>
+    <pre><code>sudo nano /etc/sysctl.conf
+net.ipv4.ip_forward=1
+sudo sysctl -p</code></pre>
+  </div>
 
-</code></pre><p id="2b93c9e0-ab45-80a5-9c59-e7ab169e43c8" class="">Appliquer :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-80d7-a231-e419a76a29e5" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo sysctl -p
-
-</code></pre><hr id="2b93c9e0-ab45-804f-8ff0-cfbe72d3f58b"/><h2 id="2b93c9e0-ab45-80e9-9a68-f0f0f9e9b773" class="">4. Fichier de configuration <code>/etc/keepalived/keepalived.conf</code></h2><p id="2b93c9e0-ab45-806f-b26a-d38e132d992a" class="">Tu auras <strong>deux fichiers</strong> : un maître et un backup.</p><hr id="2b93c9e0-ab45-8072-ae32-e2ab92a97053"/><h2 id="2b93c9e0-ab45-80be-a1a9-d945b7fd496f" class="">🔵 <strong>Configuration serveur MASTER (ex : 192.168.30.10)</strong></h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-809b-8050-d1c29e33c956" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">vrrp_instance VI_1 {
-    state MASTER
-    interface ens33
-    virtual_router_id 51
-    priority 120
-    advert_int 1
-
-    authentication {
-        auth_type PASS
-        auth_pass MDPKEEPALIVED
-    }
-
-    virtual_ipaddress {
-        192.168.30.100/24
-    }
-}
-
-</code></pre><h3 id="2b93c9e0-ab45-800a-8ec3-fb5bcb034e45" class="">Explication :</h3><ul id="2b93c9e0-ab45-8095-ad58-d39875ec9479" class="bulleted-list"><li style="list-style-type:disc"><strong>MASTER</strong> : serveur principal</li></ul><ul id="2b93c9e0-ab45-8029-b4cb-c69d5a67d721" class="bulleted-list"><li style="list-style-type:disc"><strong>priority 120</strong> : plus élevé → il prend la VIP</li></ul><ul id="2b93c9e0-ab45-804d-89af-c76b3c92c6ea" class="bulleted-list"><li style="list-style-type:disc"><strong>virtual_router_id 51</strong> : identifiant VRRP, doit être identique sur les deux serveurs</li></ul><ul id="2b93c9e0-ab45-8070-b056-e0f4d23e2a5b" class="bulleted-list"><li style="list-style-type:disc"><strong>advert_int 1</strong> : annonce toutes les secondes</li></ul><ul id="2b93c9e0-ab45-80e1-b95d-dbd30389661d" class="bulleted-list"><li style="list-style-type:disc"><strong>VIP : 192.168.30.100</strong> : IP flottante utilisée par les clients</li></ul><hr id="2b93c9e0-ab45-803f-9290-e9ecac59ddba"/><h2 id="2b93c9e0-ab45-804e-98d8-e4273394c3c9" class="">🔴 <strong>Configuration serveur BACKUP (ex : 192.168.30.11)</strong></h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-8000-9d30-d6b25dc1c6ea" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">vrrp_instance VI_1 {
-    state BACKUP
-    interface ens33
-    virtual_router_id 51
-    priority 100
-    advert_int 1
-
-    authentication {
-        auth_type PASS
-        auth_pass MDPKEEPALIVED
-    }
-
-    virtual_ipaddress {
-        192.168.30.100/24
-    }
-}
-
-</code></pre><h3 id="2b93c9e0-ab45-8002-9f11-e17f803d0468" class="">Différence :</h3><ul id="2b93c9e0-ab45-801f-b706-f5c07373d908" class="bulleted-list"><li style="list-style-type:disc"><strong>state BACKUP</strong></li></ul><ul id="2b93c9e0-ab45-809c-bf65-caae07e794b9" class="bulleted-list"><li style="list-style-type:disc"><strong>priority plus basse (100)</strong><p id="2b93c9e0-ab45-80f1-bdb4-dd020d8284d3" class="">👉 Il prendra la VIP seulement si le MASTER tombe.</p></li></ul><hr id="2b93c9e0-ab45-80e2-bbb9-e32e846fa452"/><h2 id="2b93c9e0-ab45-8082-9544-ca359eeb316d" class="">5. Vérification et tests</h2><h3 id="2b93c9e0-ab45-80cf-b93d-fc2b6bee87ac" class="">Redémarrer Keepalived</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-80c9-bbf7-d0f65fbfd97d" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo systemctl restart keepalived
-
-</code></pre><h3 id="2b93c9e0-ab45-80af-9a89-c6ad9823d60f" class="">Vérifier l’état sur chaque node</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-80bf-88bf-e3a129d1116d" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">ip a | grep 192.168.30.100
-
-</code></pre><p id="2b93c9e0-ab45-80ef-b53b-c5cad116d15d" class="">👉 Sur le MASTER : la VIP apparaît</p><p id="2b93c9e0-ab45-8049-9102-c99590328188" class="">👉 Sur le BACKUP : elle doit <em>disparaître</em></p><hr id="2b93c9e0-ab45-80bd-804e-f9c9fdde0ca2"/><h2 id="2b93c9e0-ab45-8044-92a9-d0c9d0f43ac0" class="">6. Test de bascule (failover)</h2><h3 id="2b93c9e0-ab45-8010-a8f3-dbe4d2840486" class="">1️⃣ Pinger la VIP depuis un client</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-8003-84b7-cd5af5881e36" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">ping 192.168.30.100
-
-</code></pre><p id="2b93c9e0-ab45-8019-b04b-e0ac14fe4508" class="">→ Le ping doit répondre.</p><h3 id="2b93c9e0-ab45-8073-a4e8-e7a9ae282c1c" class="">2️⃣ Arrêter Keepalived sur le MASTER</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-80b9-a434-c90b3970b116" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo systemctl stop keepalived
-
-</code></pre><h3 id="2b93c9e0-ab45-8039-b31b-e229a2af5cba" class="">3️⃣ Sur le BACKUP</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-80cc-bafd-c27820cd7633" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">ip a
-
-</code></pre><p id="2b93c9e0-ab45-8031-8357-c6e8644e01ae" class="">→ La VIP doit apparaître automatiquement ✔️</p><h3 id="2b93c9e0-ab45-80a5-99ed-e5b115e5f6da" class="">4️⃣ Redémarrer le MASTER</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-80bd-83a9-e97e18de92a8" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">sudo systemctl start keepalived
-
-</code></pre><p id="2b93c9e0-ab45-80f5-a955-df0fd66f48e1" class="">→ La VIP revient au MASTER (car priorité plus haute).</p><hr id="2b93c9e0-ab45-80c8-ae07-f0893cf3dddb"/><h2 id="2b93c9e0-ab45-807c-9df6-e62bf95143da" class="">7. Surveillance d’un service (option mais recommandé)</h2><p id="2b93c9e0-ab45-80b4-8be0-c7f7ee1694a2" class="">Keepalived peut surveiller Apache/Nginx :</p><p id="2b93c9e0-ab45-803c-ace2-fa7221b198c1" class="">Fichier <code>/etc/keepalived/check_web.sh</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-8018-9982-d8c3f59d0189" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">#!/bin/bash
-if ! systemctl is-active --quiet apache2; then
-    exit 1
-fi
-exit 0
-
-</code></pre><p id="2b93c9e0-ab45-8096-8dac-f14de0859856" class="">Rendre exécutable :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-800f-b01f-e347d96486b2" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">chmod +x /etc/keepalived/check_web.sh
-
-</code></pre><p id="2b93c9e0-ab45-80d4-b811-d3498fc2093b" class="">Ajouter dans <code>keepalived.conf</code> :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b93c9e0-ab45-80de-83e0-fce3494e85c1" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">vrrp_script check_web {
-    script &quot;/etc/keepalived/check_web.sh&quot;
-    interval 2
-    weight -20
-}
+  <div class="section">
+    <h2>4. Exemple de configuration Keepalived</h2>
+    <pre><code>sudo nano /etc/keepalived/keepalived.conf
 
 vrrp_instance VI_1 {
-    ...
-    track_script {
-        check_web
-    }
+  state MASTER            # BACKUP sur le second nœud
+  interface ens33         # adapter à l’interface réseau
+  virtual_router_id 51
+  priority 150            # 100 sur le nœud backup
+  advert_int 1
+  authentication {
+    auth_type PASS
+    auth_pass vrrp123
+  }
+  virtual_ipaddress {
+    192.168.20.30/24
+  }
 }
+</code></pre>
+    <p>Redémarrer le service pour appliquer les changements :</p>
+    <pre><code>sudo systemctl restart keepalived
+sudo systemctl enable keepalived</code></pre>
+  </div>
 
-</code></pre><p id="2b93c9e0-ab45-80c0-aac1-ddbe90b56f42" class="">👉 Si Apache tombe → priorité -20 → <strong>perte de VIP → bascule automatique</strong></p><hr id="2b93c9e0-ab45-80f1-b23a-eb66b62b2beb"/><h2 id="2b93c9e0-ab45-8036-8954-c1ca80567e07" class="">8. Points clés à retenir</h2><ul id="2b93c9e0-ab45-807e-88f5-d983a36dce62" class="bulleted-list"><li style="list-style-type:disc">Keepalived = <strong>VRRP + VIP + HA</strong></li></ul><ul id="2b93c9e0-ab45-8094-b098-c02b37883e3c" class="bulleted-list"><li style="list-style-type:disc">Le MASTER a une priorité plus élevée → contrôle la VIP</li></ul><ul id="2b93c9e0-ab45-80d1-a99b-e4fdc017844b" class="bulleted-list"><li style="list-style-type:disc">Le BACKUP récupère la VIP instantanément en cas de panne</li></ul><ul id="2b93c9e0-ab45-80c1-bef8-ddc7b352bf67" class="bulleted-list"><li style="list-style-type:disc">Utilisé pour la haute disponibilité de services web ou réseau</li></ul><ul id="2b93c9e0-ab45-8032-a72c-d1e82294e11e" class="bulleted-list"><li style="list-style-type:disc">Possibilité de surveiller des services (Apache, Nginx, MariaDB…)</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+  <div class="section">
+    <h2>5. Tests de bascule</h2>
+    <ul>
+      <li>Depuis un poste client, <code>ping 192.168.20.30</code> pour vérifier la VIP.</li>
+      <li>Simuler une panne du maître (<code>sudo systemctl stop keepalived</code>) et vérifier la continuité du ping.</li>
+      <li>Relancer le service et confirmer le retour automatique du maître (<code>ip a</code> pour visualiser la VIP).</li>
+    </ul>
+  </div>
+
+  <p class="note">Astuce : ajouter un <strong>track_script</strong> pour surveiller un service critique (ex. <code>nginx</code>) et déclencher la bascule si le service est indisponible.</p>
+</body>
+</html>
