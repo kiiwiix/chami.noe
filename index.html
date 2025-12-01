@@ -192,6 +192,8 @@
     }
     html[data-theme="light"] .nav a:hover{background:rgba(214,75,98,.18)}
     html[data-theme="light"] .nav a[aria-current="true"]{background:linear-gradient(135deg,rgba(214,75,98,.2),rgba(255,255,255,.82));}
+    .nav-cta{display:grid; gap:8px; margin-top:4px}
+    .nav-cta .btn{width:100%; justify-content:center; text-align:center}
     .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none}
     .chip{padding:6px 10px; border-radius:999px; background:rgba(16,18,28,.7); border:1px solid rgba(255,255,255,.12); color:var(--muted); font-size:.85rem; box-shadow:inset 0 0 10px rgba(242,75,100,.2)}
     .socials{display:grid; gap:12px; margin-top:8px}
@@ -219,6 +221,11 @@
     .timeline li{padding-left:18px; margin:18px 0; position:relative}
     .timeline li:before{content:""; position:absolute; left:-34px; top:.4rem; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(10,11,18,.85)}
     .timeline time{display:block; color:var(--muted); font-size:.9rem}
+    .impact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; padding:0; margin:0; list-style:none}
+    .impact{position:relative; overflow:hidden}
+    .impact .tag{position:absolute; top:12px; right:12px; background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.22); color:var(--text)}
+    .impact h3{margin:0 0 8px; font-size:1.1rem}
+    .impact ul{margin:0; padding-left:18px; color:var(--muted)}
     .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
     .skill{background:rgba(10,11,18,.55); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px; backdrop-filter:blur(10px)}
     .skill h3{margin:0; font-size:1.05rem}
@@ -226,6 +233,12 @@
     .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:0; padding:0; list-style:none}
     .metric{background:rgba(10,11,18,.5); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:14px; text-align:center; box-shadow:0 10px 24px rgba(242,75,100,.16)}
     .metric strong{display:block; font-size:1.4rem; color:var(--accent2)}
+    .apercu-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start}
+    .apercu-highlights{gap:12px}
+    .terminal-shell{margin-top:18px}
+    .terminal-shell .muted{display:block}
+    @media (max-width:960px){.apercu-grid{grid-template-columns:1fr}}
+    .contact-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px}
     address{font-style:normal; line-height:1.7}
     .foot{opacity:.7; font-size:.9rem; text-align:center; padding:24px 0; margin:0}
     footer{margin-top:auto; padding:0 0 32px}
@@ -276,7 +289,8 @@
         </button>
       </div>
       <nav class="nav" aria-label="Navigation principale">
-        <a href="#intro" aria-current="true">✨ Aperçu</a>
+        <a href="#apercu" aria-current="true">✨ Aperçu</a>
+        <a href="#stages">🚀 Stages</a>
         <a href="#projets">🧩 Projets</a>
         <a href="#xp">🛠️ Expériences</a>
         <a href="#skills">⚙️ Compétences</a>
@@ -284,16 +298,11 @@
         <a href="#veille">🔍 Veille</a>
         <a href="#contact">✉️ Contact</a>
       </nav>
-      <ul class="chips" role="list">
-        <li class="chip">DHCP</li>
-        <li class="chip">Active Directory</li>
-        <li class="chip">Apache</li>
-        <li class="chip">Cisco</li>
-      </ul>
-      <div class="socials">
+      <div class="nav-cta">
         <a class="btn primary" href="cv.html" target="_blank" rel="noopener">📄 Voir mon CV</a>
-        <a class="btn" href="Documents/attestation-anssi.pdf" target="_blank" rel="noopener" download>📎 Attestation ANSSI</a>
-        <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener" aria-label="Profil LinkedIn de Noé Chami">LinkedIn</a>
+        <a class="btn" href="Documents/attestation-anssi.pdf" target="_blank" rel="noopener">📎 Attestation ANSSI</a>
+      </div>
+      <div class="socials">
         <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
       </div>
       <div class="muted">
@@ -305,15 +314,61 @@
     <!-- Content -->
     <div class="content">
 
-      <section id="intro">
+      <section id="apercu">
         <h2>✨ Aperçu</h2>
-        <p class="section-intro">Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin d’Orléans. Ce portfolio rassemble mes projets systèmes &amp; réseaux, les missions conduites en transmissions militaires et les pièces justificatives de mes certifications. Je me spécialise dans l’administration d’infrastructures et je poursuis mon amélioration en anglais technique.</p>
-        <ul class="metrics" role="list">
-          <li class="metric"><strong>+12</strong> infrastructures configurées<br />Windows &amp; Linux</li>
-          <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
-          <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
+        <div class="apercu-grid">
+          <div class="card apercu-highlights">
+            <p class="section-intro">Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin d’Orléans. Ce portfolio rassemble mes projets systèmes &amp; réseaux, les missions conduites en transmissions militaires et les pièces justificatives de mes certifications. Je me spécialise dans l’administration d’infrastructures et je poursuis mon amélioration en anglais technique.</p>
+            <ul class="chips" role="list">
+              <li class="chip">Industrialisation Windows &amp; Linux</li>
+              <li class="chip">Automatisation Ansible &amp; scripts</li>
+              <li class="chip">Surveillance &amp; PRA</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="muted" style="margin:0 0 8px">Repères rapides</h3>
+            <ul class="metrics" role="list">
+              <li class="metric"><strong>+12</strong> infrastructures configurées<br />Windows &amp; Linux</li>
+              <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
+              <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="terminal-shell">
+          <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
+        </div>
+      </section>
+
+      <section id="stages">
+        <h2>🚀 Stages</h2>
+        <p class="section-intro">Panorama de mes immersions professionnelles avec le rapport ADEFI consultable en ligne. Le stage en unité militaire ne peut pas être partagé publiquement pour des raisons de confidentialité.</p>
+        <ul class="projects" role="list">
+          <li class="card project">
+            <span class="tag">ADEFI</span>
+            <h3>Stage technique en informatique (Beaugency)</h3>
+            <p>Mise en service de switches Zyxel, plan d’adressage VLAN et supervision réseau. Déploiement d’un NAS Synology avec volumes RAID, quotas, partages et scripts de sauvegarde documentés.</p>
+            <div class="tags"><span class="tag">Zyxel</span><span class="tag">VLAN</span><span class="tag">Synology</span><span class="tag">Bash</span></div>
+            <footer><a href="assets/Compte-rendu%20de%20Stage%20%E2%80%93%20BTS%20SIO%202bc3c9e0ab45801697aef02172d8b434.html" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
+          <li class="card project">
+            <span class="tag">Défense</span>
+            <h3>Stage cybersécurité · 807ᵉ Cie des Transmissions (Rennes)</h3>
+            <p>Étude basée sur MITRE ATT&amp;CK en environnement classifié : analyse de menaces, typologies d’attaques et restitution structurée. Le rapport ne peut pas être diffusé pour respecter la confidentialité militaire.</p>
+            <div class="tags"><span class="tag">Cybersécurité</span><span class="tag">MITRE ATT&amp;CK</span><span class="tag">Confidentiel</span></div>
+          </li>
+          <li class="card project">
+            <span class="tag">Armée de l’Air</span>
+            <h3>Immersion BA 123 Orléans-Bricy</h3>
+            <p>Découverte des opérations réseaux sur base aérienne : gestion d’infrastructures critiques, discipline opérationnelle et sensibilisation aux contraintes de sécurité.</p>
+            <div class="tags"><span class="tag">Observation</span><span class="tag">Réseaux</span></div>
+          </li>
+          <li class="card project">
+            <span class="tag">Chambord</span>
+            <h3>Stage d’observation – Domaine national</h3>
+            <p>Suivi du support utilisateur et de la gestion de parc, mise en place de bonnes pratiques de sécurisation poste de travail.</p>
+            <div class="tags"><span class="tag">Support</span><span class="tag">Parc</span></div>
+          </li>
         </ul>
-        <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
       </section>
 
       <section id="projets">
@@ -338,11 +393,14 @@
           </li>
 
           <li class="card project">
-            <span class="tag">Systèmes</span>
-            <h3>Active Directory sous Windows Server 2019</h3>
-            <p>Installation AD DS &amp; DNS, création d’OUs, gestion des comptes et groupes, stratégies GPO et partages NTFS sécurisés.</p>
-            <div class="tags"><span class="tag">AD DS</span><span class="tag">GPO</span><span class="tag">NTFS</span></div>
-            <footer><a href="Documents/ActiveDirectory.pdf" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+            <span class="tag">Haute dispo</span>
+            <h3>TP Keepalived : VRRP sous Debian</h3>
+            <p>
+              Mise en cluster de deux routeurs virtuels avec <strong>Keepalived</strong> (VRRP),
+              adressage préalable, activation du routage IP et validation par tests de bascule.
+            </p>
+            <div class="tags"><span class="tag">Keepalived</span><span class="tag">VRRP</span><span class="tag">Debian</span></div>
+            <footer><a href="assets/Keepalived.html" target="_blank" class="btn">📄 Voir le rapport</a></footer>
           </li>
 
           <li class="card project">
@@ -475,6 +533,10 @@
           📱 07 81 36 83 26<br />
           💬 Disponible pour un échange autour des métiers des transmissions militaires et réseaux sécurisés.
         </address>
+        <div class="contact-actions">
+          <a class="btn primary" href="mailto:chaminoe0@gmail.com?subject=Prendre%20rendez-vous">Planifier un échange</a>
+          <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">in /noé-chami</a>
+        </div>
       </section>
 
       <footer>
