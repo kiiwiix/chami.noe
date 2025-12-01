@@ -23,6 +23,15 @@ Ce site a été réalisé dans le cadre de ma formation **BTS SIO (Services Info
 
 ---
 
+## 📦 Installation rapide
+1. **Récupérez les fichiers** : `git clone https://github.com/kiiwiix/chami.noe.git` ou mettez à jour votre dépôt local avec `git pull`.
+2. **Vérifiez les ressources locales** :
+   - Placez votre photo dans `assets/7a99c842-cb92-4b22-83bc-245656196c60.jpg` (le site basculera automatiquement sur l’avatar SVG si l’image est absente).
+   - Ajoutez vos pièces jointes (PDF, attestations) dans le dossier `Documents/` pour alimenter les liens des pages projets et contact.
+3. **Servez le site en local** : `python -m http.server 8000` puis ouvrez [http://localhost:8000/index.html](http://localhost:8000/index.html).
+   - Le script `matrix.js` anime la pluie de code en arrière-plan.
+   - `app.js` applique automatiquement le thème clair/sombre et garde la navigation synchronisée.
+
 ## 🧭 Structure du site
 - `index.html` — Accueil / aperçu général avec statistiques et liens rapides
 - `projets.html` — Dossiers techniques et rapports prêts pour l’épreuve E4

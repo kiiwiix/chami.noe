@@ -115,58 +115,6 @@
     </div>
   </main>
   <script src="matrix.js" defer></script>
-  <script>
-    (function(){
-      const root=document.documentElement;
-      const toggle=document.querySelector('[data-theme-toggle]');
-      if(!toggle)return;
-      const storageKey='preferred-theme';
-      const systemQuery=window.matchMedia('(prefers-color-scheme: dark)');
-      const label=current=>current==='dark'?'Passer en mode clair':'Passer en mode sombre';
-      const applyTheme=theme=>{
-        if(theme==='dark'){
-          root.removeAttribute('data-theme');
-          toggle.setAttribute('aria-pressed','true');
-          theme='dark';
-        }else{
-          root.setAttribute('data-theme','light');
-          toggle.setAttribute('aria-pressed','false');
-          theme='light';
-        }
-        toggle.querySelector('span').textContent=label(theme);
-      };
-      let stored=null;
-      try{stored=localStorage.getItem(storageKey);}catch(e){stored=null;}
-      const initial=stored==='dark'?'dark':'light';
-      applyTheme(initial);
-      toggle.addEventListener('click',()=>{
-        const isLight=root.getAttribute('data-theme')==='light';
-        const next=isLight?'dark':'light';
-        applyTheme(next);
-        try{localStorage.setItem(storageKey,next);}catch(e){}
-      });
-      systemQuery.addEventListener('change',event=>{
-        let pref=null;
-        try{pref=localStorage.getItem(storageKey);}catch(e){pref=null;}
-        if(!pref){
-          applyTheme(event.matches?'dark':'light');
-        }
-      });
-      const navLinks=Array.from(document.querySelectorAll('.nav a'));
-      if(navLinks.length){
-        const path=window.location.pathname.split('/').pop()||'index.html';
-        navLinks.forEach(link=>{
-          const href=link.getAttribute('href')||'';
-          const normalized=href.replace(/^\.\//,'');
-          const target=normalized===''?'index.html':normalized;
-          if(target===path || (path==='' && target==='index.html')){
-            link.setAttribute('aria-current','page');
-          }else{
-            link.removeAttribute('aria-current');
-          }
-        });
-      }
-    })();
-  </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
