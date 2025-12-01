@@ -284,7 +284,7 @@
         </button>
       </div>
       <nav class="nav" aria-label="Navigation principale">
-        <a href="#intro" aria-current="true">✨ Aperçu</a>
+        <a href="#stages" aria-current="true">✨ Stages</a>
         <a href="#impact">🚀 Résultats</a>
         <a href="#projets">🧩 Projets</a>
         <a href="#xp">🛠️ Expériences</a>
@@ -309,15 +309,73 @@
     <!-- Content -->
     <div class="content">
 
-      <section id="intro">
-        <h2>✨ Aperçu</h2>
-        <p class="section-intro">Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin d’Orléans. Ce portfolio rassemble mes projets systèmes &amp; réseaux, les missions conduites en transmissions militaires et les pièces justificatives de mes certifications. Je me spécialise dans l’administration d’infrastructures et je poursuis mon amélioration en anglais technique.</p>
-        <ul class="metrics" role="list">
-          <li class="metric"><strong>+12</strong> infrastructures configurées<br />Windows &amp; Linux</li>
-          <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
-          <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
+      <section id="stages">
+        <h2>✨ Stages</h2>
+        <p class="section-intro">Panorama de mes immersions professionnelles avec le rapport ADEFI consultable en ligne. Le stage en unité militaire ne peut pas être partagé publiquement pour des raisons de confidentialité.</p>
+        <ul class="projects" role="list">
+          <li class="card project">
+            <span class="tag">ADEFI</span>
+            <h3>Stage technique en informatique (Beaugency)</h3>
+            <p>Mise en service de switches Zyxel, plan d’adressage VLAN et supervision réseau. Déploiement d’un NAS Synology avec volumes RAID, quotas, partages et scripts de sauvegarde documentés.</p>
+            <div class="tags"><span class="tag">Zyxel</span><span class="tag">VLAN</span><span class="tag">Synology</span><span class="tag">Bash</span></div>
+            <footer><a href="assets/rapport-adefi.html" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+          </li>
+          <li class="card project">
+            <span class="tag">Défense</span>
+            <h3>Stage cybersécurité · 807ᵉ Cie des Transmissions (Rennes)</h3>
+            <p>Étude basée sur MITRE ATT&amp;CK en environnement classifié : analyse de menaces, typologies d’attaques et restitution structurée. Le rapport ne peut pas être diffusé pour respecter la confidentialité militaire.</p>
+            <div class="tags"><span class="tag">Cybersécurité</span><span class="tag">MITRE ATT&amp;CK</span><span class="tag">Confidentiel</span></div>
+          </li>
+          <li class="card project">
+            <span class="tag">Armée de l’Air</span>
+            <h3>Immersion BA 123 Orléans-Bricy</h3>
+            <p>Découverte des opérations réseaux sur base aérienne : gestion d’infrastructures critiques, discipline opérationnelle et sensibilisation aux contraintes de sécurité.</p>
+            <div class="tags"><span class="tag">Observation</span><span class="tag">Réseaux</span></div>
+          </li>
+          <li class="card project">
+            <span class="tag">Chambord</span>
+            <h3>Stage d’observation – Domaine national</h3>
+            <p>Suivi du support utilisateur et de la gestion de parc, mise en place de bonnes pratiques de sécurisation poste de travail.</p>
+            <div class="tags"><span class="tag">Support</span><span class="tag">Parc</span></div>
+          </li>
         </ul>
-        <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
+      </section>
+
+      <section id="impact">
+        <h2>🚀 Résultats marquants</h2>
+        <p class="section-intro">Exemples concrets de livrables réalisés récemment : ils combinent sécurisation, documentation et transfert de compétences pour assurer la continuité de service.</p>
+        <ul class="impact-grid" role="list">
+          <li class="card impact">
+            <span class="tag">Infra</span>
+            <h3>Active Directory prêt pour l’E4</h3>
+            <p>Forêt AD DS avec DNS intégré, structuration des OU et politiques GPO alignées sur les besoins métiers.</p>
+            <ul>
+              <li>50 comptes utilisateurs et groupes gérés avec délégation</li>
+              <li>Stratégies de sécurité (mots de passe, verrouillage, scripts)</li>
+              <li>Procédures rédigées pour la soutenance</li>
+            </ul>
+          </li>
+          <li class="card impact">
+            <span class="tag">Sécurité</span>
+            <h3>Segmentation &amp; supervision réseau</h3>
+            <p>Plan d’adressage par VLAN, règles pare-feu ICMP/DNS, analyse Wireshark et suivi des flux sensibles.</p>
+            <ul>
+              <li>Tableaux de tests (ICMP, ARP, DHCP relay) pour chaque VLAN</li>
+              <li>Alertes mail basiques sur anomalies détectées</li>
+              <li>Diagrammes et captures intégrés aux rapports PDF</li>
+            </ul>
+          </li>
+          <li class="card impact">
+            <span class="tag">Automatisation</span>
+            <h3>Backups &amp; déploiements guidés</h3>
+            <p>Scripts Bash/PowerShell pour les sauvegardes NAS Synology et la configuration initiale des services.</p>
+            <ul>
+              <li>Playbooks prêts à adapter pour Ansible/Cisco IOS</li>
+              <li>Journalisation locale + résumé HTML exportable</li>
+              <li>Checklist d’exploitation fournie aux équipes</li>
+            </ul>
+          </li>
+        </ul>
       </section>
 
       <section id="impact">
