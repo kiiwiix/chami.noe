@@ -10,12 +10,14 @@
 }
 
 html[data-theme="light"]{
-  --terminal-bg: rgba(14, 14, 22, 0.95);
-  --terminal-border: rgba(214, 75, 98, 0.35);
-  --terminal-shadow: 0 16px 38px rgba(120, 26, 36, 0.25);
-  --terminal-header: linear-gradient(135deg, rgba(34, 16, 24, 0.92), rgba(18, 19, 32, 0.9));
-  --terminal-command: #f3fffb;
-  --terminal-output: #8df9e2;
+  --terminal-bg: rgba(248, 249, 252, 0.92);
+  --terminal-border: rgba(46, 142, 170, 0.35);
+  --terminal-shadow: 0 18px 40px rgba(74, 144, 226, 0.22);
+  --terminal-header: linear-gradient(135deg, rgba(247, 250, 255, 0.98), rgba(224, 236, 245, 0.94));
+  --terminal-prompt: #1f7a8c;
+  --terminal-command: #163041;
+  --terminal-output: #2f4555;
+  --terminal-cursor: #1f7a8c;
 }
 
 /* Terminal Kali animé */
