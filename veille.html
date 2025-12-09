@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veille technologique — Noé Chami</title>
+  <meta name="description" content="Synthèse de veille technologique orientée cybersécurité, automatisation réseau et continuité de service." />
+  <meta name="color-scheme" content="light" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root{
+      color-scheme: light;
+      --bg:#f5f7fb;
+      --surface:#ffffff;
+      --surface-active:#ffe7ef;
+      --card:#ffffff;
+      --muted:#4d5567;
+      --text:#0f172a;
+      --accent:#d02d51;
+      --accent2:#ff5c7a;
+      --line:rgba(208,45,81,.16);
+      --line-strong:rgba(208,45,81,.32);
+      --glow:rgba(208,45,81,.18);
+      --shadow:0 24px 60px rgba(15,23,42,.12);
+      --glass-border:1px solid rgba(15,23,42,.06);
+      --glass-backdrop:blur(16px) saturate(140%);
+      --section-gradient:linear-gradient(140deg,#ffffff,rgba(236,239,249,.9));
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      padding:32px;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      font:16px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      color:var(--text);
+      background:var(--bg);
+    }
+    a{color:var(--accent2); text-decoration:none; transition:color .2s ease, text-decoration-color .2s ease}
+    a:hover{text-decoration:underline; color:#d02d51}
+    a:focus-visible{outline:2px solid var(--accent2); outline-offset:4px}
+    h1,h2,h3{font-weight:600; letter-spacing:.2px; color:var(--text); margin:0;}
+    p{margin:0; color:var(--muted);}
+    .section-intro{color:var(--muted); margin-top:6px;}
+    .muted{color:var(--muted);}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line-strong);
+      background:var(--surface-active);
+      color:var(--text);
+      font-weight:600;
+      box-shadow:0 14px 30px rgba(208,45,81,.14);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .btn.primary{background:linear-gradient(135deg,rgba(208,45,81,.18),rgba(255,92,122,.16));}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 18px 32px rgba(208,45,81,.18); text-decoration:none;}
+    .veille-wrapper{
+      max-width:980px;
+      width:100%;
+      background:var(--surface);
+      border:var(--glass-border);
+      border-radius:22px;
+      padding:32px;
+      box-shadow:var(--shadow);
+      backdrop-filter:var(--glass-backdrop);
+    }
+    .veille-header{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:24px;}
+    .veille-header a{margin-left:auto;}
+    .veille-grid{display:grid; grid-template-columns:1fr; gap:20px;}
+    .veille-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:inset 0 0 1px rgba(255,255,255,.5);}
+    .veille-card h3{margin-top:0; margin-bottom:10px;}
+    .veille-card ul{margin:0; padding-left:18px; color:var(--muted);}
+    .veille-card li + li{margin-top:8px;}
+    .source-list{display:flex; flex-wrap:wrap; gap:10px; padding:0; list-style:none; margin:14px 0 0;}
+    .source-list a{padding:8px 12px; border-radius:10px; background:rgba(208,45,81,.12); border:1px solid var(--line-strong); color:var(--text);}
+    .return-link{margin-top:28px; text-align:center;}
+    @media(max-width:720px){body{padding:20px;} .veille-wrapper{padding:24px;} .veille-header{flex-direction:column;} .veille-header a{margin-left:0;}}
+  </style>
+</head>
+<body>
+  <main class="veille-wrapper">
+    <header class="veille-header">
+      <div>
+        <p class="muted" style="margin:0">Portfolio BTS SIO — Noé Chami</p>
+        <h1 style="margin:6px 0 4px">Veille technologique</h1>
+        <p class="section-intro" style="margin:0">Sélection d’articles et tendances suivies chaque mois pour rester à jour sur la cybersécurité, l’automatisation réseau et la résilience des infrastructures.</p>
+      </div>
+      <a class="btn" href="index.html" rel="noopener">⬅️ Retour au portfolio</a>
+    </header>
+
+    <div class="veille-grid">
+      <article class="veille-card">
+        <h3>Cyberdéfense &amp; menaces</h3>
+        <ul>
+          <li>Analyse des bulletins CERT-FR et priorisation des correctifs critiques (Fortinet, VMware, Microsoft).</li>
+          <li>Suivi du framework MITRE ATT&amp;CK pour cartographier les tactiques observées en environnement défensif.</li>
+          <li>Lectures régulières des rapports ANSSI et COMCYBER pour anticiper les modes opératoires émergents.</li>
+        </ul>
+      </article>
+
+      <article class="veille-card">
+        <h3>Automatisation &amp; supervision</h3>
+        <ul>
+          <li>Playbooks Ansible pour la sauvegarde de configurations Cisco IOS et la supervision de services critiques.</li>
+          <li>Templates Jinja pour harmoniser les déploiements et réduire les écarts de configuration entre sites.</li>
+          <li>Exploration des capacités d’APIs Synology et Zabbix pour consolider les tableaux de bord.</li>
+        </ul>
+      </article>
+
+      <article class="veille-card">
+        <h3>Cloud hybride &amp; continuité</h3>
+        <ul>
+          <li>Veille sur Nutanix, VMware et proxmox pour arbitrer coûts, résilience et souveraineté des données.</li>
+          <li>Approche PRA : scénarios de bascule, sauvegardes hors site et tests de restauration documentés.</li>
+          <li>Étude des solutions Zero Trust et segmentation pour limiter l’impact des incidents.</li>
+        </ul>
+      </article>
+    </div>
+
+    <section class="veille-card" style="margin-top:12px;">
+      <h3>Sources principales</h3>
+      <ul class="source-list">
+        <li><a href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener">CERT-FR</a></li>
+        <li><a href="https://www.ssi.gouv.fr/" target="_blank" rel="noopener">ANSSI</a></li>
+        <li><a href="https://www.cybermalveillance.gouv.fr/" target="_blank" rel="noopener">Cybermalveillance.gouv.fr</a></li>
+        <li><a href="https://attack.mitre.org/" target="_blank" rel="noopener">MITRE ATT&amp;CK</a></li>
+        <li><a href="https://www.redhat.com/en/topics/automation/what-is-ansible" target="_blank" rel="noopener">Ansible</a></li>
+      </ul>
+    </section>
+
+    <p class="return-link"><a class="btn primary" href="index.html" rel="noopener">Retour à l’accueil</a></p>
+  </main>
+</body>
+</html>
