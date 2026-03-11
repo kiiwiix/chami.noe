@@ -149,7 +149,7 @@
     }
     .avatar picture{display:block; width:100%; height:100%}
     .avatar img{width:100%; height:100%; object-fit:cover}
-    .brand h1{margin:0; font-size:1.6rem}
+    .brand-name{margin:0; font-size:1.6rem; font-weight:700; color:var(--text)}
     .brand small{display:block; color:var(--muted); margin-top:4px}
     .subtitle{color:var(--muted); font-size:.95rem; margin:0}
     .theme-toggle{
@@ -238,11 +238,18 @@
     .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:0; padding:0; list-style:none}
     .metric{background:rgba(10,11,18,.5); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:14px; text-align:center; box-shadow:0 10px 24px rgba(242,75,100,.16)}
     .metric strong{display:block; font-size:1.4rem; color:var(--accent2)}
-    .apercu-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start}
-    .apercu-highlights{gap:12px}
+    .hero-intro{display:flex; flex-direction:column; gap:16px}
+    .hero-title{margin:0; font-size:2.05rem; letter-spacing:.3px; text-transform:none}
+    .hero-title::after{display:none}
+    .hero-subtitle{margin:0; font-size:1.12rem; color:var(--accent); font-weight:600}
+    .hero-description{margin:0; color:var(--muted); max-width:72ch}
+    .hero-skill-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:18px}
+    .hero-skill-card{background:rgba(10,11,18,.55); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(10px)}
+    .hero-skill-card h3{margin:0; font-size:1.02rem}
+    .hero-skill-card ul{margin:0; padding-left:18px; color:var(--muted)}
     .terminal-shell{margin-top:18px}
     .terminal-shell .muted{display:block}
-    @media (max-width:960px){.apercu-grid{grid-template-columns:1fr}}
+    @media (max-width:960px){.hero-skill-grid{grid-template-columns:1fr}}
     .contact-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px}
     address{font-style:normal; line-height:1.7}
     .foot{opacity:.7; font-size:.9rem; text-align:center; padding:24px 0; margin:0}
@@ -253,7 +260,8 @@
     html[data-theme="light"] .btn{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(255,235,240,.92)); color:var(--text)}
     html[data-theme="light"] .btn:hover{background:linear-gradient(160deg,rgba(255,235,240,.95),rgba(255,255,255,.95))}
     html[data-theme="light"] .card,
-    html[data-theme="light"] .skill{background:rgba(255,255,255,.85); border-color:rgba(214,75,98,.22)}
+    html[data-theme="light"] .skill,
+    html[data-theme="light"] .hero-skill-card{background:rgba(255,255,255,.85); border-color:rgba(214,75,98,.22)}
     html[data-theme="light"] .metric{background:rgba(255,255,255,.86); border-color:rgba(214,75,98,.25)}
     @media print{
       body{background:#fff; color:#000}
@@ -281,7 +289,7 @@
           <img src="assets/7a99c842-cb92-4b22-83bc-245656196c60.jpg" alt="Portrait de Noé Chami" loading="lazy" decoding="async" width="76" height="76" onerror="this.src='assets/avatar-placeholder.svg'; this.removeAttribute('onerror');" />
         </div>
         <div>
-          <h1>Noé Chami</h1>
+          <p class="brand-name">Noé Chami</p>
           <small>BTS SIO – option SISR</small>
           <p class="subtitle">Administrateur systèmes & réseaux</p>
         </div>
@@ -314,20 +322,41 @@
     <!-- Content -->
     <div class="content">
 
-      <section id="apercu">
-        <h2>✨ Aperçu</h2>
-        <div class="apercu-grid">
-          <div class="card apercu-highlights">
-            <p class="section-intro">Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin d’Orléans. Ce portfolio rassemble mes projets systèmes &amp; réseaux, les missions conduites en transmissions militaires et les pièces justificatives de mes certifications. Je me spécialise dans l’administration d’infrastructures et je poursuis mon amélioration en anglais technique.</p>
-          </div>
-          <div class="card">
-            <h3 class="muted" style="margin:0 0 8px">Repères rapides</h3>
-            <ul class="metrics" role="list">
-              <li class="metric"><strong>+12</strong> infrastructures configurées<br />Windows &amp; Linux</li>
-              <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
-              <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
+      <section id="apercu" aria-labelledby="hero-title">
+        <p class="tag" style="display:inline-flex; margin:0 0 12px;">Accueil · Profil technique</p>
+        <div class="hero-intro">
+          <h1 id="hero-title" class="hero-title">Noé Chami</h1>
+          <p class="hero-subtitle">Administrateur Systèmes &amp; Réseaux (BTS SIO SISR)</p>
+          <p class="hero-description">Étudiant en BTS SIO spécialisé en infrastructures, systèmes et réseaux.<br />Expérience en Active Directory, virtualisation, VLAN, haute disponibilité et automatisation PowerShell.</p>
+        </div>
+        <div class="hero-skill-grid" role="list" aria-label="Compétences clés">
+          <article class="hero-skill-card" role="listitem">
+            <h3>🖥 Systèmes</h3>
+            <ul>
+              <li>Windows Server</li>
+              <li>Linux</li>
+              <li>Active Directory</li>
             </ul>
-          </div>
+          </article>
+          <article class="hero-skill-card" role="listitem">
+            <h3>🌐 Réseaux</h3>
+            <ul>
+              <li>VLAN</li>
+              <li>DHCP</li>
+              <li>DNS</li>
+              <li>NAT</li>
+              <li>Cisco</li>
+            </ul>
+          </article>
+          <article class="hero-skill-card" role="listitem">
+            <h3>⚙️ Outils</h3>
+            <ul>
+              <li>PowerShell</li>
+              <li>VirtualBox</li>
+              <li>Nutanix</li>
+              <li>GitHub</li>
+            </ul>
+          </article>
         </div>
         <div class="terminal-shell">
           <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
