@@ -148,30 +148,6 @@
 
     .featured p + p{margin-top:10px}
 
-    .veille-grid{display:grid; grid-template-columns:1fr; gap:18px; margin-top:10px}
-
-    .veille-card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:20px;
-      box-shadow:var(--card-shadow);
-    }
-
-    .veille-card h3{margin-bottom:10px}
-    .veille-card ul{margin:0; padding-left:20px; color:var(--muted)}
-    .veille-card li + li{margin-top:8px}
-
-    .sources{margin-top:18px}
-    .source-list{display:flex; flex-wrap:wrap; gap:10px; padding:0; list-style:none; margin:14px 0 0}
-    .source-list a{
-      padding:8px 12px;
-      border-radius:10px;
-      background:var(--accent-soft);
-      border:1px solid var(--line-strong);
-      color:var(--text);
-      font-weight:500;
-    }
 
     .return-link{margin-top:26px; text-align:center}
 
@@ -207,45 +183,7 @@
       <p><strong>Analyse :</strong> Cet incident montre l’importance de sécuriser les plateformes SaaS utilisées par les entreprises et de protéger les données sensibles. Il met également en évidence les risques liés aux fuites de données et à la revente d’informations sur le dark web.</p>
     </section>
 
-    <div class="veille-grid">
-      <article class="veille-card">
-        <h3>Cyberdéfense &amp; menaces</h3>
-        <ul>
-          <li>Analyse des bulletins CERT-FR et priorisation des correctifs critiques (Fortinet, VMware, Microsoft).</li>
-          <li>Suivi du framework MITRE ATT&amp;CK pour cartographier les tactiques observées en environnement défensif.</li>
-          <li>Lectures régulières des rapports ANSSI et COMCYBER pour anticiper les modes opératoires émergents.</li>
-        </ul>
-      </article>
 
-      <article class="veille-card">
-        <h3>Automatisation &amp; supervision</h3>
-        <ul>
-          <li>Playbooks Ansible pour la sauvegarde de configurations Cisco IOS et la supervision de services critiques.</li>
-          <li>Templates Jinja pour harmoniser les déploiements et réduire les écarts de configuration entre sites.</li>
-          <li>Exploration des capacités d’APIs Synology et Zabbix pour consolider les tableaux de bord.</li>
-        </ul>
-      </article>
-
-      <article class="veille-card">
-        <h3>Cloud hybride &amp; continuité</h3>
-        <ul>
-          <li>Veille sur Nutanix, VMware et Proxmox pour arbitrer coûts, résilience et souveraineté des données.</li>
-          <li>Approche PRA : scénarios de bascule, sauvegardes hors site et tests de restauration documentés.</li>
-          <li>Étude des solutions Zero Trust et segmentation pour limiter l’impact des incidents.</li>
-        </ul>
-      </article>
-    </div>
-
-    <section class="veille-card sources" style="margin-top:12px;">
-      <h3>Sources principales</h3>
-      <ul class="source-list">
-        <li><a href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener">CERT-FR</a></li>
-        <li><a href="https://www.ssi.gouv.fr/" target="_blank" rel="noopener">ANSSI</a></li>
-        <li><a href="https://www.cybermalveillance.gouv.fr/" target="_blank" rel="noopener">Cybermalveillance.gouv.fr</a></li>
-        <li><a href="https://attack.mitre.org/" target="_blank" rel="noopener">MITRE ATT&amp;CK</a></li>
-        <li><a href="https://www.redhat.com/en/topics/automation/what-is-ansible" target="_blank" rel="noopener">Ansible</a></li>
-      </ul>
-    </section>
 
     <p class="return-link"><a class="btn primary" href="index.html" rel="noopener">Retour à l’accueil</a></p>
   </main>
