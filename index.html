@@ -239,13 +239,13 @@
     .metric{background:rgba(10,11,18,.5); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:14px; text-align:center; box-shadow:0 10px 24px rgba(242,75,100,.16)}
     .metric strong{display:block; font-size:1.4rem; color:var(--accent2)}
     .hero-intro{display:flex; flex-direction:column; gap:16px}
-    .hero-title{margin:0; font-size:2.05rem; letter-spacing:.3px; text-transform:none}
+    .hero-title{margin:0; font-size:clamp(2rem,3.6vw,2.5rem); letter-spacing:.2px; line-height:1.1; text-transform:none}
     .hero-title::after{display:none}
-    .hero-subtitle{margin:0; font-size:1.12rem; color:var(--accent); font-weight:600}
-    .hero-description{margin:0; color:var(--muted); max-width:72ch}
-    .hero-skill-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:18px}
+    .hero-subtitle{margin:0; font-size:1.12rem; color:var(--accent); font-weight:700}
+    .hero-description{margin:0; color:var(--muted); max-width:74ch}
+    .hero-skill-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:20px}
     .hero-skill-card{background:rgba(10,11,18,.55); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(10px)}
-    .hero-skill-card h3{margin:0; font-size:1.02rem}
+    .hero-skill-card h3{margin:0; font-size:1.05rem}
     .hero-skill-card ul{margin:0; padding-left:18px; color:var(--muted)}
     .terminal-shell{margin-top:18px}
     .terminal-shell .muted{display:block}
@@ -327,7 +327,7 @@
         <div class="hero-intro">
           <h1 id="hero-title" class="hero-title">Noé Chami</h1>
           <p class="hero-subtitle">Administrateur Systèmes &amp; Réseaux (BTS SIO SISR)</p>
-          <p class="hero-description">Étudiant en BTS SIO spécialisé en infrastructures, systèmes et réseaux.<br />Expérience en Active Directory, virtualisation, VLAN, haute disponibilité et automatisation PowerShell.</p>
+          <p class="hero-description">Étudiant en BTS SIO (option SISR) spécialisé dans l’administration des systèmes Windows/Linux, la gestion d’infrastructures réseau et l’automatisation avec PowerShell.<br />Expérience dans le déploiement d’Active Directory, la virtualisation, la segmentation réseau (VLAN) et la haute disponibilité.</p>
         </div>
         <div class="hero-skill-grid" role="list" aria-label="Compétences clés">
           <article class="hero-skill-card" role="listitem">
@@ -336,6 +336,7 @@
               <li>Windows Server</li>
               <li>Linux</li>
               <li>Active Directory</li>
+              <li>DNS / DHCP</li>
             </ul>
           </article>
           <article class="hero-skill-card" role="listitem">
@@ -344,7 +345,7 @@
               <li>VLAN</li>
               <li>DHCP</li>
               <li>DNS</li>
-              <li>NAT</li>
+              <li>NAT / PAT</li>
               <li>Cisco</li>
             </ul>
           </article>
@@ -355,6 +356,7 @@
               <li>VirtualBox</li>
               <li>Nutanix</li>
               <li>GitHub</li>
+              <li>Wireshark</li>
             </ul>
           </article>
         </div>
