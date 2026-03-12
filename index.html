@@ -149,7 +149,7 @@
     }
     .avatar picture{display:block; width:100%; height:100%}
     .avatar img{width:100%; height:100%; object-fit:cover}
-    .brand h1{margin:0; font-size:1.6rem}
+    .brand-name{margin:0; font-size:1.6rem; font-weight:700; color:var(--text)}
     .brand small{display:block; color:var(--muted); margin-top:4px}
     .subtitle{color:var(--muted); font-size:.95rem; margin:0}
     .theme-toggle{
@@ -222,6 +222,8 @@
     .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
     .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:rgba(242,75,100,.12); color:var(--text); border:1px solid rgba(255,255,255,.12); text-transform:uppercase; letter-spacing:.6px}
     .card footer{margin-top:auto}
+    .stage-report-links{display:flex; flex-wrap:wrap; gap:10px; margin-top:2px}
+    .stage-report-links .btn{flex:1 1 220px; justify-content:center; text-align:center}
     .timeline{padding:0 0 0 28px; margin:0; list-style:none; position:relative; border-left:2px solid rgba(255,114,138,.25)}
     .timeline li{padding-left:18px; margin:18px 0; position:relative}
     .timeline li:before{content:""; position:absolute; left:-34px; top:.4rem; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(10,11,18,.85)}
@@ -238,11 +240,18 @@
     .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:0; padding:0; list-style:none}
     .metric{background:rgba(10,11,18,.5); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:14px; text-align:center; box-shadow:0 10px 24px rgba(242,75,100,.16)}
     .metric strong{display:block; font-size:1.4rem; color:var(--accent2)}
-    .apercu-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start}
-    .apercu-highlights{gap:12px}
+    .hero-intro{display:flex; flex-direction:column; gap:16px}
+    .hero-title{margin:0; font-size:clamp(2rem,3.6vw,2.5rem); letter-spacing:.2px; line-height:1.1; text-transform:none}
+    .hero-title::after{display:none}
+    .hero-subtitle{margin:0; font-size:1.12rem; color:var(--accent); font-weight:700}
+    .hero-description{margin:0; color:var(--muted); max-width:74ch}
+    .hero-skill-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:20px}
+    .hero-skill-card{background:rgba(10,11,18,.55); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(10px)}
+    .hero-skill-card h3{margin:0; font-size:1.05rem}
+    .hero-skill-card ul{margin:0; padding-left:18px; color:var(--muted)}
     .terminal-shell{margin-top:18px}
     .terminal-shell .muted{display:block}
-    @media (max-width:960px){.apercu-grid{grid-template-columns:1fr}}
+    @media (max-width:960px){.hero-skill-grid{grid-template-columns:1fr}}
     .contact-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px}
     address{font-style:normal; line-height:1.7}
     .foot{opacity:.7; font-size:.9rem; text-align:center; padding:24px 0; margin:0}
@@ -253,7 +262,8 @@
     html[data-theme="light"] .btn{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(255,235,240,.92)); color:var(--text)}
     html[data-theme="light"] .btn:hover{background:linear-gradient(160deg,rgba(255,235,240,.95),rgba(255,255,255,.95))}
     html[data-theme="light"] .card,
-    html[data-theme="light"] .skill{background:rgba(255,255,255,.85); border-color:rgba(214,75,98,.22)}
+    html[data-theme="light"] .skill,
+    html[data-theme="light"] .hero-skill-card{background:rgba(255,255,255,.85); border-color:rgba(214,75,98,.22)}
     html[data-theme="light"] .metric{background:rgba(255,255,255,.86); border-color:rgba(214,75,98,.25)}
     @media print{
       body{background:#fff; color:#000}
@@ -281,7 +291,7 @@
           <img src="assets/7a99c842-cb92-4b22-83bc-245656196c60.jpg" alt="Portrait de Noé Chami" loading="lazy" decoding="async" width="76" height="76" onerror="this.src='assets/avatar-placeholder.svg'; this.removeAttribute('onerror');" />
         </div>
         <div>
-          <h1>Noé Chami</h1>
+          <p class="brand-name">Noé Chami</p>
           <small>BTS SIO – option SISR</small>
           <p class="subtitle">Administrateur systèmes & réseaux</p>
         </div>
@@ -300,15 +310,10 @@
         <a href="#xp">🛠️ Expériences</a>
         <a href="#skills">⚙️ Compétences</a>
         <a href="#certs">🎓 Certifications</a>
-        <a href="#veille">🔍 Veille</a>
-        <a href="#contact">✉️ Contact</a>
+        <a href="veille.html" rel="noopener">🔍 Veille</a>
       </nav>
       <div class="nav-cta">
         <a class="btn primary" href="cv.html" target="_blank" rel="noopener">📄 Voir mon CV</a>
-        <a class="btn" href="Documents/attestation-anssi.pdf" target="_blank" rel="noopener">📎 Attestation ANSSI</a>
-      </div>
-      <div class="socials">
-        <a class="btn" href="mailto:chaminoe0@gmail.com">✉️ Me contacter</a>
       </div>
       <div class="muted">
         📍 Orléans · Lycée Benjamin Franklin<br />
@@ -319,25 +324,43 @@
     <!-- Content -->
     <div class="content">
 
-      <section id="apercu">
-        <h2>✨ Aperçu</h2>
-        <div class="apercu-grid">
-          <div class="card apercu-highlights">
-            <p class="section-intro">Je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Benjamin Franklin d’Orléans. Ce portfolio rassemble mes projets systèmes &amp; réseaux, les missions conduites en transmissions militaires et les pièces justificatives de mes certifications. Je me spécialise dans l’administration d’infrastructures et je poursuis mon amélioration en anglais technique.</p>
-            <ul class="chips" role="list">
-              <li class="chip">Industrialisation Windows &amp; Linux</li>
-              <li class="chip">Automatisation Ansible &amp; scripts</li>
-              <li class="chip">Surveillance &amp; PRA</li>
+      <section id="apercu" aria-labelledby="hero-title">
+        <p class="tag" style="display:inline-flex; margin:0 0 12px;">Accueil · Profil technique</p>
+        <div class="hero-intro">
+          <h1 id="hero-title" class="hero-title">Noé Chami</h1>
+          <p class="hero-subtitle">Administrateur Systèmes &amp; Réseaux (BTS SIO SISR)</p>
+          <p class="hero-description">Étudiant en BTS SIO (option SISR) spécialisé dans l’administration des systèmes Windows/Linux, la gestion d’infrastructures réseau et l’automatisation avec PowerShell.<br />Expérience dans le déploiement d’Active Directory, la virtualisation, la segmentation réseau (VLAN) et la haute disponibilité.</p>
+        </div>
+        <div class="hero-skill-grid" role="list" aria-label="Compétences clés">
+          <article class="hero-skill-card" role="listitem">
+            <h3>🖥 Systèmes</h3>
+            <ul>
+              <li>Windows Server</li>
+              <li>Linux</li>
+              <li>Active Directory</li>
+              <li>DNS / DHCP</li>
             </ul>
-          </div>
-          <div class="card">
-            <h3 class="muted" style="margin:0 0 8px">Repères rapides</h3>
-            <ul class="metrics" role="list">
-              <li class="metric"><strong>+12</strong> infrastructures configurées<br />Windows &amp; Linux</li>
-              <li class="metric"><strong>6</strong> projets documentés<br />pour l’épreuve E4</li>
-              <li class="metric"><strong>2</strong> stages immersion<br />défense &amp; transmissions</li>
+          </article>
+          <article class="hero-skill-card" role="listitem">
+            <h3>🌐 Réseaux</h3>
+            <ul>
+              <li>VLAN</li>
+              <li>DHCP</li>
+              <li>DNS</li>
+              <li>NAT / PAT</li>
+              <li>Cisco</li>
             </ul>
-          </div>
+          </article>
+          <article class="hero-skill-card" role="listitem">
+            <h3>⚙️ Outils</h3>
+            <ul>
+              <li>PowerShell</li>
+              <li>VirtualBox</li>
+              <li>Nutanix</li>
+              <li>GitHub</li>
+              <li>Wireshark</li>
+            </ul>
+          </article>
         </div>
         <div class="terminal-shell">
           <div id="terminal" class="terminal" role="log" aria-live="polite" aria-label="Simulation de terminal Kali"></div>
@@ -346,14 +369,17 @@
 
       <section id="stages">
         <h2>🚀 Stages</h2>
-        <p class="section-intro">Panorama de mes immersions professionnelles avec le rapport ADEFI consultable en ligne. Le stage en unité militaire ne peut pas être partagé publiquement pour des raisons de confidentialité.</p>
+        <p class="section-intro">Panorama de mes immersions professionnelles avec les rapports ADEFI de première et deuxième année consultables en ligne. Le stage en unité militaire ne peut pas être partagé publiquement pour des raisons de confidentialité.</p>
         <ul class="projects" role="list">
           <li class="card project">
             <span class="tag">ADEFI</span>
             <h3>Stage technique en informatique (Beaugency)</h3>
-            <p>Mise en service de switches Zyxel, plan d’adressage VLAN et supervision réseau. Déploiement d’un NAS Synology avec volumes RAID, quotas, partages et scripts de sauvegarde documentés.</p>
+            <p>J’ai effectué mon stage de <strong>première année</strong> puis mon stage de <strong>deuxième année</strong> au sein d’ADEFI à Beaugency. Cette continuité m’a permis de consolider mes méthodes d’administration systèmes et réseaux sur deux périodes distinctes.</p>
             <div class="tags"><span class="tag">Zyxel</span><span class="tag">VLAN</span><span class="tag">Synology</span><span class="tag">Bash</span></div>
-            <footer><a href="assets/Compte rendu de Stage – BTS SIO 2bc3c9e0ab45801697aef02172d8b434.html" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+            <footer class="stage-report-links">
+              <a href="assets/Compte-rendu de Stage – BTS SIO 2bc3c9e0ab45801697aef02172d8b434.html" target="_blank" class="btn">📄 Voir rapport première année</a>
+              <a href="assets/Compte-rendu de Stage – BTS SIO (2ᵉ année) 3213c9e0ab45800aa31bd04c2a9893d9.html" target="_blank" class="btn">📄 Voir rapport deuxième année</a>
+            </footer>
           </li>
           <li class="card project">
             <span class="tag">Défense</span>
@@ -432,9 +458,14 @@
         <h2>🛠️ Expériences</h2>
         <ol class="timeline" role="list">
           <li>
-            <strong>2025 — Stage technique en informatique · ADEFI (Beaugency)</strong>
-            <time datetime="2025">Février 2025</time>
-            <div class="muted">Mise en service de switches Zyxel, configuration VLAN, diagnostics réseau (Wireshark, ICMP, DNS, ARP) et déploiement d’un NAS Synology avec gestion RAID, scripts de sauvegarde automatisés et restitution documentaire.</div>
+            <strong>2025 — Stage technique en informatique (2e année BTS SIO) · ADEFI (Beaugency)</strong>
+            <time datetime="2025">Deuxième année</time>
+            <div class="muted">Approfondissement des missions d’administration réseau et systèmes : configuration VLAN, supervision, diagnostics avancés et administration NAS Synology avec procédures de sauvegarde et documentation technique.</div>
+          </li>
+          <li>
+            <strong>2024 — Stage technique en informatique (1re année BTS SIO) · ADEFI (Beaugency)</strong>
+            <time datetime="2024">Première année</time>
+            <div class="muted">Première immersion professionnelle dans la même structure : mise en service de switches Zyxel, segmentation réseau, configuration de services et découverte des contraintes de production.</div>
           </li>
           <li>
             <strong>2024 — Stage en cybersécurité · 807ᵉ Compagnie des Transmissions – Armée de Terre (Rennes)</strong>
@@ -499,21 +530,21 @@
               <strong>PIX – Compétences numériques</strong>
               <span>Score supérieur à la moyenne nationale</span>
             </div>
-            <a href="#contact" class="btn">📨 Attestation sur demande</a>
+            <a href="mailto:chaminoe0@gmail.com?subject=Demande%20d%27attestation%20PIX" class="btn">📨 Attestation sur demande</a>
           </div>
           <div class="cert">
             <div>
               <strong>OpenClassrooms – Linux &amp; TCP/IP</strong>
               <span>Parcours complétés en autonomie</span>
             </div>
-            <a href="#contact" class="btn">🔗 Voir la veille</a>
+            <a href="veille.html" rel="noopener" class="btn">🔗 Voir la veille</a>
           </div>
           <div class="cert">
             <div>
               <strong>ANSSI – MOOC SecNumacadémie</strong>
               <span>Initiation à la cybersécurité</span>
             </div>
-            <a href="#contact" class="btn">📘 Certificat disponible</a>
+            <a href="mailto:chaminoe0@gmail.com?subject=Certificat%20SecNumacad%C3%A9mie" class="btn">📘 Certificat disponible</a>
           </div>
         </div>
       </section>
@@ -527,21 +558,7 @@
           <li>Cybersécurité de défense : cartographie MITRE ATT&amp;CK, retours du COMCYBER, dispositif CERT-FR.</li>
           <li>Automatisation réseau : Ansible pour Cisco IOS, supervision par playbooks et templates Jinja.</li>
         </ul>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact">
-        <h2>✉️ Contact</h2>
-        <address>
-          📍 Orléans · Lycée Benjamin Franklin<br />
-          📧 <a href="mailto:chaminoe0@gmail.com">chaminoe0@gmail.com</a><br />
-          📱 07 81 36 83 26<br />
-          💬 Disponible pour un échange autour des métiers des transmissions militaires et réseaux sécurisés.
-        </address>
-        <div class="contact-actions">
-          <a class="btn primary" href="mailto:chaminoe0@gmail.com?subject=Prendre%20rendez-vous">Planifier un échange</a>
-          <a class="btn" href="https://www.linkedin.com/in/no%C3%A9-chami/" target="_blank" rel="noopener">in /noé-chami</a>
-        </div>
+        <p><a class="btn primary" href="veille.html" rel="noopener">Ouvrir la veille complète</a></p>
       </section>
 
       <footer>

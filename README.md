@@ -44,6 +44,30 @@ Dans le cadre de ma formation, je mène une **veille mensuelle** sur les évolut
 Exemples de sujets traités :  
 - ☁️ **Cloud hybride et virtualisation**  
 
+
+## 🗂️ Fichiers présents dans le projet
+Voici l’inventaire actuel des fichiers suivis dans ce dépôt :
+
+- `index.html`
+- `veille.html`
+- `cv.html`
+- `style.css`
+- `animations.css`
+- `background.css`
+- `cv.css`
+- `akatsuki.js`
+- `matrix.js`
+- `terminal.js`
+- `README.md`
+- `Documents/DHCPavecWAMP.pdf`
+- `Documents/attestation-anssi.pdf`
+- `Documents/cv-noe-chami.pdf`
+- `assets/7a99c842-cb92-4b22-83bc-245656196c60.jpg`
+- `assets/avatar-placeholder.svg`
+- `assets/Compte-rendu de Stage – BTS SIO 2bc3c9e0ab45801697aef02172d8b434.html`
+- `assets/rapport-adefi.html`
+- `assets/Keepalived.html`
+
 ---
 
 ## 🚀 Hébergement

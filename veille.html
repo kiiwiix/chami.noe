@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veille technologique — Noé Chami</title>
+  <meta name="description" content="Synthèse de veille technologique orientée cybersécurité, automatisation réseau et continuité de service." />
+  <meta name="color-scheme" content="light" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root{
+      color-scheme: light;
+      --bg:#eef2f8;
+      --surface:#ffffff;
+      --card:#ffffff;
+      --muted:#4d5567;
+      --text:#0f172a;
+      --accent:#cf2f55;
+      --accent-soft:#ffe8ee;
+      --accent-2:#ff5f7f;
+      --line:rgba(207,47,85,.16);
+      --line-strong:rgba(207,47,85,.34);
+      --shadow:0 22px 60px rgba(15,23,42,.12);
+      --hero-gradient:linear-gradient(135deg,#fff6f8 0%,#ffffff 42%,#f5f8ff 100%);
+      --card-shadow:0 10px 28px rgba(15,23,42,.08);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      padding:34px;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      font:16px/1.7 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    a{color:var(--accent); text-decoration:none; transition:all .2s ease}
+    a:hover{text-decoration:underline}
+    a:focus-visible{outline:2px solid var(--accent-2); outline-offset:4px; border-radius:8px}
+
+    h1,h2,h3{margin:0; letter-spacing:.2px; color:var(--text)}
+    p{margin:0; color:var(--muted)}
+
+    .veille-wrapper{
+      width:100%;
+      max-width:1080px;
+      background:var(--surface);
+      border:1px solid rgba(15,23,42,.06);
+      border-radius:24px;
+      padding:32px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero{
+      background:var(--hero-gradient);
+      border:1px solid rgba(207,47,85,.14);
+      border-radius:20px;
+      padding:24px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px;
+      align-items:end;
+      margin-bottom:24px;
+    }
+
+    .hero .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.86rem;
+      font-weight:700;
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      background:var(--accent-soft);
+      border:1px solid var(--line-strong);
+      border-radius:999px;
+      padding:6px 10px;
+      margin-bottom:12px;
+    }
+
+    .hero h1{font-size:clamp(1.75rem,3vw,2.4rem); margin-bottom:8px}
+    .hero p{max-width:72ch}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 15px;
+      border-radius:12px;
+      border:1px solid var(--line-strong);
+      color:var(--text);
+      background:#fff;
+      font-weight:600;
+      box-shadow:0 8px 22px rgba(207,47,85,.12);
+      white-space:nowrap;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg,var(--accent-soft),#ffeef2);
+    }
+
+    .featured{
+      background:linear-gradient(150deg,#fff 0%,#fff8fa 62%,#fff1f5 100%);
+      border:1px solid var(--line-strong);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--card-shadow);
+      margin-bottom:18px;
+    }
+
+    .featured-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:10px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      border:1px solid var(--line-strong);
+      color:#8f1231;
+      font-weight:700;
+      font-size:.85rem;
+    }
+
+    .meta{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 14px}
+    .meta span{
+      font-size:.88rem;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:5px 10px;
+      color:#25324b;
+    }
+
+    .featured p + p{margin-top:10px}
+
+    .article-list{display:grid; gap:16px; margin-top:16px}
+
+    .article-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:20px;
+      box-shadow:var(--card-shadow);
+    }
+
+    .article-card h3{margin:0 0 8px}
+    .article-card p + p{margin-top:10px}
+
+    .return-link{margin-top:26px; text-align:center}
+
+    @media (max-width:860px){
+      body{padding:20px}
+      .veille-wrapper{padding:24px}
+      .hero{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main class="veille-wrapper">
+    <header class="hero">
+      <div>
+        <span class="eyebrow">Portfolio BTS SIO — Noé Chami</span>
+        <h1>Veille technologique</h1>
+        <p>Sélection d’articles et tendances suivies chaque mois pour rester à jour sur la cybersécurité, l’automatisation réseau et la résilience des infrastructures.</p>
+      </div>
+      <a class="btn" href="index.html" rel="noopener">⬅️ Retour au portfolio</a>
+    </header>
+
+    <section class="featured" aria-labelledby="article-mois">
+      <div class="featured-header">
+        <h2 id="article-mois">Piratage de Salesloft : 1,5 milliard de données compromises</h2>
+        <span class="badge">Alerte cybersécurité</span>
+      </div>
+      <div class="meta">
+        <span><strong>Date :</strong> Septembre 2025</span>
+        <span><strong>Catégorie :</strong> Cybersécurité</span>
+        <span><strong>Source :</strong> <a href="https://www.zdnet.fr/actualites/piratage-salesloft-un-pirate-affirme-qu15-milliard-de-donnees-ont-ete-volees-482325.htm" target="_blank" rel="noopener">ZDNet France</a></span>
+      </div>
+      <p><strong>Résumé :</strong> Un pirate affirme avoir volé 1,5 milliard de données issues de la plateforme Salesloft. Les informations incluraient des adresses email professionnelles et des données liées à des entreprises. La fuite pourrait être utilisée pour des campagnes de phishing ou des attaques d’ingénierie sociale.</p>
+      <p><strong>Analyse :</strong> Cet incident montre l’importance de sécuriser les plateformes SaaS utilisées par les entreprises et de protéger les données sensibles. Il met également en évidence les risques liés aux fuites de données et à la revente d’informations sur le dark web.</p>
+    </section>
+
+
+    <section class="article-list" aria-label="Autres articles de veille">
+      <article class="article-card">
+        <h3>Cyberéco 2025 : montée en puissance des menaces hybrides</h3>
+        <div class="meta">
+          <span><strong>Date :</strong> 22 octobre 2025</span>
+          <span><strong>Catégorie :</strong> Cybersécurité / Menaces informatiques</span>
+          <span><strong>Source :</strong> <a href="https://www.lemagit.fr/actualites/366633533/Cybereco-2025-fait-le-constat-de-la-montee-en-puissance-des-menaces-hybrides" target="_blank" rel="noopener">LeMagIT</a></span>
+        </div>
+        <p><strong>Résumé :</strong> Lors de l’événement Cyberéco 2025, des experts ont alerté sur la montée des menaces hybrides, combinant plusieurs méthodes pour déstabiliser des organisations ou des États. D’après les données du ministère de l’Intérieur, environ 17 000 cyberattaques ont été judiciarisées en 2024 en France, en forte hausse sur cinq ans. Les spécialistes pointent aussi la combinaison de rançongiciels, vols de données, actions hacktivistes et opérations indirectes menées par des États via des groupes cybercriminels, dans un contexte géopolitique tendu et renforcé par l’IA générative.</p>
+        <p><strong>Analyse :</strong> Cet article confirme que la cybersécurité dépasse désormais le cadre purement technique. Les menaces hybrides mêlent cyberattaques, désinformation et leviers géopolitiques pour toucher des organisations et des infrastructures critiques. Les entreprises et administrations doivent donc renforcer leur résilience numérique, améliorer la détection et adopter des stratégies de défense plus globales.</p>
+      </article>
+
+
+      <article class="article-card">
+        <h3>CERT-FR – Multiples vulnérabilités dans Cisco ASA et FTD</h3>
+        <div class="meta">
+          <span><strong>Date :</strong> 25 septembre 2025</span>
+          <span><strong>Catégorie :</strong> Réseau / Cybersécurité</span>
+          <span><strong>Source :</strong> <a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2025-ALE-013/" target="_blank" rel="noopener">CERT-FR</a></span>
+        </div>
+        <p><strong>Résumé :</strong> Le CERT-FR a publié une alerte sur plusieurs vulnérabilités critiques touchant Cisco ASA et FTD, avec des risques de contournement de la politique de sécurité, de déni de service à distance et d’exécution de code arbitraire à distance. Deux failles sont particulièrement sensibles : l’une permet de contourner l’authentification pour accéder à des ressources protégées, l’autre permet à un attaquant authentifié d’exécuter du code à distance. Combinées, elles peuvent mener à une prise de contrôle d’un équipement vulnérable par un attaquant non authentifié. Cisco signale une exploitation active de ces vulnérabilités.</p>
+        <p><strong>Analyse :</strong> Cette alerte est directement pertinente pour une veille BTS SIO SISR car elle concerne la sécurité des équipements réseau critiques en entreprise. Une compromission de pare-feu Cisco ASA/FTD peut impacter l’accès VPN, la sécurité périmétrique et la continuité de service. Elle souligne l’importance de la gestion des correctifs, de la surveillance des équipements exposés sur Internet et de la recherche d’indices de compromission après une faille critique. Le CERT-FR recommande notamment de vérifier l’état des équipements, d’appliquer les mises à jour de sécurité et, si nécessaire, de désactiver temporairement certains services VPN.</p>
+        <p><strong>Pourquoi c’est intéressant pour mon BTS :</strong> Ce sujet illustre concrètement le rôle d’un administrateur systèmes et réseaux : configurer les équipements, maintenir leur niveau de sécurité, suivre les alertes officielles et réagir rapidement face aux vulnérabilités critiques.</p>
+      </article>
+
+      <article class="article-card">
+        <h3>Patch Tuesday : Microsoft corrige une faille zero-day dans Windows 10</h3>
+        <div class="meta">
+          <span><strong>Date :</strong> Décembre 2019</span>
+          <span><strong>Catégorie :</strong> Cybersécurité / Systèmes d’exploitation</span>
+          <span><strong>Source :</strong> <a href="https://www.zdnet.fr/actualites/patch-tuesday-microsoft-corrige-une-faille-zero-day-dans-windows-10-39895727.htm" target="_blank" rel="noopener">ZDNet</a></span>
+        </div>
+        <p><strong>Résumé :</strong> Microsoft a publié une mise à jour de sécurité dans le cadre du Patch Tuesday afin de corriger plusieurs vulnérabilités affectant Windows. Au total, 36 failles de sécurité ont été corrigées, dont une faille zero-day critique dans Windows 10. Cette vulnérabilité touche le composant Win32k, qui ne traite pas correctement certains objets en mémoire. Un attaquant pourrait l’exploiter pour exécuter du code arbitraire avec des privilèges élevés et prendre le contrôle d’un système compromis.</p>
+        <p><strong>Analyse :</strong> Cet article rappelle l’importance des mises à jour de sécurité sur les systèmes d’exploitation. Les failles zero-day sont particulièrement dangereuses car elles peuvent être exploitées avant la disponibilité d’un correctif. En environnement professionnel, les administrateurs doivent suivre les bulletins de sécurité et déployer rapidement les correctifs pour limiter les risques d’exploitation.</p>
+        <p><strong>Pourquoi cet article est intéressant pour le BTS SIO :</strong> Cet exemple illustre le rôle essentiel de l’administrateur système et réseau dans la gestion des correctifs, la surveillance des vulnérabilités et la protection des infrastructures informatiques. Il souligne aussi l’importance d’une veille technologique régulière pour anticiper les menaces et maintenir les systèmes à jour.</p>
+      </article>
+
+
+
+      <article class="article-card">
+        <h3>CERT-FR – Alerte CERTFR-2026-ALE-002</h3>
+        <div class="meta">
+          <span><strong>Date :</strong> 25 février 2026</span>
+          <span><strong>Catégorie :</strong> Réseau / Cybersécurité</span>
+          <span><strong>Source :</strong> <a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-002/" target="_blank" rel="noopener">CERT-FR</a></span>
+        </div>
+        <p><strong>Résumé :</strong> Le CERT-FR publie l’alerte <strong>CERTFR-2026-ALE-002</strong> pour signaler des vulnérabilités de sécurité nécessitant une action rapide des équipes techniques. Cette publication officielle met en avant les risques d’exploitation sur des systèmes exposés et rappelle l’importance d’appliquer les correctifs recommandés.</p>
+        <p><strong>Analyse :</strong> Pour un profil BTS SIO SISR, cette alerte illustre une compétence clé : assurer une veille active, qualifier le niveau de criticité, planifier la remédiation et vérifier l’état réel des équipements après correction. Elle renforce l’approche MCO/MCS des infrastructures (maintien en condition opérationnelle et de sécurité).</p>
+        <p><strong>Pourquoi c’est intéressant pour mon BTS :</strong> Cet exemple montre concrètement le rôle d’un administrateur systèmes et réseaux : suivre les bulletins CERT, prioriser les mises à jour, documenter les actions et réduire la surface d’attaque des services en production.</p>
+      </article>
+
+      <article class="article-card">
+        <h3>Fake Moltbot AI Coding Assistant sur VS Code Marketplace distribue un malware</h3>
+        <div class="meta">
+          <span><strong>Date :</strong> 28 janvier 2026</span>
+          <span><strong>Catégorie :</strong> Cybersécurité / Développement / Malware</span>
+          <span><strong>Source :</strong> <a href="https://thehackernews.com/2026/01/fake-moltbot-ai-coding-assistant-on-vs.html" target="_blank" rel="noopener">The Hacker News</a></span>
+        </div>
+        <p><strong>Résumé :</strong> Des chercheurs en cybersécurité ont identifié une extension malveillante publiée sur le marketplace VS Code, présentée comme un assistant IA nommé Moltbot. Au lieu d’aider au développement, elle installait un malware. Après installation, l’extension téléchargeait un client malveillant reposant sur ScreenConnect pour établir un accès distant persistant sur la machine victime, permettant aux attaquants de contrôler le système compromis et de communiquer avec leur infrastructure.</p>
+        <p><strong>Analyse :</strong> Cet incident montre les risques liés aux extensions et outils tiers dans les environnements de développement. Même une plateforme officielle peut héberger des extensions malveillantes si la vérification est insuffisante. Développeurs et administrateurs doivent vérifier la provenance des extensions, contrôler les permissions demandées et mettre en place des mécanismes de détection des comportements suspects.</p>
+        <p><strong>Pourquoi cet article est intéressant pour le BTS SIO :</strong> Cet exemple illustre l’importance de la sécurité de la chaîne d’approvisionnement logicielle (software supply chain) et des risques liés aux outils de développement. Pour un administrateur système ou réseau, il est essentiel de maîtriser les logiciels installés en entreprise et de sensibiliser les utilisateurs aux extensions et logiciels non vérifiés.</p>
+      </article>
+    </section>
+
+    <p class="return-link"><a class="btn primary" href="index.html" rel="noopener">Retour à l’accueil</a></p>
+  </main>
+</body>
+</html>
