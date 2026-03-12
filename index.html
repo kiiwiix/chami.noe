@@ -222,6 +222,8 @@
     .project .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
     .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:rgba(242,75,100,.12); color:var(--text); border:1px solid rgba(255,255,255,.12); text-transform:uppercase; letter-spacing:.6px}
     .card footer{margin-top:auto}
+    .stage-report-links{display:flex; flex-wrap:wrap; gap:10px; margin-top:2px}
+    .stage-report-links .btn{flex:1 1 220px; justify-content:center; text-align:center}
     .timeline{padding:0 0 0 28px; margin:0; list-style:none; position:relative; border-left:2px solid rgba(255,114,138,.25)}
     .timeline li{padding-left:18px; margin:18px 0; position:relative}
     .timeline li:before{content:""; position:absolute; left:-34px; top:.4rem; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(10,11,18,.85)}
@@ -367,14 +369,18 @@
 
       <section id="stages">
         <h2>🚀 Stages</h2>
-        <p class="section-intro">Panorama de mes immersions professionnelles avec le rapport ADEFI consultable en ligne. Le stage en unité militaire ne peut pas être partagé publiquement pour des raisons de confidentialité.</p>
+        <p class="section-intro">Panorama de mes immersions professionnelles avec les rapports ADEFI de première et deuxième année consultables en ligne. Le stage en unité militaire ne peut pas être partagé publiquement pour des raisons de confidentialité.</p>
         <ul class="projects" role="list">
           <li class="card project">
             <span class="tag">ADEFI</span>
             <h3>Stage technique en informatique (Beaugency)</h3>
-            <p>Mise en service de switches Zyxel, plan d’adressage VLAN et supervision réseau. Déploiement d’un NAS Synology avec volumes RAID, quotas, partages et scripts de sauvegarde documentés.</p>
+            <p>J’ai effectué mon stage de <strong>première année</strong> puis mon stage de <strong>deuxième année</strong> au sein d’ADEFI à Beaugency. Cette continuité m’a permis de consolider mes méthodes d’administration systèmes et réseaux sur deux périodes distinctes.</p>
+            <p>Missions réalisées : mise en service de switches Zyxel, configuration VLAN, supervision réseau, déploiement et administration d’un NAS Synology, gestion RAID, quotas, partages et scripts de sauvegarde documentés.</p>
             <div class="tags"><span class="tag">Zyxel</span><span class="tag">VLAN</span><span class="tag">Synology</span><span class="tag">Bash</span></div>
-            <footer><a href="assets/Compte-rendu de Stage – BTS SIO 2bc3c9e0ab45801697aef02172d8b434.html" target="_blank" class="btn">📄 Voir le rapport</a></footer>
+            <footer class="stage-report-links">
+              <a href="assets/rapport-adefi.html" target="_blank" class="btn">📄 Voir rapport première année</a>
+              <a href="assets/Compte-rendu de Stage – BTS SIO 2bc3c9e0ab45801697aef02172d8b434.html" target="_blank" class="btn">📄 Voir rapport deuxième année</a>
+            </footer>
           </li>
           <li class="card project">
             <span class="tag">Défense</span>
@@ -453,9 +459,14 @@
         <h2>🛠️ Expériences</h2>
         <ol class="timeline" role="list">
           <li>
-            <strong>2025 — Stage technique en informatique · ADEFI (Beaugency)</strong>
-            <time datetime="2025">Février 2025</time>
-            <div class="muted">Mise en service de switches Zyxel, configuration VLAN, diagnostics réseau (Wireshark, ICMP, DNS, ARP) et déploiement d’un NAS Synology avec gestion RAID, scripts de sauvegarde automatisés et restitution documentaire.</div>
+            <strong>2025 — Stage technique en informatique (2e année BTS SIO) · ADEFI (Beaugency)</strong>
+            <time datetime="2025">Deuxième année</time>
+            <div class="muted">Approfondissement des missions d’administration réseau et systèmes : configuration VLAN, supervision, diagnostics avancés et administration NAS Synology avec procédures de sauvegarde et documentation technique.</div>
+          </li>
+          <li>
+            <strong>2024 — Stage technique en informatique (1re année BTS SIO) · ADEFI (Beaugency)</strong>
+            <time datetime="2024">Première année</time>
+            <div class="muted">Première immersion professionnelle dans la même structure : mise en service de switches Zyxel, segmentation réseau, configuration de services et découverte des contraintes de production.</div>
           </li>
           <li>
             <strong>2024 — Stage en cybersécurité · 807ᵉ Compagnie des Transmissions – Armée de Terre (Rennes)</strong>
